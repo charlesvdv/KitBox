@@ -55,6 +55,6 @@
 
 
 #### A gerer en fonction de la demande
-- Le programme doit gere les différente élément à commander en fonction de la taille voulue du bloc par le client.
+- Le programme doit geré les différents éléments à commander en fonction de la taille voulue du bloc par le client.
 - Il faut aussi gerer la cornirère qui elle, à une hauteur calculé en fonction de la somme des hauteurs des blocs. La hauteur max de cornière est 280 d'ou la hauteur max de l'armoire.
-- Si la hauteur de l'armoir n'atteint pas une hauteur strandarisé de cornière, il faut en prévoire une plus grande, et la découpée (la découpe rajoute des frais supplémentaires).
+- Si la hauteur de l'armoir n'atteinte pas une hauteur strandarisé de cornière, il faut en prévoire une plus grande, et la découpée (la découpe rajoute des frais supplémentaires).
