@@ -15,8 +15,17 @@
 
 
 #### Bloc/Casier
-    Unité caractérisée par une hauteur, profondeur et un longueur.
+    Unité caractérisée par une hauteur, profondeur et une longueur.
     Trouvé suivant les panneaux, tasseaux, portes choises entre les cornières.
 
 #### Armoire
     Objet composé de plusieurs blocs empilé entre les cornières.
+
+#### Panneau
+    Planche en bois constituant le coté d'un bloc définit par une couleur, une hauteur et une longueur.
+
+#### Traverse
+    Armature qui définit la largeur et la profondeur d'un bloc.
+
+#### Porte
+    Planche de bois muni d'une coupelle pouvant coulissé.   
