@@ -2,7 +2,7 @@
 
 
 #### Coupelle
-    Capuchon inséré dans le trou de la porte pour l'ouverture et la fermeture
+    Capuchon inséré dans le trou de la porte pour l'ouverture et la fermeture. Equivalent à une poignée.
 
 
 #### Cornière
@@ -16,7 +16,7 @@
 
 #### Bloc/Casier
     Unité caractérisée par une hauteur, profondeur et un longueur.
-    Trouvé suivant les panneaux, tasseaux, portes choises entre les tasseaux.
+    Trouvé suivant les panneaux, tasseaux, portes choises entre les cornières.
 
 #### Armoire
-    Objet composé de plusieurs blocs empilé entre les tasseaux.
+    Objet composé de plusieurs blocs empilé entre les cornières.
