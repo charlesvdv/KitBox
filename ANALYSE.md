@@ -46,7 +46,10 @@
 #### Choix du client
 - Définir la profondeur voulue de l'armoire.
 - Définir la largueur de l'armoire => En fonction de cela on peut lui proposer avec ou sans portes.
-- Il choisit un premier bloc (minimum 1) les blocs doivent avoir la meme largueur et profondeur, seule la hauteur est à définir par le client => il faut qu'il précise avec ou sans porte
+- Il choisit un premier bloc (minimum 1) les blocs doivent avoir la meme largueur et profondeur, seule la hauteur est à définir par le client  
+  - il faut qu'il précise avec ou sans porte
+    - les portes on également une couleur
+  - la couleur doit également être précisé
 - Puis il doit choisir tout les autres blocs en présisant à chaque fois la hauteur de celui ci (+portes)
   -  La hauteur maximum possible d'une armoir est de 280cm , donc il faut limiter le client quand il se raproche de cette valeur
 
