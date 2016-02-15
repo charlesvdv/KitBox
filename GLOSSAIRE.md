@@ -1,5 +1,14 @@
 # Glossaire
 
+#### Société
+    Entreprise de vente de Kitbox, pour laquelle nous codons l'application de gestion des commandes.
+    
+#### Client
+    Particulié qui désire se procurer une ou plusieurs Kitbox sur mesure.
+    
+#### Fournisseur
+    Entreprise tierce qui fournit les composants de base à la Société. 
+    Il peut y avoir plusieurs Fournisseur pour le même composant.
 
 #### Coupelle
     Capuchon inséré dans le trou de la porte pour l'ouverture et la fermeture. Equivalent à une poignée.
