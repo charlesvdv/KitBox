@@ -1,2 +1,0 @@
-c:\users\antoi\onedrive\documents\visual studio 2015\Projects\ProjetKitBox\ProjetKitBox\bin\Debug\ProjetKitBox.exe.config
-C:\Users\Antoi\Desktop\ECAM\Projet informatique - KitBox\ProjetKitBox\ProjetKitBox\bin\Debug\ProjetKitBox.exe.config
