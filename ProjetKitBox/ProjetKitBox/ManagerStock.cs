@@ -32,5 +32,10 @@ namespace ProjetKitBox
 		{
 
 		}
+
+		public static Element FindCorner(int heigth)
+		{
+
+		}
     }
 }
