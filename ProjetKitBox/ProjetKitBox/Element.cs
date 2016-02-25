@@ -30,6 +30,8 @@ namespace ProjetKitBox
 			this.type = type;
 			this.size = size;
 			this.color = color;
+
+			//get data from the database 
 			Element elem;
 			try 
 			{
@@ -38,6 +40,9 @@ namespace ProjetKitBox
 			catch {
 				//TODO
 			}
+			this.price = elem.price;
+			this.code = elem.code;
+			this.requiredNumber = elem.requiredNumber;
 		}
 
         public string Color

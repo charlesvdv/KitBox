@@ -38,9 +38,9 @@ namespace ProjetKitBox
             return true; 
         }
 
-		public void AddElement(Element element)
+		public void AddElement(Element elem)
         {
-
+			elements.Add(elem);
         }
     }
 }
