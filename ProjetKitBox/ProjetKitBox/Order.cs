@@ -36,9 +36,9 @@ namespace ProjetKitBox
             //To implement
         }
 
-        public void DelShelf(Shelf shelf)
+		public void DelShelf(Shelf shelf)
         {
-            //To implement
+			shelfs.Remove(shelf);
         }
 
     }

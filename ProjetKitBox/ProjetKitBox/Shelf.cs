@@ -37,9 +37,9 @@ namespace ProjetKitBox
             //To implement
         }
 
-        public void DelBox(Box box)
+		public void DelBox(Box box)
         {
-            //To implement
+			boxes.Remove(box);
         }
     }
 }
