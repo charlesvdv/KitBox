@@ -28,7 +28,7 @@ namespace ProjetKitBox
 
 		}
 
-		public static bool IsElementValid(string type, string color, StructSize size)
+		public static Element SearchElement(string type, string color, StructSize size)
 		{
 
 		}

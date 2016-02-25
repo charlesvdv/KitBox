@@ -12,18 +12,33 @@ namespace ProjetKitBox
         private double price;
         private StructSize size;
         private string type;
-        private int number;
+        private int code;
         private int requiredNumber;
 
-        public Element(string color, double price, StructSize size, string type, int number, int requiredNumber)
+		public Element(string type, string color, StructSize size, int code ,double price, int requiredNumber)
         {
             this.color = color;
             this.price = price;
             this.size = size;
             this.type = type;
-            this.number = number;
+            this.code = code;
             this.requiredNumber = requiredNumber;
         }
+
+		public Element(string type, StructSize size, string color)
+		{
+			this.type = type;
+			this.size = size;
+			this.color = color;
+			Element elem;
+			try 
+			{
+				elem = ManagerStock.SearchElement(type, color, size);
+			}
+			catch {
+				//TODO
+			}
+		}
 
         public string Color
         {
