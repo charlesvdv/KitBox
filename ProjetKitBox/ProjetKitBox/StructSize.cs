@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace ProjetKitBox
 {
-    public class Box
+    public struct StructSize
     {
-        
+        public double length;
+        public double heigth;
+        public double depth;
     }
+
 }

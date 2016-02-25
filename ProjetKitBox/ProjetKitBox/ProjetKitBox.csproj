@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Box.cs" />
+    <Compile Include="StructSize.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Element.cs" />
     <Compile Include="ManagerClient.cs" />
