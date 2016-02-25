@@ -35,7 +35,31 @@ namespace ProjetKitBox
 
         public bool IsComplete()
         {
-            return true; 
+            var nTotal = 0; 
+            List<string> typeConstituant = new List<string>() {
+                "Tasseau", "Traverse Av", "Traverse Ar", "Traverse GD", "Panneau Ar", "Panneau GD", "Panneau HB",  
+            };
+            foreach(string type in typeConstituant)
+            {
+                foreach(Element e in elements)
+                {
+                    if(e.Type == type)
+                    {
+                        nTotal++;
+                    }
+                }         
+            }
+
+            if(nTotal == 7)
+            {
+                return true; 
+            }
+
+            else
+            {
+                return false; 
+            }
+            
         }
 
 		public void AddElement(Element elem)
