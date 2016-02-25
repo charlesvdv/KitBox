@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace ProjetKitBox
 {
+    //Fini
     public class Box
     {
         private StructSize size;
         private List<Element> elements;
-        private string color;
+        private string color; 
 
         public Box(StructSize size, string color)
         {
@@ -35,7 +36,7 @@ namespace ProjetKitBox
 
         public bool IsComplete()
         {
-            var nTotal = 0; 
+            int nTotal = 0; 
             List<string> typeConstituant = new List<string>() {
                 "Tasseau", "Traverse Av", "Traverse Ar", "Traverse GD", "Panneau Ar", "Panneau GD", "Panneau HB",  
             };
@@ -60,6 +61,16 @@ namespace ProjetKitBox
                 return false; 
             }
             
+        }
+
+        public double GetPrice()
+        {
+            double ad = 0;
+            foreach(Element e in elements)
+            {
+                ad += e.Price; 
+            }
+            return ad; 
         }
 
 		public void AddElement(Element elem)

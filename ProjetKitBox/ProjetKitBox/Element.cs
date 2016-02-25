@@ -65,11 +65,6 @@ namespace ProjetKitBox
             get { return this.type; }
         }
 
-        public int Number
-        {
-            get { return this.number; }
-        }
-
         public int RequiredNumber
         {
             get { return this.requiredNumber; }
