@@ -33,7 +33,7 @@ namespace ProjetKitBox
 
         public void AddShelf(Shelf shelf)
         {
-            //To implement
+			//To implement
         }
 
 		public void DelShelf(Shelf shelf)
