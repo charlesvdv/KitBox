@@ -78,7 +78,7 @@ namespace ProjetKitBox
         {
 			elements.Add(elem);
         }
-
+			
 		//populate the box with the element
 		private void AsyncPopulate()
 		{
@@ -97,5 +97,18 @@ namespace ProjetKitBox
 				throw e;
 			}
 		}
+
+        public List<Element> GetElements()
+        {
+            List<Element> list = new List<Element>();
+
+            foreach(Element e in elements)
+            {
+                list.Add(e);
+            }
+
+            return list; 
+        }
+
     }
 }

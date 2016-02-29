@@ -79,5 +79,22 @@ namespace ProjetKitBox
         {
 			boxes.Remove(box);
         }
+
+        public List<Element> GetElements()
+        {
+            List<Element> list = new List<Element>();
+            foreach (Box b in Boxes)
+            {
+                List<Element> e = b.GetElements();
+                foreach (Element ee in e)
+                {
+                    list.Add(ee);
+                }
+            }
+
+            list.Add(corner);
+            
+            return list; 
+        }
     }
 }

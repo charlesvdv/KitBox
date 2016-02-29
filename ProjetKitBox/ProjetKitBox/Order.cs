@@ -28,7 +28,17 @@ namespace ProjetKitBox
 
         public List<Element> GetListElement()
         {
-            //To implement
+            List<Element> list = new List<Element>();
+            foreach (Shelf s in shelfs)
+            {
+                List<Element> e = s.GetElements();
+                foreach (Element ee in e)
+                {
+                    list.Add(ee);
+                }
+            }
+
+            return list; 
         }
 
         public void AddShelf(Shelf shelf)
