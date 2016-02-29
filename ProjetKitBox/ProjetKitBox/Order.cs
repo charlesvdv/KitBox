@@ -9,7 +9,8 @@ namespace ProjetKitBox
     public class Order
     {
         private List<Shelf> shelfs;
-        private Client client; 
+        private Client client;
+        private double price;
 
         public Order(Client client)
         {
@@ -39,6 +40,19 @@ namespace ProjetKitBox
             }
 
             return list; 
+        }
+
+        public double GetPrice()
+        {
+            List<Element> ee = GetListElement();
+            double price = 0; 
+
+            foreach(Element e in ee)
+            {
+                price += e.Price;
+            }
+
+            return price; 
         }
 
         public void AddShelf(Shelf shelf)

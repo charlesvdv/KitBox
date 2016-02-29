@@ -46,11 +46,11 @@ namespace ProjetKitBox
 
 			//test if we have more than one element
 			List<string> types = new List<string>(){};
-			foreach (Element e in types) 
+			foreach(Element e in box.GetElements()) 
 			{
 				if (types.IndexOf (e.Type) != -1) 
 				{
-					throw new Exception ("There are more than one element in this box.");
+					throw new Exception ("There is more than one element in this box.");
 				}
 				types.Add(e.Type);
 			}
@@ -70,7 +70,7 @@ namespace ProjetKitBox
 			Element corner = ManagerStock.FindCorner(this.size.heigth);
 			if (corner.Type != "Cornières") 
 			{
-				throw new Exception ("Can't had a element that is not a corner");
+				throw new Exception ("Can't had a element that's not a corner");
 			}
 			this.corner = corner;
 		}
