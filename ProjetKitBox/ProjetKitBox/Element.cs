@@ -25,7 +25,7 @@ namespace ProjetKitBox
             this.requiredNumber = requiredNumber;
         }
 
-		public Element(string type, StructSize size, string color)
+		public Element(string type, StructSize size, string color, ManagerStock managerStock)
 		{
 			this.type = type;
 			this.size = size;
@@ -35,7 +35,7 @@ namespace ProjetKitBox
 			Element elem;
 			try 
 			{
-				elem = ManagerStock.SearchElement(type, color, size);
+				elem =managerStock.SearchElement(type, color, size);
 			}
 			catch (Exception e)
 			{

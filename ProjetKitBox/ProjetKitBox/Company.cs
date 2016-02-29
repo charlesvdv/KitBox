@@ -20,6 +20,21 @@ namespace ProjetKitBox
 			this.managerOrder = new ManagerOrder();
 		}
 
+        public ManagerStock ManagerStock
+        {
+            get { return this.managerStock; }
+        }
+
+        public ManagerOrder ManagerOrder
+        {
+            get { return this.managerOrder; }
+        }
+
+        public ManagerClient ManagerClient
+        {
+            get { return this.managerClient; }
+        }
+
 		public List<StructOrderSupplier> CommandStock()
 		{
 			//TODO : implementation

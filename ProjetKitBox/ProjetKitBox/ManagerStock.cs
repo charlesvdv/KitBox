@@ -28,12 +28,12 @@ namespace ProjetKitBox
 
 		}
 
-		public static Element SearchElement(string type, string color, StructSize size)
+		public Element SearchElement(string type, string color, StructSize size)
 		{
 
 		}
 
-		public static Element FindCorner(double heigth, string color)
+		public Element FindCorner(double heigth, string color)
 		{
 
 		}
