@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 25 Février 2016 à 21:37
+-- Généré le :  Lun 29 Février 2016 à 10:37
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -28,11 +28,19 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `client` (
   `PK_client` int(11) NOT NULL AUTO_INCREMENT,
-  `telephone` int(11) NOT NULL,
+  `telephone` varchar(11) NOT NULL,
   `adresse` varchar(100) NOT NULL,
   `nom` varchar(45) NOT NULL,
   PRIMARY KEY (`PK_client`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Contenu de la table `client`
+--
+
+INSERT INTO `client` (`PK_client`, `telephone`, `adresse`, `nom`) VALUES
+(1, '010 25 68 9', 'rue du potier 3, 1000 Bruxelles', 'John Doe'),
+(2, '02 47 98 45', 'Avenue des barakis 69, 6000 Charleroi', 'Donovan Bonucci');
 
 -- --------------------------------------------------------
 
@@ -397,7 +405,15 @@ CREATE TABLE IF NOT EXISTS `fournisseur` (
   `nom` varchar(45) DEFAULT NULL,
   `adresse` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`fournisseur`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Contenu de la table `fournisseur`
+--
+
+INSERT INTO `fournisseur` (`fournisseur`, `nom`, `adresse`) VALUES
+(1, 'Diffusion menuiserie', ' Avenue des Etats-Unis 110, 6041 Gosselies'),
+(2, 'Decoux', 'rue du monument 69, 1340 Ottignies LLN');
 
 -- --------------------------------------------------------
 
@@ -1066,8 +1082,15 @@ ALTER TABLE `commande`
 -- Contraintes pour la table `linkcommandeelement`
 --
 ALTER TABLE `linkcommandeelement`
-  ADD CONSTRAINT `FK_element` FOREIGN KEY (`FK_element`) REFERENCES `element` (`PK_code`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `FK_commande` FOREIGN KEY (`FK_commande`) REFERENCES `commande` (`PK_refCommande`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `FK_commande` FOREIGN KEY (`FK_commande`) REFERENCES `commande` (`PK_refCommande`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_element` FOREIGN KEY (`FK_element`) REFERENCES `element` (`PK_code`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `linkelementfournisseur`
+--
+ALTER TABLE `linkelementfournisseur`
+  ADD CONSTRAINT `linkelementfournisseur_ibfk_2` FOREIGN KEY (`FK_fournisseur`) REFERENCES `fournisseur` (`fournisseur`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `linkelementfournisseur_ibfk_1` FOREIGN KEY (`FK_element`) REFERENCES `element` (`PK_code`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
