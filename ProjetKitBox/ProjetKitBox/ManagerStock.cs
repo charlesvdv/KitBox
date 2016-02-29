@@ -33,7 +33,7 @@ namespace ProjetKitBox
 
 		}
 
-		public static Element FindCorner(double heigth)
+		public static Element FindCorner(double heigth, string color)
 		{
 
 		}

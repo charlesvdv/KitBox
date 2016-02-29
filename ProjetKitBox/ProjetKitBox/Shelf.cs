@@ -70,9 +70,9 @@ namespace ProjetKitBox
         }
 
 		//the return boolean say if we need cutting the corner
-		public void SetCorner()
+		public void SetCorner(string color)
 		{
-			Element corner = ManagerStock.FindCorner(this.size.heigth);
+			Element corner = ManagerStock.FindCorner(this.size.heigth, color);
 
             if (corner.Type != "Cornières")
             {
