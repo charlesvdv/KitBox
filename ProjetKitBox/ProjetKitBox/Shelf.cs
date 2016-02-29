@@ -22,6 +22,11 @@ namespace ProjetKitBox
 			this.price = 0;
         }
 
+        public bool SupplementCut
+        {
+            get { return this.supplementCut; }
+        }
+
         public StructSize Size
         {
             get { return this.size; }
@@ -68,10 +73,22 @@ namespace ProjetKitBox
 		public void SetCorner()
 		{
 			Element corner = ManagerStock.FindCorner(this.size.heigth);
-			if (corner.Type != "Cornières") 
-			{
-				throw new Exception ("Can't had a element that's not a corner");
-			}
+
+            if (corner.Type != "Cornières")
+            {
+                throw new Exception("Can't had a element that's not a corner");
+            }
+
+            else if(corner.Size.heigth > size.heigth)
+            {
+                supplementCut = true;
+            }
+
+            else if (corner.Size.heigth < size.heigth)
+            {
+                throw new Exception("The corner is smaller than the shelf.");
+            }
+
 			this.corner = corner;
 		}
 

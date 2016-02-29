@@ -52,6 +52,14 @@ namespace ProjetKitBox
                 price += e.Price;
             }
 
+            foreach(Shelf s in shelfs)
+            {
+                if(s.SupplementCut)
+                {
+                    price += 30;
+                }
+            }
+
             return price; 
         }
 
