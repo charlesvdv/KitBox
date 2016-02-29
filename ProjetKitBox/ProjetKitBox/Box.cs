@@ -77,5 +77,17 @@ namespace ProjetKitBox
         {
 			elements.Add(elem);
         }
+
+        public List<Element> GetElements()
+        {
+            List<Element> list = new List<Element>();
+
+            foreach(Element e in elements)
+            {
+                list.Add(e);
+            }
+
+            return list; 
+        }
     }
 }
