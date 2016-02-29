@@ -91,6 +91,8 @@ namespace ProjetKitBox
                     list.Add(ee);
                 }
             }
+
+            list.Add(corner);
             
             return list; 
         }
