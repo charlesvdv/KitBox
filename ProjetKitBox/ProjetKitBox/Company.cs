@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MySql; 
+using MySql;
+using MySql.Data;
+using MySql.Data.MySqlClient;
 
 namespace ProjetKitBox
 {
@@ -12,12 +14,34 @@ namespace ProjetKitBox
 		private ManagerStock managerStock;
 		private ManagerClient managerClient;
 		private ManagerOrder managerOrder;
+        private MySqlConnection DBCon;
 
-		public Company() 
+        private MySqlConnection Initialize()
+        {
+            string server = "localhost";
+            string database = "kitbox";
+            string uid = "root";
+            string password = "kitbox";
+            string connectionString;
+            connectionString = "SERVER=" + server + ";" + "DATABASE=" +
+            database + ";" + "U`enter code here`ID=" + uid + ";" + "PASSWORD=" + password + ";";
+
+            return new MySqlConnection(connectionString);
+        }
+
+        public Company() 
 		{
-			this.managerStock = new ManagerStock();
-			this.managerClient = new ManagerClient();
-			this.managerOrder = new ManagerOrder();
+            try
+            {
+                DBCon = Initialize();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+			this.managerStock = new ManagerStock(DBCon);
+			this.managerClient = new ManagerClient(DBCon);
+			this.managerOrder = new ManagerOrder(DBCon);
 		}
 
         public ManagerStock ManagerStock

@@ -97,6 +97,7 @@ namespace ProjetKitBox
 			boxes.Remove(box);
         }
 
+        //return a list of all of the element in the shelf
         public List<Element> GetElements()
         {
             List<Element> list = new List<Element>();

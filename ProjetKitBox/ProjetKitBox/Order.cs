@@ -27,6 +27,7 @@ namespace ProjetKitBox
             get { return this.client; }
         }
 
+        //Retrun a list with all the element in all of the shelfs 
         public List<Element> GetListElement()
         {
             List<Element> list = new List<Element>();
@@ -42,6 +43,7 @@ namespace ProjetKitBox
             return list; 
         }
 
+        //Give us the total price of the order, including supplement for corner's cutting 
         public double GetPrice()
         {
             List<Element> ee = GetListElement();

@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MySql;
+using MySql.Data;
+using MySql.Data.MySqlClient;
 
 namespace ProjetKitBox
 {
     class ManagerOrder
     {
-		private List<Order> orders;
+        private MySqlConnection DBCon;
 
-		public ManagerOrder()
+        public ManagerOrder(MySqlConnection DBCon)
 		{
-			orders = new LinkedList<Order>(){ };
-			//TODO : charge the DB in the list
-			// wait before doing it ... Is it really useful ?
+            this.DBCon = DBCon;
 		}
 
 		public void Add(Order order)

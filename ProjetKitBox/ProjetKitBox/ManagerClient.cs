@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MySql;
+using MySql.Data;
+using MySql.Data.MySqlClient;
 
 namespace ProjetKitBox
 {
     class ManagerClient
     {
-		private List<Client> clients;
+        private MySqlConnection DBCon;
 
-		public ManagerClient()
+        public ManagerClient(MySqlConnection DBCon)
 		{
-			clients = new List<Client>(){};
-			//TODO : charge the DB in the lists 
-			// wait before doing it ... Is it really useful ?
+            this.DBCon = DBCon;
 		}
 
 		public void AddClient(string name, string adress)
