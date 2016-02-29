@@ -63,9 +63,9 @@ namespace ProjetKitBox
             return price; 
         }
 
-        public void AddShelf(Shelf shelf)
+        public void AddShelf(Shelf shelf, string color)
         {
-			Shelf.SetCorner(); 
+			shelf.SetCorner(color); 
             shelfs.Add(shelf);
         }
 
