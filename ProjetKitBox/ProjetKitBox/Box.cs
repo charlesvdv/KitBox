@@ -17,6 +17,7 @@ namespace ProjetKitBox
         {
             this.size = size;
             this.color = color;
+			AsyncPopulate();
         }
 
         public StructSize Size

@@ -43,7 +43,7 @@ namespace ProjetKitBox
 
         public void AddShelf(Shelf shelf)
         {
-            Shelf.SetCorner; 
+			Shelf.SetCorner(); 
             shelfs.Add(shelf);
         }
 

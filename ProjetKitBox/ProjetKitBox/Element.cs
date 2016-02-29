@@ -39,7 +39,7 @@ namespace ProjetKitBox
 			}
 			catch (Exception e)
 			{
-				throw elem;
+				throw e;
 			}
 			this.price = elem.price;
 			this.code = elem.code;
