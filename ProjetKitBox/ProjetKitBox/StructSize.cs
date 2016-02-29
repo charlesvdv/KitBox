@@ -9,8 +9,8 @@ namespace ProjetKitBox
     public struct StructSize
     {
         public double length;
-        public double heigth;
         public double depth;
+		public double heigth;
     }
 
 }

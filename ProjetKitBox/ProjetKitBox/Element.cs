@@ -37,8 +37,9 @@ namespace ProjetKitBox
 			{
 				elem = ManagerStock.SearchElement(type, color, size);
 			}
-			catch {
-				//TODO
+			catch (Exception e)
+			{
+				throw e;
 			}
 			this.price = elem.price;
 			this.code = elem.code;

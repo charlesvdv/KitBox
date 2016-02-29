@@ -22,6 +22,11 @@ namespace ProjetKitBox
 			this.price = 0;
         }
 
+        public bool SupplementCut
+        {
+            get { return this.supplementCut; }
+        }
+
         public StructSize Size
         {
             get { return this.size; }
@@ -46,11 +51,11 @@ namespace ProjetKitBox
 
 			//test if we have more than one element
 			List<string> types = new List<string>(){};
-			foreach (Element e in types) 
+			foreach(Element e in box.GetElements()) 
 			{
 				if (types.IndexOf (e.Type) != -1) 
 				{
-					throw new Exception ("There are more than one element in this box.");
+					throw new Exception ("There is more than one element in this box.");
 				}
 				types.Add(e.Type);
 			}
@@ -65,13 +70,25 @@ namespace ProjetKitBox
         }
 
 		//the return boolean say if we need cutting the corner
-		public void SetCorner()
+		public void SetCorner(string color)
 		{
-			Element corner = ManagerStock.FindCorner(this.size.heigth);
-			if (corner.Type != "Cornières") 
-			{
-				throw new Exception ("Can't had a element that is not a corner");
-			}
+			Element corner = ManagerStock.FindCorner(this.size.heigth, color);
+
+            if (corner.Type != "Cornières")
+            {
+                throw new Exception("Can't had a element that's not a corner");
+            }
+
+            else if(corner.Size.heigth > size.heigth)
+            {
+                supplementCut = true;
+            }
+
+            else if (corner.Size.heigth < size.heigth)
+            {
+                throw new Exception("The corner is smaller than the shelf.");
+            }
+
 			this.corner = corner;
 		}
 

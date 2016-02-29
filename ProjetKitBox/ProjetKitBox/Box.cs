@@ -17,6 +17,7 @@ namespace ProjetKitBox
         {
             this.size = size;
             this.color = color;
+			AsyncPopulate();
         }
 
         public StructSize Size
@@ -73,10 +74,30 @@ namespace ProjetKitBox
             return ad; 
         }
 
+
 		public void AddElement(Element elem)
         {
 			elements.Add(elem);
         }
+			
+		//populate the box with the element
+		private void AsyncPopulate()
+		{
+			try 
+			{
+				elements.Add(new Element("Tasseau", new StructSize(0, 0, size.heigth - 4), color));
+				elements.Add(new Element("Traverse Av", new StructSize(size.length, 0, 0), color));
+				elements.Add(new Element("Traverse Ar", new StructSize(size.length, 0, 0), color));
+				elements.Add(new Element("Traverse GD", new StructSize(0, size.depth, 0), color));
+				elements.Add(new Element("Panneau Ar", new StructSize(size.length, 0, size.heigth), color));
+				elements.Add(new Element("Panneau GD", new StructSize(0, size.depth, size.heigth), color));
+				elements.Add(new Element("Panneau HB", new StructSize(size.length, size.depth, 0), color));
+			} 
+			catch (Exception e)
+			{
+				throw e;
+			}
+		}
 
         public List<Element> GetElements()
         {
@@ -89,5 +110,6 @@ namespace ProjetKitBox
 
             return list; 
         }
+
     }
 }
