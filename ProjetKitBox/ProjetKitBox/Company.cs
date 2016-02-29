@@ -59,6 +59,7 @@ namespace ProjetKitBox
             get { return this.managerClient; }
         }
 
+        
 		public List<StructOrderSupplier> CommandStock()
 		{
 			//TODO : implementation
@@ -68,5 +69,6 @@ namespace ProjetKitBox
 		{
 			//TODO : implementation
 		}
+        
     }
 }

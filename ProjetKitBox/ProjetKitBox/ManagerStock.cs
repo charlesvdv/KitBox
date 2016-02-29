@@ -9,7 +9,7 @@ using MySql.Data.MySqlClient;
 
 namespace ProjetKitBox
 {
-    class ManagerStock
+    public class ManagerStock
     {
         private MySqlConnection DBCon;
 
@@ -18,7 +18,7 @@ namespace ProjetKitBox
 		{
             this.DBCon = DBCon;
 		}
-
+        
 		public List<StructStock> GetStateStock()
 		{
 
@@ -38,5 +38,6 @@ namespace ProjetKitBox
 		{
 
 		}
+        
     }
 }

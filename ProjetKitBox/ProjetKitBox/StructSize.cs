@@ -11,6 +11,13 @@ namespace ProjetKitBox
         public double length;
         public double depth;
 		public double heigth;
+
+        public StructSize(double length, double depth, double heigth)
+        {
+            this.length = length;
+            this.depth = depth;
+            this.heigth = heigth;
+        }
     }
 
 }
