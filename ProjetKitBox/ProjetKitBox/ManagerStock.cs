@@ -71,9 +71,35 @@ namespace ProjetKitBox
 
 		public Element FindCorner(double heigth, string color)
 		{
+            string query = "SELECT PK_code, prix, nbrpieces,hauteur FROM `element` "+
+                "WHERE `typeElement` LIKE 'corni' AND `couleur` LIKE '"+color+"' AND `hauteur` >= "+ heigth +" LIMIT 1";
 
+            try
+            {
+                DBCon.Open();
+            } catch(Exception ex) { throw ex; }
 
-		}
+            MySqlCommand cmd = new MySqlCommand(query, DBCon);
+
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            Element e = null;
+
+            while(reader.Read())
+            {
+                StructSize size = new StructSize((double)reader["largeur"], 
+                    (double)reader["profondeur"], (double)reader["hauteur"]);
+                e = new Element((string)reader["typeElement"], (string)reader["couleur"], size,
+                    (string)reader["PK_code"], (double)reader["prix"], (int)reader["nbrpieces"]);
+                break;
+            }
+
+            reader.Close();
+
+            DBCon.Close();
+
+            return e;
+        }
         
     }
 }
