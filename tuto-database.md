@@ -11,4 +11,8 @@
   source \Your\Path\to\the\SQL\file
   
   
+  ## DEV
+  
+  http://www.codeproject.com/Articles/43438/Connect-C-to-MySQL
+  
   
