@@ -100,6 +100,29 @@ namespace ProjetKitBox
 
             return e;
         }
-        
+
+        public void setCommanded(Element element, int number)
+        {
+            string query = "UPDATE `kitbox`.`element` SET commande ='" + number +"' WHERE PK_code = '" + element.Code + "';";
+
+            try
+            {
+                DBCon.Open();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            MySqlCommand cmd = new MySqlCommand(query, DBCon);
+
+            cmd.ExecuteNonQuery();
+
+            DBCon.Close();
+        }
+        }
+
     }
+
+}
 }

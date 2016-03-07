@@ -78,6 +78,9 @@ namespace ProjetKitBox
             Client c = new Client((string)dataReader["nom"], (int)dataReader["NClient"],
                     (string)dataReader["adresse"], (string)dataReader["telephone"]);
 
+            dataReader.Close();
+            DBCon.Close();
+
             return c; 
         }
         

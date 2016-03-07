@@ -70,5 +70,10 @@ namespace ProjetKitBox
         {
             get { return this.requiredNumber; }
         }
+
+        public string Code
+        {
+            get { return this.code; }
+        }
     }
 }
