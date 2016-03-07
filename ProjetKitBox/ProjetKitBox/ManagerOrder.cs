@@ -43,7 +43,22 @@ namespace ProjetKitBox
 
         public List<StructOrder> GetSaleStatistic()
 		{
-			//TODO : implementation
+            string query = "";
+
+            try
+            {
+                DBCon.Open();
+            } catch (Exception e) { throw e; }
+
+            MySqlCommand cmd = new MySqlCommand(query, DBCon);
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            List<StructOrder> data = new List<StructOrder>() { };         
+            
+            while(reader.Read())
+            {
+
+            }   
 		}
         
     }
