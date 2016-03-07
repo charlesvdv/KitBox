@@ -18,20 +18,68 @@ namespace ProjetKitBox
             this.DBCon = DBCon;
 		}
         
-		public void AddClient(string name, string adress)
+		public void AddClient(Client client)
 		{
-			//TODO : implementation
-		}
+            string query = "INSERT INTO `kitbox`.`client` (`PK_client`, `telephone`, `adresse`, `nom`) VALUES (NULL, '" + client.Telephone + "', '" + client.Adress + "', '" +  client.Name+"');";
+
+            try
+            {
+                DBCon.Open();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            MySqlCommand cmd = new MySqlCommand(query, DBCon);
+
+            cmd.ExecuteNonQuery();
+
+            DBCon.Close();
+        }
 
 		public void DelClient(Client client)
 		{
-			//TODO : implementation
-		}
+            string query = "DELETE FROM `client` WHERE `PK_client` = '" + client.NClient +"';";
 
-		public Client Search(Client client)
+            try
+            {
+                DBCon.Open();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            MySqlCommand cmd = new MySqlCommand(query, DBCon);
+
+            cmd.ExecuteNonQuery();
+
+            DBCon.Close();
+        }
+
+		public Client Search(string name)
 		{
-			//TODO : implementation
-		}
+            string query = "SELECT * FROM `client` WHERE `nom` LIKE '%" + name + "%';";
+
+            try
+            {
+                DBCon.Open();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            MySqlCommand cmd = new MySqlCommand(query, DBCon);
+
+            MySqlDataReader dataReader = cmd.ExecuteReader();
+
+            Client c = new Client((string)dataReader["nom"], (int)dataReader["NClient"],
+                    (string)dataReader["adresse"], (string)dataReader["telephone"]);
+
+            return c; 
+        }
         
     }
 }

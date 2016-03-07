@@ -11,13 +11,20 @@ namespace ProjetKitBox
     {
         private string name;
         private int nClient;
-        private string adress; 
+        private string adress;
+        private string telephone;
 
-        public Client(String name, int nClient, string adress)
+        public Client(String name, int nClient, string adress, string telephone)
         {
             this.name = name;
             this.nClient = nClient;
             this.adress = adress;
+            this.telephone = telephone; 
+        }
+
+        public string Telephone
+        {
+            get { return this.telephone; }
         }
 
         public string Name

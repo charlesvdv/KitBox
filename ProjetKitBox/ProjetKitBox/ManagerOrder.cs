@@ -17,13 +17,31 @@ namespace ProjetKitBox
 		{
             this.DBCon = DBCon;
 		}
-        
-		public void Add(Order order)
-		{
-			//TODO : implementation
-		}
 
-		public List<StructOrder> GetSaleStatistic()
+
+
+        public void Add(Order order)
+		{
+            string query = "INSERT INTO `kitbox`.`commande` (`prix total`, `FK_client`, `date`) VALUES ('" + order.GetPrice() + "' , '" + order.Client.NClient + "', 'now()');";
+
+            try
+            {
+                DBCon.Open();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            MySqlCommand cmd = new MySqlCommand(query, DBCon);
+
+            cmd.ExecuteNonQuery();
+
+            DBCon.Close();
+
+        }
+
+        public List<StructOrder> GetSaleStatistic()
 		{
 			//TODO : implementation
 		}
