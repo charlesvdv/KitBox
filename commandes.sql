@@ -43,3 +43,10 @@ SELECT * FROM `client` WHERE `nom` LIKE '%riga%'
 
 -- select autogen client number 
 SELECT PK_client FROM `client` WHERE `nom` LIKE '%riga%'
+
+-- select best fournisseur
+SELECT FK_fournisseur,prix,delai FROM linkelementfournisseur
+where delai=
+	(select min(delai) from linkelementfournisseur where FK_Element = 'COR100BLDEC' and prix = 
+    	(select min(prix) from linkelementfournisseur where FK_Element = 'COR100BLDEC'))        
+and FK_Element='COR100BLDEC'
