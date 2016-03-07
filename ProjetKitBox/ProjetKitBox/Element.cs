@@ -12,10 +12,10 @@ namespace ProjetKitBox
         private double price;
         private StructSize size;
         private string type;
-        private int code;
+        private string code;
         private int requiredNumber;
 
-		public Element(string type, string color, StructSize size, int code ,double price, int requiredNumber)
+		public Element(string type, string color, StructSize size, string code ,double price, int requiredNumber)
         {
             this.color = color;
             this.price = price;

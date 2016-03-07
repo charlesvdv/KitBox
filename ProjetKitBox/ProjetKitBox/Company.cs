@@ -24,7 +24,7 @@ namespace ProjetKitBox
             string password = "kitbox";
             string connectionString;
             connectionString = "SERVER=" + server + ";" + "DATABASE=" +
-            database + ";" + "U`enter code here`ID=" + uid + ";" + "PASSWORD=" + password + ";";
+            database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
 
             return new MySqlConnection(connectionString);
         }
@@ -59,6 +59,7 @@ namespace ProjetKitBox
             get { return this.managerClient; }
         }
 
+        
 		public List<StructOrderSupplier> CommandStock()
 		{
 			//TODO : implementation
@@ -68,5 +69,6 @@ namespace ProjetKitBox
 		{
 			//TODO : implementation
 		}
+        
     }
 }

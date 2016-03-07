@@ -9,7 +9,7 @@ using MySql.Data.MySqlClient;
 
 namespace ProjetKitBox
 {
-    class ManagerClient
+    public class ManagerClient
     {
         private MySqlConnection DBCon;
 
@@ -17,7 +17,7 @@ namespace ProjetKitBox
 		{
             this.DBCon = DBCon;
 		}
-
+        
 		public void AddClient(string name, string adress)
 		{
 			//TODO : implementation
@@ -32,5 +32,6 @@ namespace ProjetKitBox
 		{
 			//TODO : implementation
 		}
+        
     }
 }

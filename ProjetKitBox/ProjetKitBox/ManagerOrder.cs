@@ -9,7 +9,7 @@ using MySql.Data.MySqlClient;
 
 namespace ProjetKitBox
 {
-    class ManagerOrder
+    public class ManagerOrder
     {
         private MySqlConnection DBCon;
 
@@ -17,7 +17,7 @@ namespace ProjetKitBox
 		{
             this.DBCon = DBCon;
 		}
-
+        
 		public void Add(Order order)
 		{
 			//TODO : implementation
@@ -27,5 +27,6 @@ namespace ProjetKitBox
 		{
 			//TODO : implementation
 		}
+        
     }
 }
