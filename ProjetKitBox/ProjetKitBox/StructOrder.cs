@@ -7,6 +7,18 @@ namespace ProjetKitBox
 	{
 		public Element element;
 		public int numberOrdered;
+
+        public StructOrder(Element element, int numberOrdered)
+        {
+            this.element = element;
+            if (numberOrdered >= 0)
+            {
+                this.numberOrdered = numberOrdered;
+            } else
+            {
+                throw new Exception("Can't have a negative number for the number of elements ordered.");
+            }
+        }
 	}
 }
 
