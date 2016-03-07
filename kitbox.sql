@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 29 Février 2016 à 10:37
+-- Généré le :  Lun 29 Février 2016 à 11:55
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -56,6 +56,19 @@ CREATE TABLE IF NOT EXISTS `commande` (
   PRIMARY KEY (`PK_refCommande`),
   KEY `FK_client_idx` (`FK_client`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `commande`
+--
+
+INSERT INTO `commande` (`PK_refCommande`, `prix total`, `FK_client`, `date`) VALUES
+(0, '4536.000', 2, '2015-10-13'),
+(1, '150.000', 1, '2016-02-25'),
+(2, '540.000', 2, '2016-01-13'),
+(3, '782.000', 1, '2016-02-10'),
+(4, '654.000', 1, '2015-11-10'),
+(5, '856.000', 2, '2016-02-08'),
+(6, '876.000', 1, '2016-02-29');
 
 -- --------------------------------------------------------
 
@@ -430,6 +443,18 @@ CREATE TABLE IF NOT EXISTS `linkcommandeelement` (
   PRIMARY KEY (`FK_element`,`FK_commande`),
   KEY `FK_commande_idx` (`FK_commande`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `linkcommandeelement`
+--
+
+INSERT INTO `linkcommandeelement` (`FK_element`, `FK_commande`, `quantiteTotale`, `prix`, `quantiteRetiree`) VALUES
+('COR100BLDEC', 1, 4, '54.00', 4),
+('PAG3242BL', 1, 2, '12.00', 2),
+('PAH3280BL', 1, 2, '24.00', 2),
+('PAR5252BR', 1, 4, '150.00', 4),
+('PAR5280BR', 1, 2, '54.00', 2),
+('TAS27', 1, 4, '0.00', 4);
 
 -- --------------------------------------------------------
 
