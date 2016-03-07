@@ -50,3 +50,10 @@ where delai=
 	(select min(delai) from linkelementfournisseur where FK_Element = 'COR100BLDEC' and prix = 
     	(select min(prix) from linkelementfournisseur where FK_Element = 'COR100BLDEC'))        
 and FK_Element='COR100BLDEC'
+
+-- count the command in the 6 months 
+ select e.PK_code, sum(l.quantiteTotale) as tot from element e 
+	inner join linkcommandeelement l on e.PK_code = l.FK_element 
+	inner join commande on l.FK_commande = commande.PK_refCommande
+	where commande.date between now() - interval 6 month and now()
+	group by e.PK_code;
