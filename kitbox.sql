@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 29 Février 2016 à 11:55
+-- Généré le :  Lun 07 Mars 2016 à 10:48
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données :  `kitbox`
+-- Base de données :  `kittybox`
 --
 
 -- --------------------------------------------------------
@@ -49,27 +49,26 @@ INSERT INTO `client` (`PK_client`, `telephone`, `adresse`, `nom`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `commande` (
-  `PK_refCommande` int(11) NOT NULL,
+  `PK_refCommande` int(11) NOT NULL AUTO_INCREMENT,
   `prix total` decimal(10,3) DEFAULT NULL,
   `FK_client` int(11) DEFAULT NULL,
   `date` date DEFAULT NULL,
   PRIMARY KEY (`PK_refCommande`),
   KEY `FK_client_idx` (`FK_client`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Contenu de la table `commande`
 --
 
 INSERT INTO `commande` (`PK_refCommande`, `prix total`, `FK_client`, `date`) VALUES
-(0, '4536.000', 2, '2015-10-13'),
+(0, '4536.000', 2, '2014-10-13'),
 (1, '150.000', 1, '2016-02-25'),
 (2, '540.000', 2, '2016-01-13'),
 (3, '782.000', 1, '2016-02-10'),
 (4, '654.000', 1, '2015-11-10'),
 (5, '856.000', 2, '2016-02-08'),
 (6, '876.000', 1, '2016-02-29');
-
 -- --------------------------------------------------------
 
 --
