@@ -13,13 +13,15 @@ namespace ProjetKitBox
         private Element corner; 
 		private bool supplementCut;
 		private double price;
+        private ManagerStock managerStock; 
 
-        public Shelf(StructSize size, Element corner)
+        public Shelf(StructSize size, Element corner, ManagerStock managerStock)
         {
             this.size = size;
             this.corner = corner; 
 			this.supplementCut = false;
 			this.price = 0;
+            this.managerStock = managerStock; 
         }
 
         public bool SupplementCut
@@ -72,9 +74,9 @@ namespace ProjetKitBox
 		//the return boolean say if we need cutting the corner
 		public void SetCorner(string color)
 		{
-			Element corner = ManagerStock.FindCorner(this.size.heigth, color);
+			Element corner = managerStock.FindCorner(this.size.heigth, color);
 
-            if (corner.Type != "Cornières")
+            if (corner.Type != "Cornières") //Don't we need to rename it corni ? 
             {
                 throw new Exception("Can't had a element that's not a corner");
             }

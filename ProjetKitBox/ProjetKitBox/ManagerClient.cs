@@ -17,7 +17,8 @@ namespace ProjetKitBox
 		{
             this.DBCon = DBCon;
 		}
-        
+
+        //Add client in the dabase
 		public void AddClient(Client client)
 		{
             string query = "INSERT INTO `kitbox`.`client` (`PK_client`, `telephone`, `adresse`, `nom`) VALUES (NULL, '" + client.Telephone + "', '" + client.Adress + "', '" +  client.Name+"');";
@@ -26,6 +27,7 @@ namespace ProjetKitBox
             {
                 DBCon.Open();
             }
+
             catch (Exception ex)
             {
                 throw ex;
@@ -38,6 +40,7 @@ namespace ProjetKitBox
             DBCon.Close();
         }
 
+        //Delete a client from the database
 		public void DelClient(Client client)
 		{
             string query = "DELETE FROM `client` WHERE `PK_client` = '" + client.NClient +"';";
@@ -58,6 +61,7 @@ namespace ProjetKitBox
             DBCon.Close();
         }
 
+        //Search a client from the database, and give us all the information about him
 		public Client Search(string name)
 		{
             string query = "SELECT * FROM `client` WHERE `nom` LIKE '%" + name + "%';";

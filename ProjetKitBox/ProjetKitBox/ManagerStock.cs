@@ -29,6 +29,7 @@ namespace ProjetKitBox
 
 		}
 
+        //Search an element in the database and give us all the information about it 
 		public Element SearchElement(string type, string color, StructSize size)
 		{
             string query = "SELECT PK_code, prix, nbrpieces,hauteur,largeur,profondeur  FROM" +
@@ -69,7 +70,36 @@ namespace ProjetKitBox
             return e;
 		}
 
-		public Element FindCorner(double heigth, string color)
+        public Element SearchElementByCode(string code)
+        {
+            string query = "SELECT PK_code,couleur,hauteur,largeur,profondeur,prix,typeElement,nbrpieces  FROM" +
+                "`element` WHERE `PK_code` LIKE '" + code +"';";
+
+            try
+            {
+                DBCon.Open();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            MySqlCommand cmd = new MySqlCommand(query, DBCon);
+
+            MySqlDataReader dataReader = cmd.ExecuteReader();
+
+            StructSize eSize = new StructSize((double)dataReader["largeur"], (double)dataReader["profondeur"], (double)dataReader["hauteur"]);
+            Element e = new Element((string)dataReader["typeElement"],(string)dataReader["couleur"], eSize,
+                    (string)dataReader["prix"], (double)dataReader["prix"],(int)dataReader["nbrpieces"]);
+
+            dataReader.Close();
+            DBCon.Close();
+
+            return e;
+        }
+
+        //Find the corner in the database 
+        public Element FindCorner(double heigth, string color)
 		{
             string query = "SELECT PK_code, prix, nbrpieces,hauteur FROM `element` "+
                 "WHERE `typeElement` LIKE 'corni' AND `couleur` LIKE '"+color+"' AND `hauteur` >= "+ heigth +" LIMIT 1";
@@ -101,6 +131,7 @@ namespace ProjetKitBox
             return e;
         }
 
+        //Set a number of comanded element in the database
         public void setCommanded(Element element, int number)
         {
             string query = "UPDATE `kitbox`.`element` SET commande ='" + number +"' WHERE PK_code = '" + element.Code + "';";

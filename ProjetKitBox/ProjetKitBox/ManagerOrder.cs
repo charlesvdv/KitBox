@@ -18,7 +18,7 @@ namespace ProjetKitBox
             this.DBCon = DBCon;
 		}
 
-
+        //Add an order in the database 
         public void Add(Order order)
 		{
             string query = "INSERT INTO `kitbox`.`commande` (`prix total`, `FK_client`, `date`) VALUES ('" + order.GetPrice() + "' , '" + order.Client.NClient + "', 'now()');";
@@ -42,7 +42,7 @@ namespace ProjetKitBox
 
         public List<StructOrder> GetSaleStatistic()
 		{
-            string query = "";
+            string query = "select e.PK_code, sum(l.quantiteTotale) as tot from element e  inner join linkcommandeelement l on e.PK_code = l.FK_element inner join commande on l.FK_commande = commande.PK_refCommande where commande.date between now() - interval 6 month and now() group by e.PK_code;";
 
             try
             {

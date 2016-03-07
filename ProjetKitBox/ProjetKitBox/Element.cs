@@ -25,6 +25,26 @@ namespace ProjetKitBox
             this.requiredNumber = requiredNumber;
         }
 
+        public Element(string code, ManagerStock managerStock)
+        {
+            this.code = code;
+            Element elem;
+            try
+            {
+                elem = managerStock.SearchElementByCode(code);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            this.color = elem.color;
+            this.price = elem.price;
+            this.size = elem.size;
+            this.type = elem.type; 
+            this.requiredNumber = elem.requiredNumber;
+        }
+
+
 		public Element(string type, StructSize size, string color, ManagerStock managerStock)
 		{
 			this.type = type;
