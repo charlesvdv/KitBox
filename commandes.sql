@@ -29,3 +29,17 @@ SELECT FK_element,quantitetotale FROM `linkcommandeelement` WHERE `FK_commande` 
 
 -- select cheapest element
 select FK_fournisseur,delai,prix from `linkelementfournisseur` where prix = (select min(prix) from `linkelementfournisseur`) and FK_element like "COR100BLDEC"
+
+-- add client
+INSERT INTO `kitbox`.`client` (`PK_client`, `telephone`, `adresse`, `nom`) VALUES (NULL, '0495107311', 'rue de l''invasion 114, 1340 OLLN', 'Riga Lorenzo');
+
+-- delete client
+DELETE FROM `client` WHERE `PK_client` = '%';
+
+-- recherche client 
+-- not case sensitve 
+-- WARNING do not remove % around name example !!! Alows search with only a part of the name
+SELECT * FROM `client` WHERE `nom` LIKE '%riga%'
+
+-- select autogen client number 
+SELECT PK_client FROM `client` WHERE `nom` LIKE '%riga%'
