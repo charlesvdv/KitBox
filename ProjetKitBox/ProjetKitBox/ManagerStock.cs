@@ -119,10 +119,6 @@ namespace ProjetKitBox
             cmd.ExecuteNonQuery();
 
             DBCon.Close();
-        }
-        }
-
+        }   
     }
-
-}
 }
