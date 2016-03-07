@@ -57,3 +57,10 @@ and FK_Element='COR100BLDEC'
 	inner join commande on l.FK_commande = commande.PK_refCommande
 	where commande.date between now() - interval 6 month and now()
 	group by e.PK_code;
+	
+-- /!\ to test !!!!
+-- select the best fournisseur 
+select * from (
+	select * from linkelementfournisseur 
+	order by min(prix), min(delai) ) as l
+	group by FK_Element
