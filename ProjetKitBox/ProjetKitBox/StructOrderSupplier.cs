@@ -16,6 +16,15 @@ namespace ProjetKitBox
 		public int IDSupplier;
 		public string name;
 		public Element element;
+
+        public StructOrderSupplier(double price, int delay, int IDSupplier, string name, Element element)
+        {
+            this.price = price;
+            this.delay = delay;
+            this.IDSupplier = IDSupplier;
+            this.name = name;
+            this.element = element; 
+        }
 	}
 }
 

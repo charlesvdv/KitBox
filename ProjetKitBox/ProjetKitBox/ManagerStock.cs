@@ -55,13 +55,41 @@ namespace ProjetKitBox
 
 		public List<StructOrderSupplier> GetBestSupplier()
 		{
+            string query = //to define, we need an element, his command price, his delay, the IDSupplier, and the supplier's name => don't care ? 
+                           //Manage the min in sql or c# ? 
+            try
+            {
+                DBCon.Open();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
-		}
+            MySqlCommand cmd = new MySqlCommand(query, DBCon);
+
+            MySqlDataReader dataReader = cmd.ExecuteReader();
+
+            List<StructOrderSupplier> stu = null;
+
+            while (dataReader.Read())
+            {
+                StructSize eSize = new StructSize((double)dataReader["largeur"], (double)dataReader["profondeur"], (double)dataReader["hauteur"]);
+                Element e = new Element((string)dataReader["typeElement"], (string)dataReader["couleur"], eSize,
+                    (string)dataReader["PK_code"], (double)dataReader["prix"], (int)dataReader["nbrpieces"]);
+
+                StructOrderSupplier stru = new StructOrderSupplier((double)dataReader["prix"], (int)dataReader["delay"], (int)dataReader["IDSupplier"], (string)dataReader["name"], e];
+
+                stu.Add(stru);
+            }
+
+            return stu; 
+        }
 
         //Search an element in the database and give us all the information about it 
 		public Element SearchElement(string type, string color, StructSize size)
 		{
-            string query = "SELECT PK_code, prix, nbrpieces,hauteur,largeur,profondeur  FROM" +
+            string query = "SELECT PK_code, prix, nbrpieces, hauteur, largeur, profondeur FROM" +
                 "`element` WHERE `typeElement` LIKE '" + type + "' AND `couleur` LIKE '" + color + "' AND `hauteur`"+
                 "LIKE "+ size.heigth +" AND `largeur` LIKE "+size.length+" AND `profondeur` LIKE "+size.depth;
 
