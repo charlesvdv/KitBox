@@ -21,8 +21,37 @@ namespace ProjetKitBox
         
 		public List<StructStock> GetStateStock()
 		{
+            string query = "SELECT PK_code, typeElement, couleur, hauteur, largeur, longueur, prix," +
+                " nbrpieces, typeElement, stock, commande, reserve from element";
 
-		}
+            try
+            {
+                DBCon.Open();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            MySqlCommand cmd = new MySqlCommand(query, DBCon);
+
+            MySqlDataReader dataReader = cmd.ExecuteReader();
+
+            List<StructStock> stu = null; 
+
+            while(dataReader.Read())
+            {
+                StructSize eSize = new StructSize((double)dataReader["largeur"], (double)dataReader["profondeur"], (double)dataReader["hauteur"]);
+                Element e = new Element((string)dataReader["typeElement"], (string)dataReader["couleur"], eSize,
+                    (string)dataReader["PK_code"], (double)dataReader["prix"], (int)dataReader["nbrpieces"]);
+
+                StructStock stru = new StructStock(e, (int)dataReader["commande"], (int)dataReader["stock"], (int)dataReader["reserve"]);
+
+                stu.Add(stru); 
+            }
+
+            return stu; 
+        }
 
 		public List<StructOrderSupplier> GetBestSupplier()
 		{
@@ -51,7 +80,7 @@ namespace ProjetKitBox
             Element e = null;
 
             int i = 0;
-            while(dataReader.Read())
+            while(dataReader.Read()) 
             {
                 if (i > 0)
                 {
