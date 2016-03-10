@@ -62,8 +62,44 @@ namespace ProjetKitBox
         
 		public List<StructOrderSupplier> CommandStock()
 		{
-			//TODO : implementation
-		}
+            List<StructStock> listStru = managerStock.GetStateStock();
+            List<StructOrder> listOrd = managerOrder.GetSaleStatistic();
+            List<StructOrderSupplier> listOrdSupp = managerStock.GetBestSupplier();
+
+            List<StructOrder> needTo = new List<StructOrder>() { };
+            if(listStru.Count == listOrd.Count)
+            {
+                foreach(StructStock struS in listStru)
+                {
+                    foreach(StructOrder struO in listOrd)
+                    {
+                        if (struS.element == struO.element)
+                        {
+                            int number = struS.numberInStock - struS.stockMin + struS.numberOrdered - struS.numberReserved;
+                            number = number - struO.numberOrdered;
+                            if (number < 0)
+                            {
+                                needTo.Add(new StructOrder(struS.element, -number));
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+
+            else
+            {
+                throw new Exception("Les lists ne correspondent pas(il n'y à pas le même nombre d'element)");
+            }
+
+            List<StructOrder> needToWithSupp = new List<StructOrder>() { };
+
+            foreach(StructOrder struc in needTo)
+            {
+
+            }
+
+        }
 
 		public void SaveCommand(List<StructOrderSupplier> structCommand)
 		{

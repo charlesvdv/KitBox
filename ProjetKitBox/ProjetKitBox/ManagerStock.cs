@@ -21,7 +21,7 @@ namespace ProjetKitBox
         
 		public List<StructStock> GetStateStock()
 		{
-            string query = "SELECT PK_code, typeElement, couleur, hauteur, largeur, longueur, prix," +
+            string query = "SELECT PK_code, typeElement, couleur, hauteur, largeur, longueur, prix, stockmin," +
                 " nbrpieces, typeElement, stock, commande, reserve from element";
 
             try
@@ -45,7 +45,7 @@ namespace ProjetKitBox
                 Element e = new Element((string)dataReader["typeElement"], (string)dataReader["couleur"], eSize,
                     (string)dataReader["PK_code"], (double)dataReader["prix"], (int)dataReader["nbrpieces"]);
 
-                StructStock stru = new StructStock(e, (int)dataReader["commande"], (int)dataReader["stock"], (int)dataReader["reserve"]);
+                StructStock stru = new StructStock(e, (int)dataReader["commande"], (int)dataReader["stock"], (int)dataReader["reserve"], (int)dataReader["stockmin"]);
 
                 stu.Add(stru); 
             }
@@ -78,7 +78,7 @@ namespace ProjetKitBox
                 Element e = new Element((string)dataReader["typeElement"], (string)dataReader["couleur"], eSize,
                     (string)dataReader["PK_code"], (double)dataReader["prix"], (int)dataReader["nbrpieces"]);
 
-                StructOrderSupplier stru = new StructOrderSupplier((double)dataReader["prix"], (int)dataReader["delay"], (int)dataReader["IDSupplier"], (string)dataReader["name"], e];
+                StructOrderSupplier stru = new StructOrderSupplier((double)dataReader["prix"], (int)dataReader["delay"], (int)dataReader["IDSupplier"], (string)dataReader["name"], e);
 
                 stu.Add(stru);
             }
