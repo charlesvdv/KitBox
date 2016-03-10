@@ -73,7 +73,7 @@ namespace ProjetKitBox
                 {
                     foreach(StructOrder struO in listOrd)
                     {
-                        if (struS.element == struO.element)
+                        if (struS.element.Code == struO.element.Code)
                         {
                             int number = struS.numberInStock - struS.stockMin + struS.numberOrdered - struS.numberReserved;
                             number = number - struO.numberOrdered;
@@ -96,7 +96,13 @@ namespace ProjetKitBox
 
             foreach(StructOrder struc in needTo)
             {
-
+                foreach(StructOrderSupplier struOr in listOrdSupp)
+                {
+                    if(struc.element.Code == struOr.element.Code)
+                    {
+                        needToWithSupp.Add(new StructOrderSupplier(struOr ))
+                    }
+                }
             }
 
         }
