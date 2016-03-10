@@ -92,7 +92,7 @@ namespace ProjetKitBox
                 throw new Exception("Les lists ne correspondent pas(il n'y à pas le même nombre d'element)");
             }
 
-            List<StructOrder> needToWithSupp = new List<StructOrder>() { };
+            List<StructOrderSupplier> needToWithSupp = new List<StructOrderSupplier>() { };
 
             foreach(StructOrder struc in needTo)
             {
@@ -100,11 +100,12 @@ namespace ProjetKitBox
                 {
                     if(struc.element.Code == struOr.element.Code)
                     {
-                        needToWithSupp.Add(new StructOrderSupplier(struOr ))
+                        needToWithSupp.Add(new StructOrderSupplier(struOr.price, struOr.delay, struOr.IDSupplier, struOr.name, struOr.element, struc.numberOrdered));
                     }
                 }
             }
 
+            return needToWithSupp; 
         }
 
 		public void SaveCommand(List<StructOrderSupplier> structCommand)
