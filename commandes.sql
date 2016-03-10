@@ -51,6 +51,7 @@ where delai=
     	(select min(prix) from linkelementfournisseur where FK_Element = 'COR100BLDEC'))        
 and FK_Element='COR100BLDEC'
 
+
 -- count the command in the 6 months 
  select e.PK_code, sum(l.quantiteTotale) as tot from element e 
 	inner join linkcommandeelement l on e.PK_code = l.FK_element 
@@ -58,9 +59,57 @@ and FK_Element='COR100BLDEC'
 	where commande.date between now() - interval 6 month and now()
 	group by e.PK_code;
 	
+	
+-- get best supplier (price and delai)
+select prix, delai, FK_Element, FK_fournisseur from linkelementfournisseur l1
+where (
+	prix = (select min(prix) from linkelementfournisseur l2 
+	where l2.FK_Element = l1.FK_Element order by delai))
+	group by FK_Element;
+
+-- en dessous c's des essais pour getbestsupplier (bcp de merde !)
+
 -- /!\ to test !!!!
 -- select the best fournisseur 
 select * from (
 	select * from linkelementfournisseur 
 	order by min(prix), min(delai) ) as l
 	group by FK_Element
+
+select prix, delai, l1.FK_fournisseur, l1.FK_Element from linkelementfournisseur as l1
+where prix = (
+	select l2.FK_Element, l2.prix,  l2.FK_fournisseur from linkelementfournisseur as l2 
+	where l1.FK_Element = l2.FK_Element and min(price) )
+and delai = (
+		select l3.FK_Element, l3.prix, l3.delai, l3.FK_fournisseur from linkelementfournisseur as l3
+		where l1.FK_Element=l3.FK_Element and l1.prix = l3.price and min(delai)
+);
+
+
+select prix, delai, l1.FK_fournisseur, l1.FK_Element from linkelementfournisseur as l1
+where prix in (
+	select l2.FK_Element, l2.prix,  l2.FK_fournisseur from linkelementfournisseur as l2 
+	where l1.FK_Element = l2.FK_Element and min(price) )
+	
+	
+select l1.FK_Element, l1.FK_fournisseur, l1.prix, l1.delai
+from linkelementfournisseur l1
+where l1.prix = min(l1.prix);
+
+-- choose only the best price ! (TODO : best delai if the same)
+select prix, delai, FK_Element, FK_fournisseur from linkelementfournisseur l1
+where (
+	select min(prix) from linkelementfournisseur l2 
+	where l2.FK_Element = l1.FK_Element)
+	group by FK_Element;
+	
+	
+
+	
+select prix, delai, FK_Element, FK_fournisseur from linkelementfournisseur l1
+where (
+	prix = (select min(prix) from linkelementfournisseur l2 
+	where l2.FK_Element = l1.FK_Element order by delai))
+	group by FK_Element;
+
+
