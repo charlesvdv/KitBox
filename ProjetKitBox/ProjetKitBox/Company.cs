@@ -110,7 +110,11 @@ namespace ProjetKitBox
 
 		public void SaveCommand(List<StructOrderSupplier> structCommand)
 		{
-			//TODO : implementation
+            string query = "UPDATE element SET";
+			foreach(StructOrderSupplier orderSup in structCommand)
+            {
+
+            }
 		}
         
     }
