@@ -72,6 +72,9 @@ namespace ProjetKitBox
                 data.Add(eOrd);  
             }
 
+            dataReader.Close();
+            DBCon.Close();
+
             return data; 
 		}
         

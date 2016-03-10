@@ -50,13 +50,20 @@ namespace ProjetKitBox
                 stu.Add(stru); 
             }
 
+            dataReader.Close();
+
+            DBCon.Close();
+
             return stu; 
         }
 
 		public List<StructOrderSupplier> GetBestSupplier()
 		{
-            string query = //to define, we need an element, his command price, his delay, the IDSupplier, and the supplier's name => don't care ? 
-                           //Manage the min in sql or c# ? 
+            string query = "select prix, delai, FK_Element, FK_fournisseur from linkelementfournisseur l1 " +
+                "where( " +
+                "prix = (select min(prix) from linkelementfournisseur l2 " +
+                "where l2.FK_Element = l1.FK_Element order by delai)) " +
+                "group by FK_Element; ";
             try
             {
                 DBCon.Open();
@@ -74,14 +81,16 @@ namespace ProjetKitBox
 
             while (dataReader.Read())
             {
-                StructSize eSize = new StructSize((double)dataReader["largeur"], (double)dataReader["profondeur"], (double)dataReader["hauteur"]);
-                Element e = new Element((string)dataReader["typeElement"], (string)dataReader["couleur"], eSize,
-                    (string)dataReader["PK_code"], (double)dataReader["prix"], (int)dataReader["nbrpieces"]);
+                Element e = new Element((string)dataReader["PK_code"], this);
 
                 StructOrderSupplier stru = new StructOrderSupplier((double)dataReader["prix"], (int)dataReader["delay"], (int)dataReader["IDSupplier"], (string)dataReader["name"], e);
 
                 stu.Add(stru);
             }
+
+            dataReader.Close();
+
+            DBCon.Close();
 
             return stu; 
         }
@@ -89,8 +98,8 @@ namespace ProjetKitBox
         //Search an element in the database and give us all the information about it 
 		public Element SearchElement(string type, string color, StructSize size)
 		{
-            string query = "SELECT PK_code, prix, nbrpieces, hauteur, largeur, profondeur FROM" +
-                "`element` WHERE `typeElement` LIKE '" + type + "' AND `couleur` LIKE '" + color + "' AND `hauteur`"+
+            string query = "SELECT PK_code, prix, nbrpieces, hauteur, largeur, profondeur FROM " +
+                "`element` WHERE `typeElement` LIKE '" + type + "' AND `couleur` LIKE '" + color + "' AND `hauteur` "+
                 "LIKE "+ size.heigth +" AND `largeur` LIKE "+size.length+" AND `profondeur` LIKE "+size.depth;
 
             try
@@ -129,7 +138,7 @@ namespace ProjetKitBox
 
         public Element SearchElementByCode(string code)
         {
-            string query = "SELECT PK_code,couleur,hauteur,largeur,profondeur,prix,typeElement,nbrpieces  FROM" +
+            string query = "SELECT PK_code,couleur,hauteur,largeur,profondeur,prix,typeElement,nbrpieces  FROM " +
                 "`element` WHERE `PK_code` LIKE '" + code +"';";
 
             try
