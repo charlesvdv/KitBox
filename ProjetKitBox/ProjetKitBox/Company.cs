@@ -101,6 +101,7 @@ namespace ProjetKitBox
                     if(struc.element.Code == struOr.element.Code)
                     {
                         needToWithSupp.Add(new StructOrderSupplier(struOr.price, struOr.delay, struOr.IDSupplier, struOr.element, struc.numberOrdered));
+                        break;
                     }
                 }
             }
