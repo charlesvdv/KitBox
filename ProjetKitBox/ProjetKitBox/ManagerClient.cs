@@ -37,7 +37,21 @@ namespace ProjetKitBox
 
             cmd.ExecuteNonQuery();
 
+            query = "select PK_client from client where nom = '" + client.Name + "' and telephone='" + client.Telephone +"';";
+
+            cmd = new MySqlCommand(query, DVcon);
+
+            MySqlDataReader dataReader = cmd.ExecuteReader();
+            
+            while(dataReader.Read())
+            {
+                client.NClient = (int)dataReader["PK_client"];
+                break;
+            }
+
+            dataReader.Close();
             DBCon.Close();
+
         }
 
         //Delete a client from the database
@@ -79,7 +93,7 @@ namespace ProjetKitBox
 
             MySqlDataReader dataReader = cmd.ExecuteReader();
 
-            Client c = new Client((string)dataReader["nom"], (int)dataReader["NClient"],
+            Client c = new Client((string)dataReader["nom"],
                     (string)dataReader["adresse"], (string)dataReader["telephone"]);
 
             dataReader.Close();

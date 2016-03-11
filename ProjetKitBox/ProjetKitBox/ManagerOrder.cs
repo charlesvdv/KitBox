@@ -21,8 +21,8 @@ namespace ProjetKitBox
         //Add an order in the database's order list
         public void Add(Order order)
 		{
-            string query = "INSERT INTO `kitbox`.`commande` (`prix total`, `FK_client`, `date`) " +
-                "VALUES ('" + order.GetPrice() + "' , '" + order.Client.NClient + "', 'now()');";
+            string query = "INSERT INTO `kitbox`.`commande` (`prix total`, `nom`, `date`) " +
+                "VALUES ('" + order.GetPrice() + "' , '" + order.Client.Name + "', 'now()');";
 
             try
             {
