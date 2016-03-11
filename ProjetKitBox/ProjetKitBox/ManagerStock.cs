@@ -128,8 +128,7 @@ namespace ProjetKitBox
 
                 e = new Element((string)dataReader["typeElement"], (string)dataReader["couleur"], eSize, 
                     (string)dataReader["PK_code"], Convert.ToDouble(dataReader["prix"]), (int)dataReader["nbrpieces"]);
-                Console.WriteLine("ok");
-                Console.ReadKey();
+
                 i++;
             }
 
