@@ -10,10 +10,10 @@ namespace ProjetKitBox
     {
         private List<Shelf> shelfs;
         private Client client;
-        private double price;
 
         public Order(Client client)
         {
+            this.shelfs = new List<Shelf>() { };
             this.client = client;
         }
    

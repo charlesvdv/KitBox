@@ -19,6 +19,7 @@ namespace ProjetKitBox
             this.size = size;
             this.color = color;
             this.managerStock = managerStock;
+            this.elements = new List<Element>() { };
 			AsyncPopulate();
         }
 
