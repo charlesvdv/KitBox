@@ -39,7 +39,7 @@ namespace ProjetKitBox
 
             query = "select PK_client from client where nom = '" + client.Name + "' and telephone='" + client.Telephone +"';";
 
-            cmd = new MySqlCommand(query, DVcon);
+            cmd = new MySqlCommand(query, DBCon);
 
             MySqlDataReader dataReader = cmd.ExecuteReader();
             
