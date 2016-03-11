@@ -83,7 +83,7 @@ namespace ProjetKitBox
             {
                 Element e = new Element((string)dataReader["PK_code"], this);
 
-                StructOrderSupplier stru = new StructOrderSupplier((double)dataReader["prix"], (int)dataReader["delay"], (int)dataReader["IDSupplier"], (string)dataReader["name"], e);
+                StructOrderSupplier stru = new StructOrderSupplier((double)dataReader["prix"], (int)dataReader["delai"], (int)dataReader["FK_fournisseur"], e);
 
                 stu.Add(stru);
             }
