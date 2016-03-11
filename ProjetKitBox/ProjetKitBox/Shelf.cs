@@ -43,8 +43,12 @@ namespace ProjetKitBox
             get { return this.corner; }
         }
 
-        public void AddBox(Box box)
+        public void AddBox(double height, string color)
         {
+            StructSize s = new StructSize(this.size.length, this.size.depth, height);
+            Box box = new Box(s, color, this.managerStock);
+
+
 			//check if the box is complete
 			if (!box.IsComplete()) 
 			{
@@ -53,6 +57,7 @@ namespace ProjetKitBox
 
 			//test if we have more than one element
 			List<string> types = new List<string>(){};
+
 			foreach(Element e in box.GetElements()) 
 			{
 				if (types.IndexOf (e.Type) != -1) 
@@ -68,7 +73,7 @@ namespace ProjetKitBox
 			//calculate the price of the shelf
 			this.price += box.GetPrice();
 
-			boxes.Add(box);
+			this.boxes.Add(box);
         }
 
 		//the return boolean say if we need cutting the corner
