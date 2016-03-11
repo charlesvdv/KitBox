@@ -43,7 +43,7 @@ namespace ProjetKitBox
         //Delete a client from the database
 		public void DelClient(Client client)
 		{
-            string query = "DELETE FROM `client` WHERE `PK_client` = '" + client.NClient +"';";
+            string query = "DELETE FROM `client` WHERE `nom` = '" + client.Name +"';";
 
             try
             {
