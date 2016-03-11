@@ -78,26 +78,6 @@ namespace ProjetKitBox
             return data; 
 		}
 
-        public void SaveCommand(List<StructOrderSupplier> structCommand)
-        {
-            string query = "UPDATE element SET";
-
-            try
-            {
-                DBCon.Open();
-            }
-            catch (Exception e) { throw e; }
-
-            MySqlCommand cmd = new MySqlCommand(query, DBCon);
-
-            MySqlDataReader dataReader = cmd.ExecuteReader();
-
-
-            foreach (StructOrderSupplier orderSup in structCommand)
-            {
-
-            }
-        }
 
 
     }

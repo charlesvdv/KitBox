@@ -216,6 +216,31 @@ namespace ProjetKitBox
             cmd.ExecuteNonQuery();
 
             DBCon.Close();
-        }   
+        }
+
+        public void SaveCommand(List<StructOrderSupplier> structCommand)
+        {
+            string query = "START TRANSACTION; ";
+
+            foreach (StructOrderSupplier orderSup in structCommand)
+            {
+
+                query += "update element set commande = commande + " + orderSup.numberToCommand + " where PK_code= '" + orderSup.element.Code + "'; ";
+            }
+
+            query += "COMMIT; ";
+            try
+            {
+                DBCon.Open();
+            }
+            catch (Exception e) { throw e; }
+
+            MySqlCommand cmd = new MySqlCommand(query, DBCon);
+
+            cmd.ExecuteNonQuery();
+
+            DBCon.Close();
+
+        }
     }
 }

@@ -108,15 +108,5 @@ namespace ProjetKitBox
 
             return needToWithSupp; 
         }
-
-		public void SaveCommand(List<StructOrderSupplier> structCommand)
-		{
-            string query = "UPDATE element SET";
-			foreach(StructOrderSupplier orderSup in structCommand)
-            {
-
-            }
-		}
-        
     }
 }
