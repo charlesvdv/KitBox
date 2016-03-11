@@ -20,8 +20,8 @@ namespace ProjetKitBox
             StructSize s = new StructSize(32, 32, 0);
             Shelf s1 = new Shelf(s, comp.ManagerStock);
 
-            s1.AddBox(42, "blanc");
-            s1.AddBox(52, "brun");
+            s1.AddBox(36, "Blanc");
+            s1.AddBox(36, "Brun");
             Console.WriteLine(s1.Size.heigth);
             Console.ReadKey();
         }
