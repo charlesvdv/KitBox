@@ -10,14 +10,12 @@ namespace ProjetKitBox
     public class Client 
     {
         private string name;
-        private int nClient;
         private string adress;
         private string telephone;
 
-        public Client(String name, int nClient, string adress, string telephone)
+        public Client(String name, string adress, string telephone)
         {
             this.name = name;
-            this.nClient = nClient;
             this.adress = adress;
             this.telephone = telephone; 
         }
