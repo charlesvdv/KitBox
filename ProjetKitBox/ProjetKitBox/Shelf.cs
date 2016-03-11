@@ -15,10 +15,9 @@ namespace ProjetKitBox
 		private double price;
         private ManagerStock managerStock; 
 
-        public Shelf(StructSize size, Element corner, ManagerStock managerStock)
+        public Shelf(StructSize size, ManagerStock managerStock)
         {
-            this.size = size;
-            this.corner = corner; 
+            this.size = size; 
 			this.supplementCut = false;
 			this.price = 0;
             this.managerStock = managerStock; 
