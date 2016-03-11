@@ -66,6 +66,12 @@ where (
 	prix = (select min(prix) from linkelementfournisseur l2 
 	where l2.FK_Element = l1.FK_Element order by delai))
 	group by FK_Element;
+	
+-- SaveCommand save the supplier command in the database exemple
+START TRANSACTION;
+update element set reserve = reserve + 3 where PK_code= 'COR100BLDEC';
+update element set reserve = reserve + 4 where PK_code ='COR100BRDEC';
+COMMIT;
 
 -- en dessous c's des essais pour getbestsupplier (bcp de merde !)
 
