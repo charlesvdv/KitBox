@@ -17,8 +17,12 @@ namespace ProjetKitBox
 
             Order o = new Order(c);
 
+            StructSize s = new StructSize(32, 32, 0);
+            Shelf s1 = new Shelf(s, comp.ManagerStock);
 
-
+            s1.AddBox(42, "blanc");
+            s1.AddBox(52, "brun");
+            Console.WriteLine(s1.Size.heigth);
             Console.ReadKey();
         }
     }
