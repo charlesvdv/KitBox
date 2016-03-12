@@ -22,7 +22,15 @@ namespace ProjetKitBox
 
             s1.AddBox(36, "Blanc");
             s1.AddBox(36, "Brun");
+
+            o.AddShelf(s1, "Brun");
             Console.WriteLine(s1.Size.heigth);
+            Console.WriteLine(s1.Corner.Size.heigth);
+            List<Element> li = o.GetListElement();
+            foreach(Element e in li)
+            {
+                Console.WriteLine(e.Type+" "+e.RequiredNumber);
+            }
             Console.ReadKey();
         }
     }

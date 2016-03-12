@@ -169,8 +169,8 @@ namespace ProjetKitBox
         //Find the corner in the database 
         public Element FindCorner(double heigth, string color)
 		{
-            string query = "SELECT PK_code, prix, nbrpieces,hauteur FROM `element` "+
-                "WHERE `typeElement` LIKE 'corni' AND `couleur` LIKE '"+color+"' AND `hauteur` >= "+ heigth +" LIMIT 1";
+            string query = "SELECT * FROM `element` "+
+                "WHERE `typeElement` LIKE 'corni' AND `couleur` LIKE '"+color+"' AND `hauteur` >= "+ heigth +"  order by hauteur LIMIT 1";
 
             try
             {
@@ -185,10 +185,10 @@ namespace ProjetKitBox
 
             while(reader.Read())
             {
-                StructSize size = new StructSize((double)reader["largeur"], 
-                    (double)reader["profondeur"], (double)reader["hauteur"]);
+                StructSize size = new StructSize((int)reader["largeur"], 
+                    (int)reader["profondeur"], (int)reader["hauteur"]);
                 e = new Element((string)reader["typeElement"], (string)reader["couleur"], size,
-                    (string)reader["PK_code"], (double)reader["prix"], (int)reader["nbrpieces"]);
+                    (string)reader["PK_code"], Convert.ToDouble(reader["prix"]), (int)reader["nbrpieces"]);
                 break;
             }
 
