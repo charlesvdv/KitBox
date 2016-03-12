@@ -54,6 +54,7 @@ CREATE TABLE IF NOT EXISTS `commande` (
   `FK_client` int(11) DEFAULT NULL,
   `date` date DEFAULT NULL,
   `retire` boolean not null default 0,
+  `coupeSup` int(3) not null default 0,
   PRIMARY KEY (`PK_refCommande`),
   KEY `FK_client_idx` (`FK_client`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
