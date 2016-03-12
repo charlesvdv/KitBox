@@ -88,12 +88,12 @@ namespace ProjetKitBox
 		{
 			try 
 			{
-				elements.Add(new Element("Tasseau", new StructSize(0, 0, size.heigth - 4), color, managerStock));
-				elements.Add(new Element("Traverse Av", new StructSize(size.length, 0, 0), color, managerStock));
-				elements.Add(new Element("Traverse Ar", new StructSize(size.length, 0, 0), color, managerStock));
-				elements.Add(new Element("Traverse GD", new StructSize(0, size.depth, 0), color, managerStock));
-				elements.Add(new Element("Panneau Ar", new StructSize(size.length, 0, size.heigth), color, managerStock));
-				elements.Add(new Element("Panneau GD", new StructSize(0, size.depth, size.heigth), color, managerStock));
+				elements.Add(new Element("Tasseau", new StructSize(0, 0, size.heigth - 4), "", managerStock));
+				elements.Add(new Element("Traverse Av", new StructSize(size.length, 0, 0), "", managerStock));
+				elements.Add(new Element("Traverse Ar", new StructSize(size.length, 0, 0), "", managerStock));
+				elements.Add(new Element("Traverse GD", new StructSize(0, size.depth, 0), "", managerStock));
+				elements.Add(new Element("Panneau Ar", new StructSize(size.length, 0, size.heigth-4), color, managerStock));
+				elements.Add(new Element("Panneau GD", new StructSize(0, size.depth, size.heigth-4), color, managerStock));
 				elements.Add(new Element("Panneau HB", new StructSize(size.length, size.depth, 0), color, managerStock));
 			} 
 			catch (Exception e)

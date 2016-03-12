@@ -47,16 +47,16 @@ namespace ProjetKitBox
 
 		public Element(string type, StructSize size, string color, ManagerStock managerStock)
 		{
-			this.type = type;
+            this.type = type;
 			this.size = size;
 			this.color = color;
-
-			//get data from the database 
-			Element elem;
+     
+            //get data from the database 
+            Element elem;
 			try 
 			{
-				elem =managerStock.SearchElement(type, color, size);
-			}
+                elem =managerStock.SearchElement(type, color, size);
+            }
 			catch (Exception e)
 			{
 				throw e;

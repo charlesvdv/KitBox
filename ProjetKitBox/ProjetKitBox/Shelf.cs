@@ -20,7 +20,8 @@ namespace ProjetKitBox
             this.size = size; 
 			this.supplementCut = false;
 			this.price = 0;
-            this.managerStock = managerStock; 
+            this.managerStock = managerStock;
+            this.boxes = new List<Box>() { }; 
         }
 
         public bool SupplementCut

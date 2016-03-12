@@ -98,7 +98,7 @@ namespace ProjetKitBox
         //Search an element in the database and give us all the information about it 
 		public Element SearchElement(string type, string color, StructSize size)
 		{
-            string query = "SELECT PK_code, prix, nbrpieces, hauteur, largeur, profondeur FROM " +
+            string query = "SELECT * FROM " +
                 "`element` WHERE `typeElement` LIKE '" + type + "' AND `couleur` LIKE '" + color + "' AND `hauteur` "+
                 "LIKE "+ size.heigth +" AND `largeur` LIKE "+size.length+" AND `profondeur` LIKE "+size.depth;
 
@@ -115,7 +115,7 @@ namespace ProjetKitBox
             MySqlDataReader dataReader = cmd.ExecuteReader();
 
             Element e = null;
-
+            
             int i = 0;
             while(dataReader.Read()) 
             {
@@ -123,9 +123,11 @@ namespace ProjetKitBox
                 {
                     throw new Exception("We can't have more thant one element matching this value");
                 }
-                StructSize eSize = new StructSize((double)dataReader["largeur"], (double)dataReader["profondeur"], (double)dataReader["hauteur"]);
+
+                StructSize eSize = new StructSize((int)dataReader["largeur"], (int)dataReader["profondeur"], (int)dataReader["hauteur"]);
+
                 e = new Element((string)dataReader["typeElement"], (string)dataReader["couleur"], eSize, 
-                    (string)dataReader["PK_code"], (double)dataReader["prix"], (int)dataReader["nbrpieces"]);
+                    (string)dataReader["PK_code"], Convert.ToDouble(dataReader["prix"]), (int)dataReader["nbrpieces"]);
 
                 i++;
             }
