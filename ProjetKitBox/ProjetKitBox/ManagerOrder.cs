@@ -31,8 +31,8 @@ namespace ProjetKitBox
                     supCutNumber += 1;
                 } 
             }
-            string query = "INSERT INTO `kitbox`.`commande` (`prix total`, `nom`, `date`, `coupeSup`) " +
-                "VALUES ('" + order.GetPrice() + "' , '" + order.Client.Name + "', now(), "+ supCutNumber +");";
+            string query = "INSERT INTO `kitbox`.`commande` (`prix total`, `FK_client`, `date`, `coupeSup`) " +
+                "VALUES ('" + order.GetPrice() + "' , '" + order.Client.NClient + "', now(), "+ supCutNumber +");";
 
             try
             {
