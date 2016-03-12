@@ -42,14 +42,15 @@ namespace ProjetKitBox
             }
             */
 
-            /* NOT WORKING => Ouverture DB dans GetBestSupplier , qui appel le contru de element by code , qui tente d'ouvrir la DB encore! 
+            //NOT WORKING => Ouverture DB dans GetBestSupplier , qui appel le contru de element by code , qui tente d'ouvrir la DB encore! 
+            //NEW ERROR => Only one dataReader for a DBcon connection ! 
             List<StructOrderSupplier> listOrder = comp.ManagerStock.GetBestSupplier();
 
             foreach(StructOrderSupplier struO in listOrder)
             {
                 Console.WriteLine(struO.price);
             }
-            */
+            
             
 
             /* WORKING

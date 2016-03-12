@@ -13,7 +13,6 @@ namespace ProjetKitBox
     {
         private MySqlConnection DBCon;
 
-
         public ManagerStock(MySqlConnection DBCon)
 		{
             this.DBCon = DBCon;
@@ -75,20 +74,20 @@ namespace ProjetKitBox
 
             MySqlCommand cmd = new MySqlCommand(query, DBCon);
 
-            MySqlDataReader dataReader = cmd.ExecuteReader();
+            MySqlDataReader reader = cmd.ExecuteReader();
 
             List<StructOrderSupplier> stu = null;
 
-            while (dataReader.Read())
+            while (reader.Read())
             {
-                Element e = new Element((string)dataReader["FK_element"], this);
+                Element e = new Element((string)reader["FK_element"], this);
 
-                StructOrderSupplier stru = new StructOrderSupplier(Convert.ToDouble(dataReader["prix"]), (int)dataReader["delai"], (int)dataReader["FK_fournisseur"], e);
+                StructOrderSupplier stru = new StructOrderSupplier(Convert.ToDouble(reader["prix"]), (int)reader["delai"], (int)reader["FK_fournisseur"], e);
 
                 stu.Add(stru);
             }
 
-            dataReader.Close();
+            reader.Close();
 
             DBCon.Close();
 
@@ -144,13 +143,17 @@ namespace ProjetKitBox
             string query = "SELECT PK_code,couleur,hauteur,largeur,profondeur,prix,typeElement,nbrpieces  FROM " +
                 "`element` WHERE `PK_code` LIKE '" + code +"';";
 
-            try
+            bool conOpen = DBCon.State.Equals(System.Data.ConnectionState.Open);
+            if (conOpen != true)
             {
-                DBCon.Open();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                try
+                {
+                    DBCon.Open();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
 
             MySqlCommand cmd = new MySqlCommand(query, DBCon);
