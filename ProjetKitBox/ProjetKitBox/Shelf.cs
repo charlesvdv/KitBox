@@ -81,7 +81,7 @@ namespace ProjetKitBox
 		{
 			Element corner = managerStock.FindCorner(this.size.heigth, color);
 
-            if (corner.Type != "Cornières") //Don't we need to rename it corni ? 
+            if (corner.Type != "Corni") //Don't we need to rename it corni ? 
             {
                 throw new Exception("Can't had a element that's not a corner");
             }
