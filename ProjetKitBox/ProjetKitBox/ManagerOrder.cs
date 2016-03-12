@@ -21,8 +21,17 @@ namespace ProjetKitBox
         //Add an order in the database's order list
         public void Add(Order order)
 		{
-            string query = "INSERT INTO `kitbox`.`commande` (`prix total`, `nom`, `date`) " +
-                "VALUES ('" + order.GetPrice() + "' , '" + order.Client.Name + "', 'now()');";
+            //calcute the number of supplement cut of the corner required 
+            int supCutNumber = 0;
+            foreach(Shelf shelf in order.Shelfs)
+            {
+                if (shelf.SupplementCut == true)
+                {
+                    supCutNumber += 1;
+                } 
+            }
+            string query = "INSERT INTO `kitbox`.`commande` (`prix total`, `nom`, `date`, `coupeSup`) " +
+                "VALUES ('" + order.GetPrice() + "' , '" + order.Client.Name + "', 'now()', "+ supCutNumber +");";
 
             try
             {
