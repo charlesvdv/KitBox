@@ -26,11 +26,9 @@ namespace ProjetKitBox
             o.AddShelf(s1, "Brun");
             Console.WriteLine(s1.Size.heigth);
             Console.WriteLine(s1.Corner.Size.heigth);
-            List<Element> li = o.GetListElement();
-            foreach(Element e in li)
-            {
-                Console.WriteLine(e.Type+" "+e.RequiredNumber);
-            }
+
+            comp.ManagerOrder.Add(o);
+
             Console.ReadKey();
         }
     }

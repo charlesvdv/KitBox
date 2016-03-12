@@ -51,7 +51,7 @@ namespace ProjetKitBox
 
             foreach(Element e in ee)
             {
-                price += e.Price;
+                price += e.Price * e.RequiredNumber;
             }
 
             foreach(Shelf s in shelfs)

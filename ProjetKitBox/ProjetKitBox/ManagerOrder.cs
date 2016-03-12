@@ -21,6 +21,7 @@ namespace ProjetKitBox
         //Add an order in the database's order list
         public void Add(Order order)
 		{
+
             //calcute the number of supplement cut of the corner required 
             int supCutNumber = 0;
             foreach(Shelf shelf in order.Shelfs)
@@ -31,7 +32,7 @@ namespace ProjetKitBox
                 } 
             }
             string query = "INSERT INTO `kitbox`.`commande` (`prix total`, `nom`, `date`, `coupeSup`) " +
-                "VALUES ('" + order.GetPrice() + "' , '" + order.Client.Name + "', 'now()', "+ supCutNumber +");";
+                "VALUES ('" + order.GetPrice() + "' , '" + order.Client.Name + "', now(), "+ supCutNumber +");";
 
             try
             {
