@@ -6,7 +6,7 @@ SELECT PK_code, prix, nbrpieces,hauteur,largeur,profondeur  FROM `element` WHERE
 
 -- chercher la cornière la plus proche 
 -- couleur DOIT être spécidfiée !!
-SELECT PK_code, prix, nbrpieces,hauteur  FROM `element` WHERE `typeElement` LIKE 'corni' AND `couleur` LIKE 'brun' AND `hauteur` >= 100 LIMIT 1
+SELECT PK_code, prix, nbrpieces,hauteur  FROM `element` WHERE `typeElement` LIKE 'corni' AND `couleur` LIKE 'brun' AND `hauteur` >= 100 order by hauteur LIMIT 1
 
 -- creat commande
 INSERT INTO `kitbox`.`commande` (`PK_refCommande`, `prix total`, `FK_client`, `date`) VALUES ('5', '856', '2', now());
