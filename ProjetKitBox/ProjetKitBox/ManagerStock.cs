@@ -251,5 +251,45 @@ namespace ProjetKitBox
             DBCon.Close();
 
         }
+
+        private struct StructElemCommand
+        {
+            public string codeElement;
+            public int numOrdered;
+
+            public StructElemCommand(string c, int n)
+            {
+                this.codeElement = c;
+                this.numOrdered = n;
+            }
+        }
+
+
+        public void RemoveFromStock(int refCommand)
+        {
+            string queryCommand = "select * from commandeelement where FK_commande = " + refCommand + ";";
+
+            try
+            {
+                DBCon.Open();
+            } catch (Exception e)
+            {
+                throw e;
+            }
+            MySqlCommand cmd = new MySqlCommand(queryCommand, DBCon);
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            List<StructElemCommand> codeElem = new List<StructElemCommand>() { };
+
+            while (reader.Read())
+            {
+                codeElem.Add(new StructElemCommand(reader["FK_element"].ToString(), (int)reader["quantiteTotale"]));
+            }
+       
+            reader.Close();
+            
+
+        }
+
     }
 }
