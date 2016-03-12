@@ -37,6 +37,20 @@ namespace ProjetKitBox
 
             cmd.ExecuteNonQuery();
 
+            string queryRes = "START TRANSACTION;";
+
+            foreach(Element elem in order.GetListElement())
+            {
+                queryRes += "update element set reserve = reserve + " +elem.RequiredNumber + " where PK_code = '" +
+                    elem.Code + " '; " ;
+            }
+
+            queryRes += "COMMIT;";
+
+            cmd = new MySqlCommand(queryRes, DBCon);
+
+            cmd.ExecuteNonQuery();
+
             DBCon.Close();
 
         }
