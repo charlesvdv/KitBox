@@ -29,6 +29,7 @@ namespace ProjetKitBox
         {
             this.code = code;
             Element elem;
+
             try
             {
                 elem = managerStock.SearchElementByCode(code);
@@ -37,6 +38,7 @@ namespace ProjetKitBox
             {
                 throw e;
             }
+
             this.color = elem.color;
             this.price = elem.price;
             this.size = elem.size;

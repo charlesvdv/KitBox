@@ -21,7 +21,7 @@ namespace ProjetKitBox
         
 		public List<StructStock> GetStateStock()
 		{
-            string query = "SELECT PK_code, typeElement, couleur, hauteur, largeur, longueur, prix, stockmin," +
+            string query = "SELECT PK_code, typeElement, couleur, hauteur, largeur, profondeur, prix, stockmin," +
                 " nbrpieces, typeElement, stock, commande, reserve from element";
 
             try
@@ -37,13 +37,13 @@ namespace ProjetKitBox
 
             MySqlDataReader dataReader = cmd.ExecuteReader();
 
-            List<StructStock> stu = null; 
+            List<StructStock> stu = new List<StructStock>() { }; 
 
             while(dataReader.Read())
             {
-                StructSize eSize = new StructSize((double)dataReader["largeur"], (double)dataReader["profondeur"], (double)dataReader["hauteur"]);
+                StructSize eSize = new StructSize((int)dataReader["largeur"], (int)dataReader["profondeur"], (int)dataReader["hauteur"]);
                 Element e = new Element((string)dataReader["typeElement"], (string)dataReader["couleur"], eSize,
-                    (string)dataReader["PK_code"], (double)dataReader["prix"], (int)dataReader["nbrpieces"]);
+                    (string)dataReader["PK_code"], Convert.ToDouble(dataReader["prix"]), (int)dataReader["nbrpieces"]);
 
                 StructStock stru = new StructStock(e, (int)dataReader["commande"], (int)dataReader["stock"], (int)dataReader["reserve"], (int)dataReader["stockmin"]);
 
@@ -59,11 +59,11 @@ namespace ProjetKitBox
 
 		public List<StructOrderSupplier> GetBestSupplier()
 		{
-            string query = "select prix, delai, FK_Element, FK_fournisseur from linkelementfournisseur l1 " +
+            string query = "select prix, delai, FK_element, FK_fournisseur from linkelementfournisseur l1 " +
                 "where( " +
                 "prix = (select min(prix) from linkelementfournisseur l2 " +
-                "where l2.FK_Element = l1.FK_Element order by delai)) " +
-                "group by FK_Element; ";
+                "where l2.FK_element = l1.FK_element order by delai)) " +
+                "group by FK_element; ";
             try
             {
                 DBCon.Open();
@@ -81,9 +81,9 @@ namespace ProjetKitBox
 
             while (dataReader.Read())
             {
-                Element e = new Element((string)dataReader["PK_code"], this);
+                Element e = new Element((string)dataReader["FK_element"], this);
 
-                StructOrderSupplier stru = new StructOrderSupplier((double)dataReader["prix"], (int)dataReader["delai"], (int)dataReader["FK_fournisseur"], e);
+                StructOrderSupplier stru = new StructOrderSupplier(Convert.ToDouble(dataReader["prix"]), (int)dataReader["delai"], (int)dataReader["FK_fournisseur"], e);
 
                 stu.Add(stru);
             }
@@ -105,7 +105,8 @@ namespace ProjetKitBox
             try
             {
                 DBCon.Open();
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -156,10 +157,16 @@ namespace ProjetKitBox
 
             MySqlDataReader dataReader = cmd.ExecuteReader();
 
-            StructSize eSize = new StructSize((double)dataReader["largeur"], (double)dataReader["profondeur"], (double)dataReader["hauteur"]);
-            Element e = new Element((string)dataReader["typeElement"],(string)dataReader["couleur"], eSize,
-                    (string)dataReader["prix"], (double)dataReader["prix"],(int)dataReader["nbrpieces"]);
+            Element e = null;
 
+            while (dataReader.Read())
+            {
+                StructSize eSize = new StructSize((int)dataReader["largeur"], (int)dataReader["profondeur"], (int)dataReader["hauteur"]);
+                e = new Element((string)dataReader["typeElement"], (string)dataReader["couleur"], eSize,
+                        (string)dataReader["PK_code"], Convert.ToDouble(dataReader["prix"]), (int)dataReader["nbrpieces"]);
+
+                break;
+            }
             dataReader.Close();
             DBCon.Close();
 
