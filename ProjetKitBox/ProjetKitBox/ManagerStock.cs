@@ -200,7 +200,7 @@ namespace ProjetKitBox
         }
 
         //Set a number of comanded element in the database
-        public void setCommanded(Element element, int number)
+        public void SetCommanded(Element element, int number)
         {
             string query = "UPDATE `kitbox`.`element` SET commande ='" + number +"' WHERE PK_code = '" + element.Code + "';";
 
