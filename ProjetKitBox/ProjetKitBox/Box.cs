@@ -102,6 +102,46 @@ namespace ProjetKitBox
 			}
 		}
 
+        //Permis to add option like "porte"
+        public void AddOption(string type, string color)
+        {
+            if (type == "Porte")
+            {
+                AddDoor(color);
+            }
+            //Possibility to add other option(s)
+        }
+
+        private void AddDoor(string color)
+        {
+            foreach(Element ee in elements)
+            {
+                if(ee.Type == "Porte")
+                {
+                    throw new Exception("Il y a déjà une porte pour cette boxe");
+                }
+            }
+
+            Element e = null;
+            if (this.size.length < 62)
+            {
+                throw new Exception("La boxe est trop petite pour des portes");
+            }
+            else if (this.size.length == 62)
+            {
+                StructSize s = new StructSize(((this.size.length)/2) + 1 , 0, (this.size.heigth) - 4);
+                e = new Element("Porte", s, color, managerStock);
+            }
+            else
+            {
+                StructSize s = new StructSize(((this.size.length)/2) + 2, 0, (this.size.heigth) - 4);
+                e = new Element("Porte", s, color, managerStock);
+            }
+
+            elements.Add(e);
+        }
+
+        //Retrun a list of each element in the box
         public List<Element> GetElements()
         {
             List<Element> list = new List<Element>();
