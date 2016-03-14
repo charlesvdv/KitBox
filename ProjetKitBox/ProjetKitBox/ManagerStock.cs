@@ -269,18 +269,21 @@ namespace ProjetKitBox
         {
             public string codeElement;
             public int numOrdered;
+            public int stock;
 
-            public StructElemCommand(string c, int n)
+            public StructElemCommand(string c, int n, int s)
             {
                 this.codeElement = c;
                 this.numOrdered = n;
+                this.stock = s;
             }
         }
 
 
         public void RemoveFromStock(int refCommand)
         {
-            string queryCommand = "select * from commandeelement where FK_commande = " + refCommand + ";";
+            string queryCommand = "select e.PK_code, e.stock, l.quantiteTotale from linkcommandeelement l inner join "+
+                "element e on e.PK_code = l.FK_element where FK_commande = "+ refCommand +";";
 
             try
             {
@@ -296,12 +299,28 @@ namespace ProjetKitBox
 
             while (reader.Read())
             {
-                codeElem.Add(new StructElemCommand(reader["FK_element"].ToString(), (int)reader["quantiteTotale"]));
+                codeElem.Add(new StructElemCommand(reader["FK_element"].ToString(), (int)reader["quantiteTotale"], (int)reader["stock"]));
             }
-       
-            reader.Close();
-            
 
+            //check if the stock is enough for the command
+            foreach(StructElemCommand stru in codeElem)
+            {
+                if (stru.stock < stru.numOrdered)
+                {
+                    throw new Exception("We don't have enough stock right now for "+ stru.codeElement);
+                }
+            }
+
+            string queryUpdate = "START TRANSACTION;";
+            foreach(StructElemCommand stru in codeElem)
+            {
+                queryUpdate += "update element set reserve = reserve - " + stru.numOrdered + ", stock=stock -" + stru.numOrdered +
+                    "where PK_code = " + stru.codeElement + "; ";
+            }
+            queryUpdate += "COMMIT; ";
+                                       
+            reader.Close();
+            DBCon.Close();
         }
 
     }
