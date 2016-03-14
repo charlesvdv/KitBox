@@ -45,9 +45,7 @@ namespace ProjetKitBox
             }
 
             MySqlCommand cmd = new MySqlCommand(query, DBCon);
-
             cmd.ExecuteNonQuery();
-
             int PKCommand = Convert.ToInt32(cmd.LastInsertedId);
 
             //add the linkcommandeelement in the database
@@ -60,7 +58,6 @@ namespace ProjetKitBox
                 queryRes += "update element set reserve = reserve + " +elem.RequiredNumber + " where PK_code = '" +
                     elem.Code + " '; " ;
             }
-
             queryRes += "COMMIT;";
 
             cmd = new MySqlCommand(queryRes, DBCon);
@@ -83,8 +80,12 @@ namespace ProjetKitBox
 
         private void InsertLinkElementCommand(List<Element> elems, int PKCommand)
         {
-            List<ElemCount> SortedElem = new List<ElemCount>() { };
+            //Don't need to open the DB because the connection is already open in Add(Order order)
 
+            //list to save the number of element in a command without the duplicates elements
+            List<ElemCount> SortedElem = new List<ElemCount>() { };
+            
+            //search in the lists elements for duplicates
             foreach(Element e in elems)
             {
                 if (elems.Exists(x => x.Code == e.Code))
@@ -109,9 +110,9 @@ namespace ProjetKitBox
             query += "COMMIT; ";
 
             MySqlCommand cmd = new MySqlCommand(query, DBCon);
-
             cmd.ExecuteNonQuery();
-
+            //Don't close the DB because the method is called in the Add(Order order) directly so 
+            //don't need to close the DB.
         }
 
         //Retrun a list of comanded number for each element in the past six month 
@@ -129,9 +130,7 @@ namespace ProjetKitBox
             } catch (Exception e) { throw e; }
 
             MySqlCommand cmd = new MySqlCommand(query, DBCon);
-
-             MySqlDataReader dataReader = cmd.ExecuteReader();
-
+            MySqlDataReader dataReader = cmd.ExecuteReader();
             List<StructOrder> data = new List<StructOrder>() { };         
             
             while(dataReader.Read())

@@ -26,23 +26,15 @@ namespace ProjetKitBox
             try
             {
                 DBCon.Open();
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            } catch (Exception ex) { throw ex; }
 
             MySqlCommand cmd = new MySqlCommand(query, DBCon);
-
             cmd.ExecuteNonQuery();
 
             query = "select PK_client from client where nom = '" + client.Name + "' and telephone='" + client.Telephone +"';";
-
             cmd = new MySqlCommand(query, DBCon);
 
             MySqlDataReader dataReader = cmd.ExecuteReader();
-            
             while(dataReader.Read())
             {
                 client.NClient = (int)dataReader["PK_client"];
@@ -78,18 +70,13 @@ namespace ProjetKitBox
         */
 
         //Search a client from the database, and give us all the information about him
-		public Client Search(string name, string tel)
+        public Client Search(string name, string tel)
 		{
             string query = "SELECT * FROM `client` WHERE `nom` LIKE '%" + name + "%' AND  `telephone` like '%" + tel+"%';";
-
             try
             {
                 DBCon.Open();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            } catch (Exception ex) { throw ex; }
 
             MySqlCommand cmd = new MySqlCommand(query, DBCon);
 
