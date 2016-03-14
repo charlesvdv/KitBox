@@ -326,6 +326,10 @@ namespace ProjetKitBox
             cmd.ExecuteNonQuery();
 
             string queryUpdateCom = "update commande set retire=true where PK_refCommande = " + refCommand + " ;";
+
+            cmd = new MySqlCommand(queryUpdateCom, DBCon);
+
+            cmd.ExecuteNonQuery();
                                        
             DBCon.Close();
         }
