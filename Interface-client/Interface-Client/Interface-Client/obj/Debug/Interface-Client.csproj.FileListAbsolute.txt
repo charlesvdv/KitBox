@@ -1,0 +1,9 @@
+C:\Users\alons\Desktop\ECAM 15-16\Bureau d'études POO\Interfaces graphiques\Interface-client\Interface-Client\Interface-Client\bin\Debug\Interface-Client.exe.config
+C:\Users\alons\Desktop\ECAM 15-16\Bureau d'études POO\Interfaces graphiques\Interface-client\Interface-Client\Interface-Client\bin\Debug\Interface-Client.exe
+C:\Users\alons\Desktop\ECAM 15-16\Bureau d'études POO\Interfaces graphiques\Interface-client\Interface-Client\Interface-Client\bin\Debug\Interface-Client.pdb
+C:\Users\alons\Desktop\ECAM 15-16\Bureau d'études POO\Interfaces graphiques\Interface-client\Interface-Client\Interface-Client\obj\Debug\Interface-Client.csprojResolveAssemblyReference.cache
+C:\Users\alons\Desktop\ECAM 15-16\Bureau d'études POO\Interfaces graphiques\Interface-client\Interface-Client\Interface-Client\obj\Debug\Interface_Client.Form1.resources
+C:\Users\alons\Desktop\ECAM 15-16\Bureau d'études POO\Interfaces graphiques\Interface-client\Interface-Client\Interface-Client\obj\Debug\Interface_Client.Properties.Resources.resources
+C:\Users\alons\Desktop\ECAM 15-16\Bureau d'études POO\Interfaces graphiques\Interface-client\Interface-Client\Interface-Client\obj\Debug\Interface-Client.csproj.GenerateResource.Cache
+C:\Users\alons\Desktop\ECAM 15-16\Bureau d'études POO\Interfaces graphiques\Interface-client\Interface-Client\Interface-Client\obj\Debug\Interface-Client.exe
+C:\Users\alons\Desktop\ECAM 15-16\Bureau d'études POO\Interfaces graphiques\Interface-client\Interface-Client\Interface-Client\obj\Debug\Interface-Client.pdb
