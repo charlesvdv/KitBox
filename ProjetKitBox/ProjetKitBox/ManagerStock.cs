@@ -318,6 +318,10 @@ namespace ProjetKitBox
                     "where PK_code = " + stru.codeElement + "; ";
             }
             queryUpdate += "COMMIT; ";
+
+            cmd = new MySqlCommand(queryUpdate, DBCon);
+
+            cmd.ExecuteNonQuery();
                                        
             reader.Close();
             DBCon.Close();
