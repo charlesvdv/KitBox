@@ -88,7 +88,7 @@ namespace ProjetKitBox
             //search in the lists elements for duplicates
             foreach(Element e in elems)
             {
-                if (elems.Exists(x => x.Code == e.Code))
+                if (SortedElem.Exists(x => x.elem.Code == e.Code))
                 {
                     int index = SortedElem.FindIndex(x => x.elem.Code == e.Code);
 
@@ -104,8 +104,8 @@ namespace ProjetKitBox
             string query = "START TRANSACTION; ";
             foreach (ElemCount ec in SortedElem)
             {
-                query += "insert into linkcommandeelement ('FK_Element', 'FK_commande', 'quantiteTotale', 'prix', 'quantiteRetiree') " +
-                    " values ('" + ec.elem.Code +"','"+ PKCommand+"', '"+ ec.num+"', '"+ec.elem.Price+"', 0); ";
+                query += "insert into linkcommandeelement(FK_Element, FK_commande, quantiteTotale, prix, quantiteRetiree)" +
+                    " values('" + ec.elem.Code +"', "+ PKCommand+", "+ ec.num+", "+ec.elem.Price+", 0); ";
             }
             query += "COMMIT; ";
 

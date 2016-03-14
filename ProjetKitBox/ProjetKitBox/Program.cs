@@ -13,7 +13,7 @@ namespace ProjetKitBox
         {
             Company comp = new Company();
 
-            /* WORKING => Add managerStock linkCommandeElement (DB) !!!!!
+            // WORKING => Add managerStock linkCommandeElement (DB) !!!!!
             Client c = new Client("TEST", "test", "000");
             comp.ManagerClient.AddClient(c);
 
@@ -30,7 +30,7 @@ namespace ProjetKitBox
             Console.WriteLine(s1.Corner.Size.heigth);
 
             comp.ManagerOrder.Add(o);
-            */
+            
 
 
             /* WORKING 
@@ -109,7 +109,9 @@ namespace ProjetKitBox
             Console.ReadKey();
             */
 
+            /* WORKING
             comp.ManagerStock.RemoveFromStock(1);
+            */
         }
     }
 }
