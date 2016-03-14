@@ -22,7 +22,7 @@ namespace Interface_Client
             step2.Enabled = false;
             step3.Enabled = false;
             //Introduction des variables à ajouter dans les ComboBox
-            string[] eights = { "0", "34", "44", "54" };
+            string[] eights = {"34", "44", "54" };
             string[] colors = { "Blanc", "Brun" };
             string[] options = { "Porte (blanc)", "Porte (brun)", "Porte (verre)", "Tiroir" };
             string[] number = { "1", "2", "3", "4", "5", "6", "7" };
@@ -121,13 +121,7 @@ namespace Interface_Client
                 string c = Convert.ToString(numerocommande);
                 NumMeuble.Text = m;
                 NumCommande.Text = c;
-                foreach (Control l in this.Controls)
-                {
-                    if (l is Label)
-                    {
-                        l.Visible = true;
-                    }
-                }
+             
             }
             else
             {
@@ -147,9 +141,6 @@ namespace Interface_Client
                 step2.Enabled = false;
                 step3.Enabled = false;
                 NumMeuble.Text = "0";
-                label7.Visible = false;
-                label49.Visible = false;
-                label12.Visible = false;
                 NumCommande.Visible = false;
                 foreach (Control t in this.welcom.Controls)
                 {

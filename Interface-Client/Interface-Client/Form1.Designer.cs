@@ -110,6 +110,8 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.welcom = new System.Windows.Forms.TabPage();
+            this.PhoneNumber = new System.Windows.Forms.TextBox();
+            this.textBox = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.OK = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -132,8 +134,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox = new System.Windows.Forms.Label();
-            this.PhoneNumber = new System.Windows.Forms.TextBox();
             this.step3.SuspendLayout();
             this.step2.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -958,6 +958,22 @@
             this.welcom.Text = "Bienvenue";
             this.welcom.UseVisualStyleBackColor = true;
             // 
+            // PhoneNumber
+            // 
+            this.PhoneNumber.Location = new System.Drawing.Point(121, 206);
+            this.PhoneNumber.Name = "PhoneNumber";
+            this.PhoneNumber.Size = new System.Drawing.Size(100, 20);
+            this.PhoneNumber.TabIndex = 16;
+            // 
+            // textBox
+            // 
+            this.textBox.AutoSize = true;
+            this.textBox.Location = new System.Drawing.Point(4, 209);
+            this.textBox.Name = "textBox";
+            this.textBox.Size = new System.Drawing.Size(115, 13);
+            this.textBox.TabIndex = 15;
+            this.textBox.Text = "Numéro de téléphone: ";
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -971,7 +987,7 @@
             // 
             // OK
             // 
-            this.OK.Location = new System.Drawing.Point(282, 292);
+            this.OK.Location = new System.Drawing.Point(260, 269);
             this.OK.Name = "OK";
             this.OK.Size = new System.Drawing.Size(75, 23);
             this.OK.TabIndex = 0;
@@ -992,14 +1008,14 @@
             // 
             // LastName
             // 
-            this.LastName.Location = new System.Drawing.Point(59, 157);
+            this.LastName.Location = new System.Drawing.Point(121, 128);
             this.LastName.Name = "LastName";
             this.LastName.Size = new System.Drawing.Size(100, 20);
             this.LastName.TabIndex = 0;
             // 
             // FirstName
             // 
-            this.FirstName.Location = new System.Drawing.Point(59, 196);
+            this.FirstName.Location = new System.Drawing.Point(121, 167);
             this.FirstName.Name = "FirstName";
             this.FirstName.Size = new System.Drawing.Size(100, 20);
             this.FirstName.TabIndex = 5;
@@ -1014,7 +1030,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 203);
+            this.label3.Location = new System.Drawing.Point(4, 170);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(46, 13);
             this.label3.TabIndex = 3;
@@ -1023,7 +1039,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 164);
+            this.label2.Location = new System.Drawing.Point(4, 131);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(32, 13);
             this.label2.TabIndex = 2;
@@ -1084,7 +1100,6 @@
             this.label12.Size = new System.Drawing.Size(49, 13);
             this.label12.TabIndex = 29;
             this.label12.Text = "Prénom";
-            this.label12.Visible = false;
             // 
             // label51
             // 
@@ -1113,7 +1128,6 @@
             this.label49.Size = new System.Drawing.Size(32, 13);
             this.label49.TabIndex = 26;
             this.label49.Text = "Nom";
-            this.label49.Visible = false;
             // 
             // NumCommande
             // 
@@ -1124,7 +1138,6 @@
             this.NumCommande.Size = new System.Drawing.Size(14, 13);
             this.NumCommande.TabIndex = 25;
             this.NumCommande.Text = "0";
-            this.NumCommande.Visible = false;
             // 
             // label10
             // 
@@ -1152,7 +1165,6 @@
             this.label7.Size = new System.Drawing.Size(85, 13);
             this.label7.TabIndex = 22;
             this.label7.Text = "COMMANDE N°";
-            this.label7.Visible = false;
             // 
             // label6
             // 
@@ -1180,22 +1192,6 @@
             this.label4.Size = new System.Drawing.Size(66, 13);
             this.label4.TabIndex = 19;
             this.label4.Text = "MEUBLE N°";
-            // 
-            // textBox
-            // 
-            this.textBox.AutoSize = true;
-            this.textBox.Location = new System.Drawing.Point(7, 242);
-            this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(115, 13);
-            this.textBox.TabIndex = 15;
-            this.textBox.Text = "Numéro de téléphone: ";
-            // 
-            // PhoneNumber
-            // 
-            this.PhoneNumber.Location = new System.Drawing.Point(124, 239);
-            this.PhoneNumber.Name = "PhoneNumber";
-            this.PhoneNumber.Size = new System.Drawing.Size(100, 20);
-            this.PhoneNumber.TabIndex = 16;
             // 
             // Form1
             // 

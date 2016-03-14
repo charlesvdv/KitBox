@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ProjetKitBox.vshost">
+      <HintPath>..\..\ProjetKitBox\ProjetKitBox\bin\Release\ProjetKitBox.vshost.exe</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
