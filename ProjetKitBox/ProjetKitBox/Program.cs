@@ -42,16 +42,16 @@ namespace ProjetKitBox
             }
             */
 
-            //NOT WORKING => Ouverture DB dans GetBestSupplier , qui appel le contru de element by code , qui tente d'ouvrir la DB encore! 
-            //NEW ERROR => Only one dataReader for a DBcon connection ! 
+            /* WORKING
             List<StructOrderSupplier> listOrder = comp.ManagerStock.GetBestSupplier();
 
             foreach(StructOrderSupplier struO in listOrder)
             {
                 Console.WriteLine(struO.price);
             }
-            
-            
+            Console.ReadKey();
+            */
+
 
             /* WORKING
             StructSize s = new StructSize(0, 0, 100);
@@ -73,6 +73,23 @@ namespace ProjetKitBox
             Console.WriteLine(e1.Color);
 
             Console.ReadKey();
+            */
+
+            /* WORKING
+            Element e = comp.ManagerStock.SearchElementByCode("COR100BLDEC");
+
+            comp.ManagerStock.SetCommanded(e, 8);
+            Console.ReadKey();
+            */
+
+            /* WORKING
+            Element e = comp.ManagerStock.SearchElementByCode("COR100BLDEC");
+
+            StructOrderSupplier s = new StructOrderSupplier(22.00, 13, 0342, e, 30);
+            List<StructOrderSupplier> list = new List<StructOrderSupplier>() { };
+            list.Add(s);
+
+            comp.ManagerStock.SaveCommand(list);
             */
         }
     }

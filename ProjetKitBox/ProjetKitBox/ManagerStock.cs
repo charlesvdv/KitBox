@@ -18,6 +18,7 @@ namespace ProjetKitBox
             this.DBCon = DBCon;
 		}
         
+        //Give us a list of the state of stock? How many commanded, reserved and in stock for each element
 		public List<StructStock> GetStateStock()
 		{
             string query = "SELECT PK_code, typeElement, couleur, hauteur, largeur, profondeur, prix, stockmin," +
@@ -56,6 +57,7 @@ namespace ProjetKitBox
             return stu; 
         }
 
+        //The returned list tell us which is the best suppplier, then give us price and delay for each element
 		public List<StructOrderSupplier> GetBestSupplier()
 		{
             string query = "select prix, delai, FK_element, FK_fournisseur from linkelementfournisseur l1 " +
@@ -76,7 +78,7 @@ namespace ProjetKitBox
 
             MySqlDataReader reader = cmd.ExecuteReader();
 
-            List<StructOrderSupplier> stu = null;
+            List<StructOrderSupplier> stu = new List<StructOrderSupplier>(){ };
 
             while (reader.Read())
             {
@@ -138,25 +140,30 @@ namespace ProjetKitBox
             return e;
 		}
 
+        //Search a element in the database, only using is own code, adn give us all information about it
         public Element SearchElementByCode(string code)
         {
             string query = "SELECT PK_code,couleur,hauteur,largeur,profondeur,prix,typeElement,nbrpieces  FROM " +
                 "`element` WHERE `PK_code` LIKE '" + code +"';";
+            string server = "localhost";
+            string database = "kitbox";
+            string uid = "root";
+            string password = "kitbox";
+            string connectionString;
+            connectionString = "SERVER=" + server + ";" + "DATABASE=" +
+            database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
 
-            bool conOpen = DBCon.State.Equals(System.Data.ConnectionState.Open);
-            if (conOpen != true)
+            MySqlConnection DBCon1 = new MySqlConnection(connectionString);
+            try
             {
-                try
-                {
-                    DBCon.Open();
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                DBCon1.Open();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
 
-            MySqlCommand cmd = new MySqlCommand(query, DBCon);
+            MySqlCommand cmd = new MySqlCommand(query, DBCon1);
 
             MySqlDataReader dataReader = cmd.ExecuteReader();
 
@@ -171,7 +178,7 @@ namespace ProjetKitBox
                 break;
             }
             dataReader.Close();
-            DBCon.Close();
+            DBCon1.Close();
 
             return e;
         }
@@ -209,6 +216,7 @@ namespace ProjetKitBox
             return e;
         }
 
+        /* USELESS
         //Set a number of comanded element in the database
         public void SetCommanded(Element element, int number)
         {
@@ -229,7 +237,9 @@ namespace ProjetKitBox
 
             DBCon.Close();
         }
+        */
 
+        // Permiss to save the number of commanded element for each element. 
         public void SaveCommand(List<StructOrderSupplier> structCommand)
         {
             string query = "START TRANSACTION; ";
