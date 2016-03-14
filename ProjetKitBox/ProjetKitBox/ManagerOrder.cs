@@ -31,6 +31,7 @@ namespace ProjetKitBox
                     supCutNumber += 1;
                 } 
             }
+
             string query = "INSERT INTO `kitbox`.`commande` (`prix total`, `FK_client`, `date`, `coupeSup`) " +
                 "VALUES ('" + order.GetPrice() + "' , '" + order.Client.NClient + "', now(), "+ supCutNumber +");";
 
@@ -44,25 +45,74 @@ namespace ProjetKitBox
             }
 
             MySqlCommand cmd = new MySqlCommand(query, DBCon);
-
             cmd.ExecuteNonQuery();
+            int PKCommand = Convert.ToInt32(cmd.LastInsertedId);
 
+            //add the linkcommandeelement in the database
+            InsertLinkElementCommand(order.GetListElement(), PKCommand);
+
+            //save the state of the element save
             string queryRes = "START TRANSACTION;";
-
             foreach(Element elem in order.GetListElement())
             {
                 queryRes += "update element set reserve = reserve + " +elem.RequiredNumber + " where PK_code = '" +
                     elem.Code + " '; " ;
             }
-
             queryRes += "COMMIT;";
 
             cmd = new MySqlCommand(queryRes, DBCon);
-
             cmd.ExecuteNonQuery();
-
             DBCon.Close();
+        }
 
+        private struct ElemCount
+        {
+            public Element elem;
+            public int num;
+
+            public ElemCount(Element e, int num)
+            {
+                this.elem = e;
+                this.num = num;
+            }
+
+        }
+
+        private void InsertLinkElementCommand(List<Element> elems, int PKCommand)
+        {
+            //Don't need to open the DB because the connection is already open in Add(Order order)
+
+            //list to save the number of element in a command without the duplicates elements
+            List<ElemCount> SortedElem = new List<ElemCount>() { };
+            
+            //search in the lists elements for duplicates
+            foreach(Element e in elems)
+            {
+                if (elems.Exists(x => x.Code == e.Code))
+                {
+                    int index = SortedElem.FindIndex(x => x.elem.Code == e.Code);
+
+                    ElemCount elemCount = SortedElem[index];
+                    elemCount.num += e.RequiredNumber;
+                }
+                else
+                {
+                    SortedElem.Add(new ElemCount(e, e.RequiredNumber));
+                }
+            }
+
+            string query = "START TRANSACTION; ";
+            foreach (ElemCount ec in SortedElem)
+            {
+                query += "insert into linkcommandeelement ('FK_Element', 'FK_commande', 'quantiteTotale', 'prix', 'quantiteRetiree') " +
+                    " values ('" + ec.elem.Code +"','"+ PKCommand+"', '"+ ec.num+"', '"+ec.elem.Price+"', 0); ";
+            }
+            query += "COMMIT; ";
+
+            MySqlCommand cmd = new MySqlCommand(query, DBCon);
+            cmd.ExecuteNonQuery();
+            //Don't close the DB because the method is called in the Add(Order order) directly so 
+            //don't need to close the DB.
         }
 
         //Retrun a list of comanded number for each element in the past six month 
@@ -80,9 +130,7 @@ namespace ProjetKitBox
             } catch (Exception e) { throw e; }
 
             MySqlCommand cmd = new MySqlCommand(query, DBCon);
-
-             MySqlDataReader dataReader = cmd.ExecuteReader();
-
+            MySqlDataReader dataReader = cmd.ExecuteReader();
             List<StructOrder> data = new List<StructOrder>() { };         
             
             while(dataReader.Read())
