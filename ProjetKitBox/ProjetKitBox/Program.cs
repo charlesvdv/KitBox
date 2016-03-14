@@ -109,7 +109,7 @@ namespace ProjetKitBox
             Console.ReadKey();
             */
 
-            comp.ManagerStock.RemoveFromStock(0);
+            comp.ManagerStock.RemoveFromStock(1);
         }
     }
 }

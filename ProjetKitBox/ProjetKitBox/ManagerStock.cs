@@ -299,7 +299,7 @@ namespace ProjetKitBox
 
             while (reader.Read())
             {
-                codeElem.Add(new StructElemCommand(reader["FK_element"].ToString(), (int)reader["quantiteTotale"], (int)reader["stock"]));
+                codeElem.Add(new StructElemCommand(reader["PK_code"].ToString(), (int)reader["quantiteTotale"], (int)reader["stock"]));
             }
 
             reader.Close();
@@ -316,8 +316,8 @@ namespace ProjetKitBox
             string queryUpdate = "START TRANSACTION;";
             foreach(StructElemCommand stru in codeElem)
             {
-                queryUpdate += "update element set reserve = reserve - " + stru.numOrdered + ", stock=stock -" + stru.numOrdered +
-                    "where PK_code = " + stru.codeElement + "; ";
+                queryUpdate += "update element set reserve=reserve-" + stru.numOrdered + ", stock=stock-" + stru.numOrdered +
+                    " where PK_code = '" + stru.codeElement + "'; ";
             }
             queryUpdate += "COMMIT; ";
 
