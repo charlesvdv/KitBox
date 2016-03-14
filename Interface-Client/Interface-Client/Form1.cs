@@ -14,7 +14,8 @@ namespace Interface_Client
     public partial class Form1 : Form
     {
         Company comp = new Company();
-        Shelf s1;
+        Shelf s1 = null;
+        Order o = null;
         int numeromeuble = 1;
         int numerocommande = 1;
         public Form1()
@@ -25,7 +26,7 @@ namespace Interface_Client
             step2.Enabled = false;
             step3.Enabled = false;
             //Introduction des variables à ajouter dans les ComboBox
-            string[] eights = {"34", "44", "54" };
+            string[] eights = {"36", "46", "56" };
             string[] colors = { "Blanc", "Brun" };
             string[] options = { "Porte (blanc)", "Porte (brun)", "Porte (verre)", "Tiroir" };
             string[] number = { "1", "2", "3", "4", "5", "6", "7" };
@@ -61,6 +62,15 @@ namespace Interface_Client
             }
 
             //Remplir les ComboBox de step2
+            foreach (Control c in this.step2.Controls)
+            {
+                if (c is ComboBox)
+                {
+                    (c as ComboBox).DropDownStyle = ComboBoxStyle.DropDownList;
+                    if ((c as ComboBox).Name.Contains("CornerColor"))
+                        (c as ComboBox).Items.AddRange(colors);
+                }
+            }
             foreach (Control p in this.step2.Controls)
             {
                 if (p is Panel)
@@ -126,7 +136,7 @@ namespace Interface_Client
                 NumCommande.Text = c;
                 Client cli = new Client(LastName.Text + " " + FirstName.Text , " ", PhoneNumber.Text);
                 comp.ManagerClient.AddClient(cli);
-                Order o = new Order(cli);
+                o = new Order(cli);
 
 
             }
@@ -290,6 +300,10 @@ namespace Interface_Client
             {
                 if (p is Panel && p.Visible)
                 {
+                    
+                    int a = 0;
+                    string b = "";
+                   
                     foreach (Control c in p.Controls)
                     {
                         if (c is ComboBox)
@@ -300,9 +314,18 @@ namespace Interface_Client
                                 control = false;
                                 break;
                             }
-
-                        }
+                            if (cb.Name.Contains("HeightCh"))
+                            {
+                                a = int.Parse(cb.Text);
+                            }
+                            if (cb.Name.Contains("ColorCh"))
+                            {
+                                b = cb.Text;
+                            }
+                        }                                           
                     }
+                    o.AddShelf(s1, CornerColor.Text);
+                    s1.AddBox(a, b);
 
                 }
             }
@@ -357,7 +380,7 @@ namespace Interface_Client
         //Lorsqu'on clic sur valider le panier
         private void ValidateCaddy_Click(object sender, EventArgs e)
         {
-
+            comp.ManagerOrder.Add(o);
         }
        
         //Lorsqu'on clic sur panier

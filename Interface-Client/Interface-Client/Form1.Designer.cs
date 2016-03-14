@@ -134,6 +134,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.CornerColor = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.step3.SuspendLayout();
             this.step2.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -147,6 +150,7 @@
             this.welcom.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.panel8.SuspendLayout();
+            this.panel9.SuspendLayout();
             this.SuspendLayout();
             // 
             // step3
@@ -160,7 +164,7 @@
             this.step3.Location = new System.Drawing.Point(4, 22);
             this.step3.Name = "step3";
             this.step3.Padding = new System.Windows.Forms.Padding(3);
-            this.step3.Size = new System.Drawing.Size(613, 360);
+            this.step3.Size = new System.Drawing.Size(613, 390);
             this.step3.TabIndex = 3;
             this.step3.Text = "Panier";
             this.step3.UseVisualStyleBackColor = true;
@@ -225,6 +229,7 @@
             // 
             // step2
             // 
+            this.step2.Controls.Add(this.panel9);
             this.step2.Controls.Add(this.CancelItem);
             this.step2.Controls.Add(this.panel7);
             this.step2.Controls.Add(this.panel5);
@@ -240,14 +245,14 @@
             this.step2.Location = new System.Drawing.Point(4, 22);
             this.step2.Name = "step2";
             this.step2.Padding = new System.Windows.Forms.Padding(3);
-            this.step2.Size = new System.Drawing.Size(613, 360);
+            this.step2.Size = new System.Drawing.Size(613, 390);
             this.step2.TabIndex = 2;
             this.step2.Text = "Configuration des casiers";
             this.step2.UseVisualStyleBackColor = true;
             // 
             // CancelItem
             // 
-            this.CancelItem.Location = new System.Drawing.Point(263, 321);
+            this.CancelItem.Location = new System.Drawing.Point(264, 341);
             this.CancelItem.Name = "CancelItem";
             this.CancelItem.Size = new System.Drawing.Size(136, 26);
             this.CancelItem.TabIndex = 52;
@@ -264,7 +269,7 @@
             this.panel7.Controls.Add(this.label34);
             this.panel7.Controls.Add(this.HeightCh7);
             this.panel7.Controls.Add(this.label27);
-            this.panel7.Location = new System.Drawing.Point(24, 280);
+            this.panel7.Location = new System.Drawing.Point(25, 300);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(469, 27);
             this.panel7.TabIndex = 51;
@@ -339,7 +344,7 @@
             this.panel5.Controls.Add(this.label32);
             this.panel5.Controls.Add(this.HeightCh5);
             this.panel5.Controls.Add(this.label25);
-            this.panel5.Location = new System.Drawing.Point(24, 206);
+            this.panel5.Location = new System.Drawing.Point(25, 226);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(469, 27);
             this.panel5.TabIndex = 51;
@@ -414,7 +419,7 @@
             this.panel6.Controls.Add(this.label33);
             this.panel6.Controls.Add(this.HeightCh6);
             this.panel6.Controls.Add(this.label26);
-            this.panel6.Location = new System.Drawing.Point(24, 243);
+            this.panel6.Location = new System.Drawing.Point(25, 263);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(469, 27);
             this.panel6.TabIndex = 51;
@@ -489,7 +494,7 @@
             this.panel2.Controls.Add(this.label29);
             this.panel2.Controls.Add(this.HeightCh2);
             this.panel2.Controls.Add(this.label22);
-            this.panel2.Location = new System.Drawing.Point(24, 95);
+            this.panel2.Location = new System.Drawing.Point(25, 115);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(469, 27);
             this.panel2.TabIndex = 51;
@@ -564,7 +569,7 @@
             this.panel3.Controls.Add(this.label30);
             this.panel3.Controls.Add(this.HeightCh3);
             this.panel3.Controls.Add(this.label23);
-            this.panel3.Location = new System.Drawing.Point(24, 132);
+            this.panel3.Location = new System.Drawing.Point(25, 152);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(469, 27);
             this.panel3.TabIndex = 51;
@@ -639,7 +644,7 @@
             this.panel4.Controls.Add(this.label31);
             this.panel4.Controls.Add(this.HeightCh4);
             this.panel4.Controls.Add(this.label24);
-            this.panel4.Location = new System.Drawing.Point(24, 169);
+            this.panel4.Location = new System.Drawing.Point(25, 189);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(469, 27);
             this.panel4.TabIndex = 51;
@@ -714,7 +719,7 @@
             this.panel1.Controls.Add(this.label28);
             this.panel1.Controls.Add(this.HeightCh1);
             this.panel1.Controls.Add(this.label21);
-            this.panel1.Location = new System.Drawing.Point(24, 62);
+            this.panel1.Location = new System.Drawing.Point(25, 82);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(469, 27);
             this.panel1.TabIndex = 50;
@@ -782,7 +787,7 @@
             // 
             // AddToCaddy
             // 
-            this.AddToCaddy.Location = new System.Drawing.Point(24, 321);
+            this.AddToCaddy.Location = new System.Drawing.Point(25, 341);
             this.AddToCaddy.Name = "AddToCaddy";
             this.AddToCaddy.Size = new System.Drawing.Size(133, 26);
             this.AddToCaddy.TabIndex = 14;
@@ -792,7 +797,7 @@
             // 
             // Previous
             // 
-            this.Previous.Location = new System.Drawing.Point(163, 321);
+            this.Previous.Location = new System.Drawing.Point(164, 341);
             this.Previous.Name = "Previous";
             this.Previous.Size = new System.Drawing.Size(94, 26);
             this.Previous.TabIndex = 13;
@@ -802,7 +807,7 @@
             // 
             // CancelOrder2
             // 
-            this.CancelOrder2.Location = new System.Drawing.Point(405, 321);
+            this.CancelOrder2.Location = new System.Drawing.Point(406, 341);
             this.CancelOrder2.Name = "CancelOrder2";
             this.CancelOrder2.Size = new System.Drawing.Size(142, 26);
             this.CancelOrder2.TabIndex = 12;
@@ -1057,7 +1062,7 @@
             this.tabControl1.Location = new System.Drawing.Point(37, 100);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(621, 386);
+            this.tabControl1.Size = new System.Drawing.Size(621, 416);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -1193,6 +1198,32 @@
             this.label4.TabIndex = 19;
             this.label4.Text = "MEUBLE N°";
             // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.CornerColor);
+            this.panel9.Controls.Add(this.label8);
+            this.panel9.Location = new System.Drawing.Point(25, 46);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(401, 33);
+            this.panel9.TabIndex = 53;
+            // 
+            // CornerColor
+            // 
+            this.CornerColor.FormattingEnabled = true;
+            this.CornerColor.Location = new System.Drawing.Point(117, 7);
+            this.CornerColor.Name = "CornerColor";
+            this.CornerColor.Size = new System.Drawing.Size(121, 21);
+            this.CornerColor.TabIndex = 56;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(3, 10);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(115, 13);
+            this.label8.TabIndex = 55;
+            this.label8.Text = "Couleur des cornières: ";
+            // 
             // Form1
             // 
             this.AcceptButton = this.OK;
@@ -1228,6 +1259,8 @@
             this.tabControl1.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1339,6 +1372,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox PhoneNumber;
         private System.Windows.Forms.Label textBox;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.ComboBox CornerColor;
+        private System.Windows.Forms.Label label8;
     }
 }
 
