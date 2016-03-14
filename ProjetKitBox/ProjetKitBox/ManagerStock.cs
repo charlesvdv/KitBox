@@ -239,7 +239,7 @@ namespace ProjetKitBox
         }
         */
 
-        // Permiss to save the number of commanded element for each element. 
+        // Permit to save the number of commanded element for each element. 
         public void SaveCommand(List<StructOrderSupplier> structCommand)
         {
             string query = "START TRANSACTION; ";

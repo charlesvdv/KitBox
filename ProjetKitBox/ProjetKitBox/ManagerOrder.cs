@@ -31,6 +31,7 @@ namespace ProjetKitBox
                     supCutNumber += 1;
                 } 
             }
+
             string query = "INSERT INTO `kitbox`.`commande` (`prix total`, `FK_client`, `date`, `coupeSup`) " +
                 "VALUES ('" + order.GetPrice() + "' , '" + order.Client.NClient + "', now(), "+ supCutNumber +");";
 
@@ -47,8 +48,13 @@ namespace ProjetKitBox
 
             cmd.ExecuteNonQuery();
 
-            string queryRes = "START TRANSACTION;";
+            int PKCommand = Convert.ToInt32(cmd.LastInsertedId);
 
+            //add the linkcommandeelement in the database
+            InsertLinkElementCommand(order.GetListElement(), PKCommand);
+
+            //save the state of the element save
+            string queryRes = "START TRANSACTION;";
             foreach(Element elem in order.GetListElement())
             {
                 queryRes += "update element set reserve = reserve + " +elem.RequiredNumber + " where PK_code = '" +
@@ -58,10 +64,53 @@ namespace ProjetKitBox
             queryRes += "COMMIT;";
 
             cmd = new MySqlCommand(queryRes, DBCon);
+            cmd.ExecuteNonQuery();
+            DBCon.Close();
+        }
+
+        private struct ElemCount
+        {
+            public Element elem;
+            public int num;
+
+            public ElemCount(Element e, int num)
+            {
+                this.elem = e;
+                this.num = num;
+            }
+
+        }
+
+        private void InsertLinkElementCommand(List<Element> elems, int PKCommand)
+        {
+            List<ElemCount> SortedElem = new List<ElemCount>() { };
+
+            foreach(Element e in elems)
+            {
+                if (elems.Exists(x => x.Code == e.Code))
+                {
+                    int index = SortedElem.FindIndex(x => x.elem.Code == e.Code);
+
+                    ElemCount elemCount = SortedElem[index];
+                    elemCount.num += e.RequiredNumber;
+                }
+                else
+                {
+                    SortedElem.Add(new ElemCount(e, e.RequiredNumber));
+                }
+            }
+
+            string query = "START TRANSACTION; ";
+            foreach (ElemCount ec in SortedElem)
+            {
+                query += "insert into linkcommandeelement ('FK_Element', 'FK_commande', 'quantiteTotale', 'prix', 'quantiteRetiree') " +
+                    " values ('" + ec.elem.Code +"','"+ PKCommand+"', '"+ ec.num+"', '"+ec.elem.Price+"', 0); ";
+            }
+            query += "COMMIT; ";
+
+            MySqlCommand cmd = new MySqlCommand(query, DBCon);
 
             cmd.ExecuteNonQuery();
-
-            DBCon.Close();
 
         }
 
