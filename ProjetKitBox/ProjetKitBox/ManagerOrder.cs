@@ -68,11 +68,11 @@ namespace ProjetKitBox
         //Retrun a list of comanded number for each element in the past six month 
         public List<StructOrder> GetSaleStatistic()
 		{
-            string query = "select e.PK_code, e.typeElement, e.couleur, e.hauteur, e.largeur, e.longueur, e.prix, e.nbrpieces " +
-                " sum(l.quantiteTotale) as tot from element e " +
-                " inner join linkcommandeelement l on e.PK_code = l.FK_element " +
-                "inner join commande on l.FK_commande = commande.PK_refCommande where commande.date" + 
-                " between now() - interval 6 month and now() group by e.PK_code;";
+            string query = "select e.PK_code, e.typeElement, e.couleur, e.hauteur, e.largeur, e.profondeur, e.prix, e.nbrpieces, " +
+                "sum(l.quantiteTotale) as tot from element e " +
+                "inner join linkcommandeelement l on e.PK_code = l.FK_element " +
+                "inner join commande on l.FK_commande = commande.PK_refCommande where commande.date " + 
+                "between now() - interval 6 month and now() group by e.PK_code;";
 
             try
             {
@@ -81,17 +81,17 @@ namespace ProjetKitBox
 
             MySqlCommand cmd = new MySqlCommand(query, DBCon);
 
-            MySqlDataReader dataReader = cmd.ExecuteReader();
+             MySqlDataReader dataReader = cmd.ExecuteReader();
 
             List<StructOrder> data = new List<StructOrder>() { };         
             
             while(dataReader.Read())
             {
-                StructSize eSize = new StructSize((double)dataReader["largeur"], (double)dataReader["profondeur"], (double)dataReader["hauteur"]);
+                StructSize eSize = new StructSize((int)dataReader["largeur"], (int)dataReader["profondeur"], (int)dataReader["hauteur"]);
                 Element e = new Element((string)dataReader["typeElement"], (string)dataReader["couleur"], eSize,
-                    (string)dataReader["PK_code"], (double)dataReader["prix"], (int)dataReader["nbrpieces"]);
+                    (string)dataReader["PK_code"], Convert.ToDouble(dataReader["prix"]), (int)dataReader["nbrpieces"]);
 
-                StructOrder eOrd = new StructOrder(e, (int)dataReader["tot"]);
+                StructOrder eOrd = new StructOrder(e, Convert.ToInt32(dataReader["tot"]));
 
                 data.Add(eOrd);  
             }

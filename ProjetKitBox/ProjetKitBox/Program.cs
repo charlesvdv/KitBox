@@ -91,6 +91,23 @@ namespace ProjetKitBox
 
             comp.ManagerStock.SaveCommand(list);
             */
+
+            /* WORKING
+            Client e = comp.ManagerClient.Search("John", "010 25");
+            Console.WriteLine(e.Name);
+            Console.ReadKey();
+            */
+
+            /* NOTE WORKING , DON'T CARE 
+            Client e = comp.ManagerClient.Search("TEST", "0");
+            comp.ManagerClient.DelClient(e);
+            */
+
+            /* WORKING
+            List<StructOrder> list = comp.ManagerOrder.GetSaleStatistic();
+            Console.WriteLine(list[0].element.Code + " " + list [0].numberOrdered);
+            Console.ReadKey();
+            */
         }
     }
 }

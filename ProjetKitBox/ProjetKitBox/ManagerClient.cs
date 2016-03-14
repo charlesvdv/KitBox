@@ -54,6 +54,7 @@ namespace ProjetKitBox
 
         }
 
+        /* USELESS => if delete on cascade, we're loosing all information about the client, even his element commanded
         //Delete a client from the database
 		public void DelClient(Client client)
 		{
@@ -74,11 +75,12 @@ namespace ProjetKitBox
 
             DBCon.Close();
         }
+        */
 
         //Search a client from the database, and give us all the information about him
-		public Client Search(string name)
+		public Client Search(string name, string tel)
 		{
-            string query = "SELECT * FROM `client` WHERE `nom` LIKE '%" + name + "%';";
+            string query = "SELECT * FROM `client` WHERE `nom` LIKE '%" + name + "%' AND  `telephone` like '%" + tel+"%';";
 
             try
             {
@@ -92,14 +94,17 @@ namespace ProjetKitBox
             MySqlCommand cmd = new MySqlCommand(query, DBCon);
 
             MySqlDataReader dataReader = cmd.ExecuteReader();
-
-            Client c = new Client((string)dataReader["nom"],
-                    (string)dataReader["adresse"], (string)dataReader["telephone"]);
+            Client c = null; 
+            while (dataReader.Read())
+            {
+                c = new Client((string)dataReader["nom"],
+                        (string)dataReader["adresse"], (string)dataReader["telephone"]);
+            }
 
             dataReader.Close();
             DBCon.Close();
 
-            return c; 
+            return c;  
         }
         
     }
