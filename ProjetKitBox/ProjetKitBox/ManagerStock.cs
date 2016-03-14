@@ -302,8 +302,10 @@ namespace ProjetKitBox
                 codeElem.Add(new StructElemCommand(reader["FK_element"].ToString(), (int)reader["quantiteTotale"], (int)reader["stock"]));
             }
 
+            reader.Close();
+
             //check if the stock is enough for the command
-            foreach(StructElemCommand stru in codeElem)
+            foreach (StructElemCommand stru in codeElem)
             {
                 if (stru.stock < stru.numOrdered)
                 {
@@ -322,8 +324,9 @@ namespace ProjetKitBox
             cmd = new MySqlCommand(queryUpdate, DBCon);
 
             cmd.ExecuteNonQuery();
+
+            string queryUpdateCom = "update commande set retire=true where PK_refCommande = " + refCommand + " ;";
                                        
-            reader.Close();
             DBCon.Close();
         }
 
