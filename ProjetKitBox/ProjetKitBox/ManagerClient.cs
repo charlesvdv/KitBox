@@ -17,7 +17,8 @@ namespace ProjetKitBox
 		{
             this.DBCon = DBCon;
 		}
-        
+
+        //Add client in the dabase
 		public void AddClient(Client client)
 		{
             string query = "INSERT INTO `kitbox`.`client` (`PK_client`, `telephone`, `adresse`, `nom`) VALUES (NULL, '" + client.Telephone + "', '" + client.Adress + "', '" +  client.Name+"');";
@@ -26,6 +27,7 @@ namespace ProjetKitBox
             {
                 DBCon.Open();
             }
+
             catch (Exception ex)
             {
                 throw ex;
@@ -35,12 +37,27 @@ namespace ProjetKitBox
 
             cmd.ExecuteNonQuery();
 
+            query = "select PK_client from client where nom = '" + client.Name + "' and telephone='" + client.Telephone +"';";
+
+            cmd = new MySqlCommand(query, DBCon);
+
+            MySqlDataReader dataReader = cmd.ExecuteReader();
+            
+            while(dataReader.Read())
+            {
+                client.NClient = (int)dataReader["PK_client"];
+                break;
+            }
+
+            dataReader.Close();
             DBCon.Close();
+
         }
 
+        //Delete a client from the database
 		public void DelClient(Client client)
 		{
-            string query = "DELETE FROM `client` WHERE `PK_client` = '" + client.NClient +"';";
+            string query = "DELETE FROM `client` WHERE `nom` = '" + client.Name +"';";
 
             try
             {
@@ -58,6 +75,7 @@ namespace ProjetKitBox
             DBCon.Close();
         }
 
+        //Search a client from the database, and give us all the information about him
 		public Client Search(string name)
 		{
             string query = "SELECT * FROM `client` WHERE `nom` LIKE '%" + name + "%';";
@@ -75,8 +93,11 @@ namespace ProjetKitBox
 
             MySqlDataReader dataReader = cmd.ExecuteReader();
 
-            Client c = new Client((string)dataReader["nom"], (int)dataReader["NClient"],
+            Client c = new Client((string)dataReader["nom"],
                     (string)dataReader["adresse"], (string)dataReader["telephone"]);
+
+            dataReader.Close();
+            DBCon.Close();
 
             return c; 
         }

@@ -10,16 +10,16 @@ namespace ProjetKitBox
     public class Client 
     {
         private string name;
-        private int nClient;
         private string adress;
         private string telephone;
+        private int nClient;
 
-        public Client(String name, int nClient, string adress, string telephone)
+        public Client(String name, string adress, string telephone)
         {
             this.name = name;
-            this.nClient = nClient;
             this.adress = adress;
-            this.telephone = telephone; 
+            this.telephone = telephone;
+            this.nClient = 0; 
         }
 
         public string Telephone
@@ -31,15 +31,16 @@ namespace ProjetKitBox
         {
             get { return this.name; }
         }
-        
-        public int NClient
-        {
-            get { return this.nClient; }
-        }
 
         public string Adress
         {
             get { return this.adress; }
+        }
+
+        public int NClient
+        {
+            get { return this.nClient; }
+            set { this.nClient = value;  }
         }
 
     }

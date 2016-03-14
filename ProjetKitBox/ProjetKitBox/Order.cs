@@ -10,10 +10,10 @@ namespace ProjetKitBox
     {
         private List<Shelf> shelfs;
         private Client client;
-        private double price;
 
         public Order(Client client)
         {
+            this.shelfs = new List<Shelf>() { };
             this.client = client;
         }
    
@@ -51,7 +51,7 @@ namespace ProjetKitBox
 
             foreach(Element e in ee)
             {
-                price += e.Price;
+                price += e.Price * e.RequiredNumber;
             }
 
             foreach(Shelf s in shelfs)

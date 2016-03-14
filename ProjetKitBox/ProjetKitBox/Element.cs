@@ -25,18 +25,40 @@ namespace ProjetKitBox
             this.requiredNumber = requiredNumber;
         }
 
+        public Element(string code, ManagerStock managerStock)
+        {
+            this.code = code;
+            Element elem;
+
+            try
+            {
+                elem = managerStock.SearchElementByCode(code);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            this.color = elem.color;
+            this.price = elem.price;
+            this.size = elem.size;
+            this.type = elem.type; 
+            this.requiredNumber = elem.requiredNumber;
+        }
+
+
 		public Element(string type, StructSize size, string color, ManagerStock managerStock)
 		{
-			this.type = type;
+            this.type = type;
 			this.size = size;
 			this.color = color;
-
-			//get data from the database 
-			Element elem;
+     
+            //get data from the database 
+            Element elem;
 			try 
 			{
-				elem =managerStock.SearchElement(type, color, size);
-			}
+                elem =managerStock.SearchElement(type, color, size);
+            }
 			catch (Exception e)
 			{
 				throw e;
@@ -69,6 +91,11 @@ namespace ProjetKitBox
         public int RequiredNumber
         {
             get { return this.requiredNumber; }
+        }
+
+        public string Code
+        {
+            get { return this.code; }
         }
     }
 }

@@ -13,13 +13,15 @@ namespace ProjetKitBox
         private Element corner; 
 		private bool supplementCut;
 		private double price;
+        private ManagerStock managerStock; 
 
-        public Shelf(StructSize size, Element corner)
+        public Shelf(StructSize size, ManagerStock managerStock)
         {
-            this.size = size;
-            this.corner = corner; 
+            this.size = size; 
 			this.supplementCut = false;
 			this.price = 0;
+            this.managerStock = managerStock;
+            this.boxes = new List<Box>() { }; 
         }
 
         public bool SupplementCut
@@ -41,8 +43,12 @@ namespace ProjetKitBox
             get { return this.corner; }
         }
 
-        public void AddBox(Box box)
+        public void AddBox(double height, string color)
         {
+            StructSize s = new StructSize(this.size.length, this.size.depth, height);
+            Box box = new Box(s, color, this.managerStock);
+
+
 			//check if the box is complete
 			if (!box.IsComplete()) 
 			{
@@ -51,6 +57,7 @@ namespace ProjetKitBox
 
 			//test if we have more than one element
 			List<string> types = new List<string>(){};
+
 			foreach(Element e in box.GetElements()) 
 			{
 				if (types.IndexOf (e.Type) != -1) 
@@ -66,15 +73,15 @@ namespace ProjetKitBox
 			//calculate the price of the shelf
 			this.price += box.GetPrice();
 
-			boxes.Add(box);
+			this.boxes.Add(box);
         }
 
 		//the return boolean say if we need cutting the corner
 		public void SetCorner(string color)
 		{
-			Element corner = ManagerStock.FindCorner(this.size.heigth, color);
+			Element corner = managerStock.FindCorner(this.size.heigth, color);
 
-            if (corner.Type != "Cornières")
+            if (corner.Type != "Corni") //Don't we need to rename it corni ? 
             {
                 throw new Exception("Can't had a element that's not a corner");
             }
