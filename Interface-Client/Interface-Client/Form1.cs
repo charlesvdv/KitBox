@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ProjetKitBox;
 
 namespace Interface_Client
 {
     public partial class Form1 : Form
     {
+        Company comp = new Company();
+        Shelf s1;
         int numeromeuble = 1;
         int numerocommande = 1;
         public Form1()
@@ -121,7 +124,11 @@ namespace Interface_Client
                 string c = Convert.ToString(numerocommande);
                 NumMeuble.Text = m;
                 NumCommande.Text = c;
-             
+                Client cli = new Client(LastName.Text + " " + FirstName.Text , " ", PhoneNumber.Text);
+                comp.ManagerClient.AddClient(cli);
+                Order o = new Order(cli);
+
+
             }
             else
             {
@@ -237,6 +244,11 @@ namespace Interface_Client
                 {
                     listPanel[j].Visible = true;
                 }
+
+                int b = int.Parse(WidthCh.Text);
+                int c = int.Parse(DepthCh.Text);
+                StructSize s = new StructSize(b,c,0);
+                s1 = new Shelf(s, comp.ManagerStock);
 
             }
             else
