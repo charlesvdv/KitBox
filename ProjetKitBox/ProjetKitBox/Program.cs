@@ -108,6 +108,8 @@ namespace ProjetKitBox
             Console.WriteLine(list[0].element.Code + " " + list [0].numberOrdered);
             Console.ReadKey();
             */
+
+            comp.ManagerStock.RemoveFromStock(0);
         }
     }
 }
