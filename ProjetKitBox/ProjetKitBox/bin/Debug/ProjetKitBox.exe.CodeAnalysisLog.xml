@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="c:\program files (x86)\microsoft visual studio 14.0\team tools\static analysis tools\fxcop\Xml\CodeAnalysisReport.xsl"?>
+<FxCopReport Version="14.0">
+ <Targets>
+  <Target Name="C:\Users\13019\Desktop\KitBox\ProjetKitBox\ProjetKitBox\bin\Debug\ProjetKitBox.exe">
+   <Modules>
+    <Module Name="projetkitbox.exe">
+     <Namespaces>
+      <Namespace Name="ProjetKitBox">
+       <Types>
+        <Type Name="Box" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#AsyncPopulate()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2016-03-14 08:19:46Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="C:\Users\13019\Desktop\KitBox\ProjetKitBox\ProjetKitBox" File="Box.cs" Line="99">'Box.AsyncPopulate()' lève à nouveau une exception interceptée et la spécifie de manière explicite en tant qu'argument. Utilisez 'throw' sans argument à la place, afin de conserver l'emplacement de la pile où l'exception à été levée pour la première fois.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Company" Kind="Class" Accessibility="Assembly" ExternallyVisible="False">
+         <Members>
+          <Member Name="#.ctor()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2016-03-14 08:19:46Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="C:\Users\13019\Desktop\KitBox\ProjetKitBox\ProjetKitBox" File="Company.cs" Line="38">'Company.Company()' lève à nouveau une exception interceptée et la spécifie de manière explicite en tant qu'argument. Utilisez 'throw' sans argument à la place, afin de conserver l'emplacement de la pile où l'exception à été levée pour la première fois.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Element" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#.ctor(System.String,ProjetKitBox.ManagerStock)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2016-03-14 08:19:46Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="C:\Users\13019\Desktop\KitBox\ProjetKitBox\ProjetKitBox" File="Element.cs" Line="37">'Element.Element(string, ManagerStock)' lève à nouveau une exception interceptée et la spécifie de manière explicite en tant qu'argument. Utilisez 'throw' sans argument à la place, afin de conserver l'emplacement de la pile où l'exception à été levée pour la première fois.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#.ctor(System.String,ProjetKitBox.StructSize,System.String,ProjetKitBox.ManagerStock)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2016-03-14 08:19:46Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="C:\Users\13019\Desktop\KitBox\ProjetKitBox\ProjetKitBox" File="Element.cs" Line="62">'Element.Element(string, StructSize, string, ManagerStock)' lève à nouveau une exception interceptée et la spécifie de manière explicite en tant qu'argument. Utilisez 'throw' sans argument à la place, afin de conserver l'emplacement de la pile où l'exception à été levée pour la première fois.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="ManagerClient" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#AddClient(ProjetKitBox.Client)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2016-03-14 08:19:46Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="C:\Users\13019\Desktop\KitBox\ProjetKitBox\ProjetKitBox" File="ManagerClient.cs" Line="31">'ManagerClient.AddClient(Client)' lève à nouveau une exception interceptée et la spécifie de manière explicite en tant qu'argument. Utilisez 'throw' sans argument à la place, afin de conserver l'emplacement de la pile où l'exception à été levée pour la première fois.</Issue>
+            </Message>
+            <Message TypeName="Vérifier si les requêtes SQL présentent des failles de sécurité" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-03-14 08:19:46Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\13019\Desktop\KitBox\ProjetKitBox\ProjetKitBox" File="ManagerClient.cs" Line="42">La chaîne de requête passée en 'MySqlCommand.MySqlCommand(string, MySqlConnection)' dans 'ManagerClient.AddClient(Client)' n'a pas pu contenir les variables 'client.Name', 'client.Telephone' suivantes. Si ces variables proviennent d'entrées d'utilisateur, utilisez une procédure stockée ou une requête SQL paramétrable au lieu de générer la requête à l'aide de concaténations de chaîne.</Issue>
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\13019\Desktop\KitBox\ProjetKitBox\ProjetKitBox" File="ManagerClient.cs" Line="36">La chaîne de requête passée en 'MySqlCommand.MySqlCommand(string, MySqlConnection)' dans 'ManagerClient.AddClient(Client)' n'a pas pu contenir les variables 'client.Telephone', 'client.Adress', 'client.Name' suivantes. Si ces variables proviennent d'entrées d'utilisateur, utilisez une procédure stockée ou une requête SQL paramétrable au lieu de générer la requête à l'aide de concaténations de chaîne.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#DelClient(ProjetKitBox.Client)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2016-03-14 08:19:46Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="C:\Users\13019\Desktop\KitBox\ProjetKitBox\ProjetKitBox" File="ManagerClient.cs" Line="66">'ManagerClient.DelClient(Client)' lève à nouveau une exception interceptée et la spécifie de manière explicite en tant qu'argument. Utilisez 'throw' sans argument à la place, afin de conserver l'emplacement de la pile où l'exception à été levée pour la première fois.</Issue>
+            </Message>
+            <Message TypeName="Vérifier si les requêtes SQL présentent des failles de sécurité" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-03-14 08:19:46Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\13019\Desktop\KitBox\ProjetKitBox\ProjetKitBox" File="ManagerClient.cs" Line="71">La chaîne de requête passée en 'MySqlCommand.MySqlCommand(string, MySqlConnection)' dans 'ManagerClient.DelClient(Client)' n'a pas pu contenir les variables 'client.Name' suivantes. Si ces variables proviennent d'entrées d'utilisateur, utilisez une procédure stockée ou une requête SQL paramétrable au lieu de générer la requête à l'aide de concaténations de chaîne.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Search(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2016-03-14 08:19:46Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="C:\Users\13019\Desktop\KitBox\ProjetKitBox\ProjetKitBox" File="ManagerClient.cs" Line="87">'ManagerClient.Search(string)' lève à nouveau une exception interceptée et la spécifie de manière explicite en tant qu'argument. Utilisez 'throw' sans argument à la place, afin de conserver l'emplacement de la pile où l'exception à été levée pour la première fois.</Issue>
+            </Message>
+            <Message TypeName="Vérifier si les requêtes SQL présentent des failles de sécurité" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-03-14 08:19:46Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\13019\Desktop\KitBox\ProjetKitBox\ProjetKitBox" File="ManagerClient.cs" Line="92">La chaîne de requête passée en 'MySqlCommand.MySqlCommand(string, MySqlConnection)' dans 'ManagerClient.Search(string)' n'a pas pu contenir les variables 'name' suivantes. Si ces variables proviennent d'entrées d'utilisateur, utilisez une procédure stockée ou une requête SQL paramétrable au lieu de générer la requête à l'aide de concaténations de chaîne.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="ManagerOrder" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#Add(ProjetKitBox.Order)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2016-03-14 08:19:46Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="C:\Users\13019\Desktop\KitBox\ProjetKitBox\ProjetKitBox" File="ManagerOrder.cs" Line="41">'ManagerOrder.Add(Order)' lève à nouveau une exception interceptée et la spécifie de manière explicite en tant qu'argument. Utilisez 'throw' sans argument à la place, afin de conserver l'emplacement de la pile où l'exception à été levée pour la première fois.</Issue>
+            </Message>
+            <Message TypeName="Vérifier si les requêtes SQL présentent des failles de sécurité" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-03-14 08:19:46Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\13019\Desktop\KitBox\ProjetKitBox\ProjetKitBox" File="ManagerOrder.cs" Line="60">La chaîne de requête passée en 'MySqlCommand.MySqlCommand(string, MySqlConnection)' dans 'ManagerOrder.Add(Order)' n'a pas pu contenir les variables 'elem.RequiredNumber', 'elem.Code' suivantes. Si ces variables proviennent d'entrées d'utilisateur, utilisez une procédure stockée ou une requête SQL paramétrable au lieu de générer la requête à l'aide de concaténations de chaîne.</Issue>
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\13019\Desktop\KitBox\ProjetKitBox\ProjetKitBox" File="ManagerOrder.cs" Line="46">La chaîne de requête passée en 'MySqlCommand.MySqlCommand(string, MySqlConnection)' dans 'ManagerOrder.Add(Order)' n'a pas pu contenir les variables 'order.GetPrice()', 'order.Client.NClient', 'supCutNumber' suivantes. Si ces variables proviennent d'entrées d'utilisateur, utilisez une procédure stockée ou une requête SQL paramétrable au lieu de générer la requête à l'aide de concaténations de chaîne.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#GetSaleStatistic()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2016-03-14 08:19:46Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="C:\Users\13019\Desktop\KitBox\ProjetKitBox\ProjetKitBox" File="ManagerOrder.cs" Line="80">'ManagerOrder.GetSaleStatistic()' lève à nouveau une exception interceptée et la spécifie de manière explicite en tant qu'argument. Utilisez 'throw' sans argument à la place, afin de conserver l'emplacement de la pile où l'exception à été levée pour la première fois.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="ManagerStock" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#FindCorner(System.Double,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2016-03-14 08:19:46Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="C:\Users\13019\Desktop\KitBox\ProjetKitBox\ProjetKitBox" File="ManagerStock.cs" Line="195">'ManagerStock.FindCorner(double, string)' lève à nouveau une exception interceptée et la spécifie de manière explicite en tant qu'argument. Utilisez 'throw' sans argument à la place, afin de conserver l'emplacement de la pile où l'exception à été levée pour la première fois.</Issue>
+            </Message>
+            <Message TypeName="Vérifier si les requêtes SQL présentent des failles de sécurité" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-03-14 08:19:46Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\13019\Desktop\KitBox\ProjetKitBox\ProjetKitBox" File="ManagerStock.cs" Line="197">La chaîne de requête passée en 'MySqlCommand.MySqlCommand(string, MySqlConnection)' dans 'ManagerStock.FindCorner(double, string)' n'a pas pu contenir les variables 'color', 'heigth' suivantes. Si ces variables proviennent d'entrées d'utilisateur, utilisez une procédure stockée ou une requête SQL paramétrable au lieu de générer la requête à l'aide de concaténations de chaîne.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#GetBestSupplier()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2016-03-14 08:19:46Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="C:\Users\13019\Desktop\KitBox\ProjetKitBox\ProjetKitBox" File="ManagerStock.cs" Line="72">'ManagerStock.GetBestSupplier()' lève à nouveau une exception interceptée et la spécifie de manière explicite en tant qu'argument. Utilisez 'throw' sans argument à la place, afin de conserver l'emplacement de la pile où l'exception à été levée pour la première fois.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#GetStateStock()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2016-03-14 08:19:46Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="C:\Users\13019\Desktop\KitBox\ProjetKitBox\ProjetKitBox" File="ManagerStock.cs" Line="31">'ManagerStock.GetStateStock()' lève à nouveau une exception interceptée et la spécifie de manière explicite en tant qu'argument. Utilisez 'throw' sans argument à la place, afin de conserver l'emplacement de la pile où l'exception à été levée pour la première fois.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#RemoveFromStock(System.Int32)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2016-03-14 08:19:46Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="C:\Users\13019\Desktop\KitBox\ProjetKitBox\ProjetKitBox" File="ManagerStock.cs" Line="291">'ManagerStock.RemoveFromStock(int)' lève à nouveau une exception interceptée et la spécifie de manière explicite en tant qu'argument. Utilisez 'throw' sans argument à la place, afin de conserver l'emplacement de la pile où l'exception à été levée pour la première fois.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SaveCommand(System.Collections.Generic.List`1&lt;ProjetKitBox.StructOrderSupplier&gt;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2016-03-14 08:19:46Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="C:\Users\13019\Desktop\KitBox\ProjetKitBox\ProjetKitBox" File="ManagerStock.cs" Line="258">'ManagerStock.SaveCommand(List&lt;StructOrderSupplier&gt;)' lève à nouveau une exception interceptée et la spécifie de manière explicite en tant qu'argument. Utilisez 'throw' sans argument à la place, afin de conserver l'emplacement de la pile où l'exception à été levée pour la première fois.</Issue>
+            </Message>
+            <Message TypeName="Vérifier si les requêtes SQL présentent des failles de sécurité" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-03-14 08:19:46Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\13019\Desktop\KitBox\ProjetKitBox\ProjetKitBox" File="ManagerStock.cs" Line="260">La chaîne de requête passée en 'MySqlCommand.MySqlCommand(string, MySqlConnection)' dans 'ManagerStock.SaveCommand(List&lt;StructOrderSupplier&gt;)' n'a pas pu contenir les variables '...', '....Code' suivantes. Si ces variables proviennent d'entrées d'utilisateur, utilisez une procédure stockée ou une requête SQL paramétrable au lieu de générer la requête à l'aide de concaténations de chaîne.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SearchElement(System.String,System.String,ProjetKitBox.StructSize)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2016-03-14 08:19:46Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="C:\Users\13019\Desktop\KitBox\ProjetKitBox\ProjetKitBox" File="ManagerStock.cs" Line="110">'ManagerStock.SearchElement(string, string, StructSize)' lève à nouveau une exception interceptée et la spécifie de manière explicite en tant qu'argument. Utilisez 'throw' sans argument à la place, afin de conserver l'emplacement de la pile où l'exception à été levée pour la première fois.</Issue>
+            </Message>
+            <Message TypeName="Vérifier si les requêtes SQL présentent des failles de sécurité" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-03-14 08:19:46Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\13019\Desktop\KitBox\ProjetKitBox\ProjetKitBox" File="ManagerStock.cs" Line="115">La chaîne de requête passée en 'MySqlCommand.MySqlCommand(string, MySqlConnection)' dans 'ManagerStock.SearchElement(string, string, StructSize)' n'a pas pu contenir les variables 'type', 'color', '...', '...', '...' suivantes. Si ces variables proviennent d'entrées d'utilisateur, utilisez une procédure stockée ou une requête SQL paramétrable au lieu de générer la requête à l'aide de concaténations de chaîne.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SearchElementByCode(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2016-03-14 08:19:46Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="C:\Users\13019\Desktop\KitBox\ProjetKitBox\ProjetKitBox" File="ManagerStock.cs" Line="161">'ManagerStock.SearchElementByCode(string)' lève à nouveau une exception interceptée et la spécifie de manière explicite en tant qu'argument. Utilisez 'throw' sans argument à la place, afin de conserver l'emplacement de la pile où l'exception à été levée pour la première fois.</Issue>
+            </Message>
+            <Message TypeName="Vérifier si les requêtes SQL présentent des failles de sécurité" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-03-14 08:19:46Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\13019\Desktop\KitBox\ProjetKitBox\ProjetKitBox" File="ManagerStock.cs" Line="166">La chaîne de requête passée en 'MySqlCommand.MySqlCommand(string, MySqlConnection)' dans 'ManagerStock.SearchElementByCode(string)' n'a pas pu contenir les variables 'code' suivantes. Si ces variables proviennent d'entrées d'utilisateur, utilisez une procédure stockée ou une requête SQL paramétrable au lieu de générer la requête à l'aide de concaténations de chaîne.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+ </Targets>
+ <Rules>
+  <Rule TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200">
+   <Name>Levez à nouveau une exception pour conserver les détails de la pile</Name>
+   <Description>Utilisez l'instruction de levée IL pour conserver les détails d'origine de la pile lorsque vous levez à nouveau une exception interceptée.</Description>
+   <Resolution Name="Default">{0} lève à nouveau une exception interceptée et la spécifie de manière explicite en tant qu'argument. Utilisez 'throw' sans argument à la place, afin de conserver l'emplacement de la pile où l'exception à été levée pour la première fois.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182363.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="usagerules.dll" Version="14.0.0.0" />
+  </Rule>
+  <Rule TypeName="Vérifier si les requêtes SQL présentent des failles de sécurité" Category="Microsoft.Security" CheckId="CA2100">
+   <Name>Vérifier si les requêtes SQL présentent des failles de sécurité</Name>
+   <Description>Une chaîne de commande SQL générée par une entrée d'utilisateur est vulnérable aux attaques par injection de code SQL. Microsoft SQL Server ainsi que d'autres serveurs de base de données prennent en charge les procédures stockées et les requêtes SQL paramétrables, qui réduisent les risques de telles attaques.</Description>
+   <Resolution Name="WithNonLiterals">La chaîne de requête passée en {0} dans {1} n'a pas pu contenir les variables {2} suivantes. Si ces variables proviennent d'entrées d'utilisateur, utilisez une procédure stockée ou une requête SQL paramétrable au lieu de générer la requête à l'aide de concaténations de chaîne.</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182310.aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="14.0.0.0" />
+  </Rule>
+ </Rules>
+ <Localized>
+  <String Key="Category">Catégorie</String>
+  <String Key="Certainty">Certitude</String>
+  <String Key="CollapseAll">Réduire tout</String>
+  <String Key="CheckId">ID de contrôle</String>
+  <String Key="Error">Erreur</String>
+  <String Key="Errors">erreur(s)</String>
+  <String Key="ExpandAll">Développer tout</String>
+  <String Key="Help">Aide</String>
+  <String Key="Line">Ligne</String>
+  <String Key="Messages">message(s)</String>
+  <String Key="LocationNotStoredInPdb">[Emplacement non stocké dans le fichier Pdb]</String>
+  <String Key="Project">Projet</String>
+  <String Key="Resolution">Résolution</String>
+  <String Key="Rule">Règle</String>
+  <String Key="RuleFile">Fichier de règles</String>
+  <String Key="RuleDescription">Description de la règle</String>
+  <String Key="Source">Source</String>
+  <String Key="Status">État</String>
+  <String Key="Target">Cible</String>
+  <String Key="Warning">Avertissement</String>
+  <String Key="Warnings">avertissement(s)</String>
+  <String Key="ReportTitle">Rapport d'analyse du code</String>
+ </Localized>
+</FxCopReport>
