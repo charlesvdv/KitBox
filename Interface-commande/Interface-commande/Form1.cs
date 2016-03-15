@@ -23,12 +23,13 @@ namespace Interface_commande
 
         private void ClickHere_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
-            List<StructOrderSupplier> list = comp.CommandStock();
-            foreach(StructOrderSupplier s in list)
+            List<StructOrderSupplier> list = comp.CommandStock();  
+            foreach(StructOrderSupplier stu in list)
             {
+                dataGridView1.Rows.Add("ttr", "fjreigj", "freg", "frei", "frrngk");
             }
-            
+
+            panel1.Visible = true;    
         }
         private void AddElement_Click(object sender, EventArgs e)
         {
