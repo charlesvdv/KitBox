@@ -944,13 +944,11 @@
             this.step1.Location = new System.Drawing.Point(8, 39);
             this.step1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.step1.Name = "step1";
-<<<<<<< HEAD
             this.step1.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.step1.Size = new System.Drawing.Size(1226, 753);
-=======
-            this.step1.Padding = new System.Windows.Forms.Padding(3);
-            this.step1.Size = new System.Drawing.Size(613, 390);
->>>>>>> origin/master
+
+
+
             this.step1.TabIndex = 1;
             this.step1.Text = "Intro";
             this.step1.UseVisualStyleBackColor = true;
