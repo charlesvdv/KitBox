@@ -72,7 +72,7 @@ namespace ProjetKitBox
             double ad = 0;
             foreach(Element e in elements)
             {
-                ad += e.Price; 
+                ad += e.Price * e.RequiredNumber; 
             }
             return ad; 
         }
