@@ -36,9 +36,6 @@
             this.NewItem = new System.Windows.Forms.Button();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.step2 = new System.Windows.Forms.TabPage();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.CornerColor = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.CancelItem = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
             this.OptionCh7 = new System.Windows.Forms.ComboBox();
@@ -141,7 +138,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.step3.SuspendLayout();
             this.step2.SuspendLayout();
-            this.panel9.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -260,25 +256,6 @@
             this.step2.TabIndex = 2;
             this.step2.Text = "Configuration des casiers";
             this.step2.UseVisualStyleBackColor = true;
-            // 
-            // panel9
-            // 
-            this.panel9.Controls.Add(this.CornerColor);
-            this.panel9.Controls.Add(this.label8);
-            this.panel9.Location = new System.Drawing.Point(50, 88);
-            this.panel9.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(802, 63);
-            this.panel9.TabIndex = 53;
-            // 
-            // CornerColor
-            // 
-            this.CornerColor.FormattingEnabled = true;
-            this.CornerColor.Location = new System.Drawing.Point(234, 13);
-            this.CornerColor.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.CornerColor.Name = "CornerColor";
-            this.CornerColor.Size = new System.Drawing.Size(238, 33);
-            this.CornerColor.TabIndex = 56;
             // 
             // label8
             // 
@@ -1074,13 +1051,8 @@
             this.welcom.Location = new System.Drawing.Point(8, 39);
             this.welcom.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.welcom.Name = "welcom";
-<<<<<<< HEAD
             this.welcom.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.welcom.Size = new System.Drawing.Size(1226, 753);
-=======
-            this.welcom.Padding = new System.Windows.Forms.Padding(3);
-            this.welcom.Size = new System.Drawing.Size(613, 390);
->>>>>>> origin/master
             this.welcom.TabIndex = 0;
             this.welcom.Text = "Bienvenue";
             this.welcom.UseVisualStyleBackColor = true;
@@ -1355,15 +1327,6 @@
             this.CornerColor.Size = new System.Drawing.Size(121, 21);
             this.CornerColor.TabIndex = 58;
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(28, 56);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(115, 13);
-            this.label8.TabIndex = 57;
-            this.label8.Text = "Couleur des cornières: ";
-            // 
             // Form1
             // 
             this.AcceptButton = this.OK;
@@ -1379,8 +1342,6 @@
             this.step3.PerformLayout();
             this.step2.ResumeLayout(false);
             this.step2.PerformLayout();
-            this.panel9.ResumeLayout(false);
-            this.panel9.PerformLayout();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             this.panel5.ResumeLayout(false);
