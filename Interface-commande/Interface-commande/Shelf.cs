@@ -43,6 +43,11 @@ namespace ProjetKitBox
             get { return this.corner; }
         }
 
+        public double Price
+        {
+            get { return this.price; }
+        }
+
         public void AddBox(double height, string color)
         {
             StructSize s = new StructSize(this.size.length, this.size.depth, height);
