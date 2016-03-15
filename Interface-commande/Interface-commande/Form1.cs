@@ -23,10 +23,12 @@ namespace Interface_commande
 
         private void ClickHere_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            panel1.Visible = true;
-            List<StructOrderSupplier> list = comp.CommandStock();
-            dataGridView1.DataSource = list;
             
+            List<StructOrderSupplier> list = comp.CommandStock();
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = list;
+            panel1.Visible = true;
+
         }
         private void AddElement_Click(object sender, EventArgs e)
         {
