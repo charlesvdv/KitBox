@@ -35,8 +35,7 @@ namespace Interface_commande
 
         private void AddElement_Click(object sender, EventArgs e)
         {
-            Element elem = null;
-            int quantity = 0;
+            StructOrderSupplier orderElem = new StructOrderSupplier(0, 0, 0, null);
             using (var modalform = new Boite_modale())
             {
                 var result = modalform.ShowDialog();
@@ -44,15 +43,19 @@ namespace Interface_commande
                 {
                     try
                     {
-                        elem = comp.ManagerStock.SearchElementByCode(modalform.Code);
-                        quantity = modalform.NumberToCommand;
+                        Element elem = comp.ManagerStock.SearchElementByCode(modalform.Code);
+                        orderElem = comp.ManagerStock.GetTheBestSupplier(elem);
+                        orderElem.numberToCommand = modalform.NumberToCommand;
                     } catch (Exception exp)
                     {
                         MessageBox.Show("An error occured : " + exp.Message);
                     }  
                 }
             }
-            commandToSupplier.Add(new StructOrderSupplier(0, 0, 0, null));
+            if(orderElem.element == null)
+            {
+                commandToSupplier.Add(orderElem);
+            }
         }
 
         private void Cancel2_Click(object sender, EventArgs e)
