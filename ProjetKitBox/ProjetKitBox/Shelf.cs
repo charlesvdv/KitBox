@@ -86,12 +86,12 @@ namespace ProjetKitBox
                 throw new Exception("Can't had a element that's not a corner");
             }
 
-            else if(corner.Size.heigth > size.heigth)
+            else if(corner.Size.heigth > this.size.heigth)
             {
                 supplementCut = true;
             }
 
-            else if (corner.Size.heigth < size.heigth)
+            else if (corner.Size.heigth < this.size.heigth)
             {
                 throw new Exception("The corner is smaller than the shelf.");
             }

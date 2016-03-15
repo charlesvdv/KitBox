@@ -18,3 +18,6 @@ C:\Users\alons\Desktop\KitBox\Interface-commande\Interface-commande\obj\Debug\In
 C:\Users\alons\Desktop\KitBox\Interface-commande\Interface-commande\obj\Debug\Interface_commande.Form1.resources
 C:\Users\alons\Desktop\KitBox\Interface-commande\Interface-commande\obj\Debug\Interface_commande.Properties.Resources.resources
 C:\Users\alons\Desktop\KitBox\Interface-commande\Interface-commande\obj\Debug\Interface-commande.csproj.GenerateResource.Cache
+C:\Users\Antoi\Desktop\ECAM\ProjetInfo\KitBox\Interface-commande\Interface-commande\bin\Debug\Interface-commande.exe.config
+C:\Users\Antoi\Desktop\ECAM\ProjetInfo\KitBox\Interface-commande\Interface-commande\obj\Debug\Interface-commande.exe
+C:\Users\Antoi\Desktop\ECAM\ProjetInfo\KitBox\Interface-commande\Interface-commande\obj\Debug\Interface-commande.pdb
