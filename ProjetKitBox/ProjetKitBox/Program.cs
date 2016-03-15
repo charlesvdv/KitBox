@@ -12,6 +12,8 @@ namespace ProjetKitBox
         static void Main(string[] args)
         {
             Company comp = new Company();
+
+            // WORKING => Add managerStock linkCommandeElement (DB) !!!!!
             Client c = new Client("TEST", "test", "000");
             comp.ManagerClient.AddClient(c);
 
@@ -28,8 +30,88 @@ namespace ProjetKitBox
             Console.WriteLine(s1.Corner.Size.heigth);
 
             comp.ManagerOrder.Add(o);
+            
+
+
+            /* WORKING 
+            List<StructStock> listStru = comp.ManagerStock.GetStateStock();
+            
+            foreach(StructStock stru in listStru)
+            {
+                Console.WriteLine(stru.numberOrdered);
+            }
+            */
+
+            /* WORKING
+            List<StructOrderSupplier> listOrder = comp.ManagerStock.GetBestSupplier();
+
+            foreach(StructOrderSupplier struO in listOrder)
+            {
+                Console.WriteLine(struO.price);
+            }
+            Console.ReadKey();
+            */
+
+
+            /* WORKING
+            StructSize s = new StructSize(0, 0, 100);
+
+            Element e = comp.ManagerStock.SearchElement("Corni", "Brun", s);
+
+
+            Console.WriteLine(e.Code);
+            */
+
+
+            /* WORKING
+            StructSize s = new StructSize(0, 0, 100);
+
+            Element e = comp.ManagerStock.SearchElement("Corni", "Brun", s);
+
+            Element e1 = comp.ManagerStock.SearchElementByCode(e.Code);
+
+            Console.WriteLine(e1.Color);
 
             Console.ReadKey();
+            */
+
+            /* WORKING
+            Element e = comp.ManagerStock.SearchElementByCode("COR100BLDEC");
+
+            comp.ManagerStock.SetCommanded(e, 8);
+            Console.ReadKey();
+            */
+
+            /* WORKING
+            Element e = comp.ManagerStock.SearchElementByCode("COR100BLDEC");
+
+            StructOrderSupplier s = new StructOrderSupplier(22.00, 13, 0342, e, 30);
+            List<StructOrderSupplier> list = new List<StructOrderSupplier>() { };
+            list.Add(s);
+
+            comp.ManagerStock.SaveCommand(list);
+            */
+
+            /* WORKING
+            Client e = comp.ManagerClient.Search("John", "010 25");
+            Console.WriteLine(e.Name);
+            Console.ReadKey();
+            */
+
+            /* NOTE WORKING , DON'T CARE 
+            Client e = comp.ManagerClient.Search("TEST", "0");
+            comp.ManagerClient.DelClient(e);
+            */
+
+            /* WORKING
+            List<StructOrder> list = comp.ManagerOrder.GetSaleStatistic();
+            Console.WriteLine(list[0].element.Code + " " + list [0].numberOrdered);
+            Console.ReadKey();
+            */
+
+            /* WORKING
+            comp.ManagerStock.RemoveFromStock(1);
+            */
         }
     }
 }
