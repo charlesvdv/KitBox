@@ -46,6 +46,7 @@ namespace ProjetKitBox
 
         }
 
+
         /* USELESS => if delete on cascade, we're loosing all information about the client, even his element commanded
         //Delete a client from the database
 		public void DelClient(Client client)
