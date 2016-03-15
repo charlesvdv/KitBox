@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using MySql;
 using MySql.Data;
 using MySql.Data.MySqlClient;
@@ -242,6 +243,7 @@ namespace ProjetKitBox
         // Permit to save the number of commanded element for each element. 
         public void SaveCommand(List<StructOrderSupplier> structCommand)
         {
+            //save in database
             string query = "START TRANSACTION; ";
 
             foreach (StructOrderSupplier orderSup in structCommand)
@@ -260,8 +262,20 @@ namespace ProjetKitBox
             MySqlCommand cmd = new MySqlCommand(query, DBCon);
 
             cmd.ExecuteNonQuery();
-
             DBCon.Close();
+            //sort the list by supplier
+            List<StructOrderSupplier> sortedList = structCommand.OrderBy(x => x.IDSupplier).ToList();
+            foreach(StructOrderSupplier a in sortedList)
+            {
+                Console.WriteLine(a.IDSupplier);
+            }
+            //create the file
+            using (StreamWriter sw = new StreamWriter("C:\\Users\\charles\\Desktop\\commmandefournisseur.txt"))
+            {
+                string text = "";
+
+                sw.WriteLine(text);
+            }
 
         }
 
