@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
 using MySql;
 using MySql.Data;
 using MySql.Data.MySqlClient;
@@ -243,7 +242,6 @@ namespace ProjetKitBox
         // Permit to save the number of commanded element for each element. 
         public void SaveCommand(List<StructOrderSupplier> structCommand)
         {
-            //save in database
             string query = "START TRANSACTION; ";
 
             foreach (StructOrderSupplier orderSup in structCommand)
@@ -262,29 +260,8 @@ namespace ProjetKitBox
             MySqlCommand cmd = new MySqlCommand(query, DBCon);
 
             cmd.ExecuteNonQuery();
+
             DBCon.Close();
-            //sort the list by supplier
-            List<StructOrderSupplier> sortedList = structCommand.OrderBy(x => x.IDSupplier).ToList();
-            //create string that will be written in the file
-            string text = "Commande Fournisseur \n\n";
-            int idSupplier = -1;
-            foreach (StructOrderSupplier stru in sortedList)
-            {
-                if(idSupplier != stru.IDSupplier)
-                {
-                    text += "\t Fournisseur " + stru.IDSupplier + "\n";
-                    text += "\t\tCode Element | Delai | Prix \n";
-                    idSupplier = stru.IDSupplier;
-                }
-                text += "\t\t" + stru.element.Code + "\t\t" + stru.delay +
-                    "\t\t" + stru.price + "€ \n";
-            }
-            //write the string text in the file
-            string user = Environment.UserName;
-            using (StreamWriter sw = new StreamWriter("C:\\Users\\"+user+"\\Desktop\\commmandefournisseur.txt"))
-            {
-                sw.WriteLine(text);
-            }
 
         }
 

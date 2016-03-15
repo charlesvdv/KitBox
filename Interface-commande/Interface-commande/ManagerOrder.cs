@@ -67,8 +67,7 @@ namespace ProjetKitBox
             DBCon.Close();
 
             //save the data in a file that could be printed
-            string WinUser = Environment.UserName;
-            using (StreamWriter sw = new StreamWriter("C:\\Users\\"+WinUser+"\\Desktop\\commandeclient" + PKCommand+".txt"))
+            using (StreamWriter sw = new StreamWriter("C:\\Users\\charles\\Desktop\\commandeclient" + PKCommand+".txt"))
             {
                 string text = "Commande N. " + PKCommand +"\n";
                 text += "Client : " + order.Client.Name + ", numéro de téléphone : " + order.Client.Telephone + "\n";

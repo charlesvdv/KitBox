@@ -136,6 +136,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
             this.step3.SuspendLayout();
             this.step2.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -149,6 +151,7 @@
             this.welcom.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.panel8.SuspendLayout();
+            this.panel9.SuspendLayout();
             this.SuspendLayout();
             // 
             // step3
@@ -244,7 +247,7 @@
             this.step2.Location = new System.Drawing.Point(4, 22);
             this.step2.Name = "step2";
             this.step2.Padding = new System.Windows.Forms.Padding(3);
-            this.step2.Size = new System.Drawing.Size(613, 515);
+            this.step2.Size = new System.Drawing.Size(614, 385);
             this.step2.TabIndex = 2;
             this.step2.Text = "Configuration des casiers";
             this.step2.UseVisualStyleBackColor = true;
@@ -975,7 +978,7 @@
             this.welcom.Location = new System.Drawing.Point(4, 22);
             this.welcom.Name = "welcom";
             this.welcom.Padding = new System.Windows.Forms.Padding(3);
-            this.welcom.Size = new System.Drawing.Size(613, 515);
+            this.welcom.Size = new System.Drawing.Size(614, 385);
             this.welcom.TabIndex = 0;
             this.welcom.Text = "Bienvenue";
             this.welcom.UseVisualStyleBackColor = true;
@@ -1069,9 +1072,6 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.welcom);
             this.tabControl1.Controls.Add(this.step1);
             this.tabControl1.Controls.Add(this.step2);
@@ -1079,7 +1079,7 @@
             this.tabControl1.Location = new System.Drawing.Point(37, 100);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(621, 541);
+            this.tabControl1.Size = new System.Drawing.Size(622, 411);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -1215,12 +1215,32 @@
             this.label4.TabIndex = 19;
             this.label4.Text = "MEUBLE N°";
             // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.label11);
+            this.panel9.Location = new System.Drawing.Point(35, 6);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(622, 88);
+            this.panel9.TabIndex = 31;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Tempus Sans ITC", 60F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.Red;
+            this.label11.Location = new System.Drawing.Point(158, -8);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(326, 104);
+            this.label11.TabIndex = 26;
+            this.label11.Text = "KITBOX";
+            // 
             // Form1
             // 
             this.AcceptButton = this.OK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(677, 506);
+            this.ClientSize = new System.Drawing.Size(696, 523);
+            this.Controls.Add(this.panel9);
             this.Controls.Add(this.panel8);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
@@ -1250,6 +1270,8 @@
             this.tabControl1.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1363,6 +1385,8 @@
         private System.Windows.Forms.Label textBox;
         private System.Windows.Forms.ComboBox CornerColor;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Label label11;
     }
 }
 

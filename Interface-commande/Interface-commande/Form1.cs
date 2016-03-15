@@ -7,20 +7,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ProjetKitBox;
 
 namespace Interface_commande
 {
     public partial class Form1 : Form
     {
+        Company comp;
         public Form1()
         {
             InitializeComponent();
-
+            comp = new Company();
 
         }
+
         private void ClickHere_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            
+            List<StructOrderSupplier> list = comp.CommandStock();
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = list;
             panel1.Visible = true;
+
         }
         private void AddElement_Click(object sender, EventArgs e)
         {

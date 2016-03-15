@@ -17,21 +17,11 @@ namespace ProjetKitBox
 
         public Client(String name, string adress, string telephone,ManagerClient managerClient)
         {
-            //check if the client already exist or not !
-            Client c = managerClient.Search(name, telephone);
-            if (c == null)
-            {
-                this.name = name;
-                this.adress = adress;
-                this.telephone = telephone;
-                this.nClient = 0;
-            } else
-            {
-                this.name = c.Name;
-                this.adress = c.Adress;
-                this.telephone = c.Telephone;
-                this.nClient = c.NClient;
-            }
+
+            this.name = name;
+            this.adress = adress;
+            this.telephone = telephone;
+            this.nClient = 0; 
         }
 
         public string Telephone

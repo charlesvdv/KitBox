@@ -16,6 +16,7 @@ namespace Interface_Client
         Company comp = new Company();
         Shelf s1 = null;
         Order o = null;
+        double p = 0;
         int numeromeuble = 1;
         int numerocommande = 1;
         public Form1()
@@ -123,6 +124,7 @@ namespace Interface_Client
             if (LastName.TextLength != 0 && FirstName.TextLength != 0 && PhoneNumber.TextLength !=0 )
             {
                 panel8.Visible = true;
+                panel9.Visible = false;
                 step1.Enabled = true;
                 welcom.Enabled = false;
                 tabControl1.SelectedIndex = 1;
@@ -151,6 +153,7 @@ namespace Interface_Client
             {
                 tabControl1.SelectedIndex = 0;
                 panel8.Visible = false;
+                panel9.Visible = true;
                 welcom.Enabled = true;
                 step1.Enabled = false;
                 step2.Enabled = false;
@@ -174,6 +177,11 @@ namespace Interface_Client
                 }
                 foreach (Control p in this.step2.Controls)
                 {
+                    if (p is ComboBox)
+                    {
+                        ComboBox cb = (ComboBox)p;
+                        cb.SelectedIndex = -1;
+                    }
                     if (p is Panel)
                     {
                         foreach (Control c in p.Controls)
@@ -209,6 +217,11 @@ namespace Interface_Client
                 }
                 foreach (Control p in this.step2.Controls)
                 {
+                    if (p is ComboBox)
+                    {
+                        ComboBox cb = (ComboBox)p;
+                        cb.SelectedIndex = -1;
+                    }
                     if (p is Panel)
                     {
                         foreach (Control c in p.Controls)
@@ -285,6 +298,11 @@ namespace Interface_Client
                     }
 
                 }
+                if (p is ComboBox)
+                {
+                    ComboBox cb = (ComboBox)p;
+                    cb.SelectedIndex = -1;
+                }
             }
         }
 
@@ -333,9 +351,9 @@ namespace Interface_Client
             {
                 foreach( Shelf s in o.Shelfs)
                 {
-                    checkedListBox1.Items.Add("Meuble" + NumMeuble.Text + " " + "( " + s.Price + " " +"€" + " )");
+                     p = s.Price;
                 }
-                
+                checkedListBox1.Items.Add("Meuble" + NumMeuble.Text + " " + "( " + p + " " + "€" + " )");
                 tabControl1.SelectedIndex = 3;
             }
             else
