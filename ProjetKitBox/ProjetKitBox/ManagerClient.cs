@@ -86,7 +86,7 @@ namespace ProjetKitBox
             while (dataReader.Read())
             {
                 c = new Client((string)dataReader["nom"],
-                        (string)dataReader["adresse"], (string)dataReader["telephone"]);
+                        (string)dataReader["adresse"], (string)dataReader["telephone"], this);
             }
 
             dataReader.Close();
