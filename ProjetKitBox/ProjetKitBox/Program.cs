@@ -138,6 +138,14 @@ namespace ProjetKitBox
             }
             */
 
+
+
+            List<StructOrderSupplier> stu = comp.CommandStock();
+
+            foreach(StructOrderSupplier s in stu)
+            {
+                Console.WriteLine(s.element.Code);
+            }
             Console.ReadKey();
         }
     }
