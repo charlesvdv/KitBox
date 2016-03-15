@@ -88,6 +88,7 @@ namespace ProjetKitBox
             }
 
             return needTo;
+            //old code that didn't work
             /*
             if(listStru.Count() == listOrd.Count())
             {

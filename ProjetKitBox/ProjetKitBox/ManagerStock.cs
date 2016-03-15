@@ -265,7 +265,7 @@ namespace ProjetKitBox
             DBCon.Close();
             //sort the list by supplier
             List<StructOrderSupplier> sortedList = structCommand.OrderBy(x => x.IDSupplier).ToList();
-            //create the file
+            //create string that will be written in the file
             string text = "Commande Fournisseur \n\n";
             int idSupplier = -1;
             foreach (StructOrderSupplier stru in sortedList)
@@ -279,6 +279,7 @@ namespace ProjetKitBox
                 text += "\t\t" + stru.element.Code + "\t\t" + stru.delay +
                     "\t\t" + stru.price + "€ \n";
             }
+            //write the string text in the file
             string user = Environment.UserName;
             using (StreamWriter sw = new StreamWriter("C:\\Users\\"+user+"\\Desktop\\commmandefournisseur.txt"))
             {

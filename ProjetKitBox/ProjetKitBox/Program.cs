@@ -121,13 +121,23 @@ namespace ProjetKitBox
             /* WORKING
             comp.ManagerStock.RemoveFromStock(1);
             */
-
+            /*
             List<StructOrderSupplier> list = comp.CommandStock();
             foreach(StructOrderSupplier tes in list)
             {
                 Console.WriteLine(tes.element.Code + " " + tes.numberToCommand + " " + tes.IDSupplier );
             }
             comp.ManagerStock.SaveCommand(list);
+            */
+            /*
+            Client c = comp.ManagerClient.Search("friejgrti", "0000");
+            if (c==null)
+            {
+                Console.WriteLine("ok");
+
+            }
+            */
+
             Console.ReadKey();
         }
     }
