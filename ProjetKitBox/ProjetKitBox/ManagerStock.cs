@@ -265,15 +265,20 @@ namespace ProjetKitBox
             DBCon.Close();
             //sort the list by supplier
             List<StructOrderSupplier> sortedList = structCommand.OrderBy(x => x.IDSupplier).ToList();
-            foreach(StructOrderSupplier a in sortedList)
-            {
-                Console.WriteLine(a.IDSupplier);
-            }
             //create the file
+            string text = "Commande Fournisseur \n\n";
+            int idSupplier = -1;
+            foreach (StructOrderSupplier stru in sortedList)
+            {
+                if(idSupplier != stru.IDSupplier)
+                {
+                    text += "\t Fournisseur " + stru.IDSupplier + "\n";
+                    idSupplier = stru.IDSupplier;
+                }
+
+            }
             using (StreamWriter sw = new StreamWriter("C:\\Users\\charles\\Desktop\\commmandefournisseur.txt"))
             {
-                string text = "";
-
                 sw.WriteLine(text);
             }
 
