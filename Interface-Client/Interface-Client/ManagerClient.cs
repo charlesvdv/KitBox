@@ -43,7 +43,6 @@ namespace ProjetKitBox
 
             dataReader.Close();
             DBCon.Close();
-
         }
 
         /* USELESS => if delete on cascade, we're loosing all information about the client, even his element commanded
