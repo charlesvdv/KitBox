@@ -137,11 +137,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-<<<<<<< HEAD
-=======
             this.CornerColor = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
->>>>>>> origin/master
             this.step3.SuspendLayout();
             this.step2.SuspendLayout();
             this.panel9.SuspendLayout();
@@ -1093,11 +1090,10 @@
             this.PhoneNumber.Location = new System.Drawing.Point(242, 396);
             this.PhoneNumber.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.PhoneNumber.Name = "PhoneNumber";
-<<<<<<< HEAD
-            this.PhoneNumber.Size = new System.Drawing.Size(196, 31);
-=======
+
+
             this.PhoneNumber.Size = new System.Drawing.Size(100, 20);
->>>>>>> origin/master
+
             this.PhoneNumber.TabIndex = 10;
             // 
             // textBox
@@ -1351,8 +1347,6 @@
             this.label4.TabIndex = 19;
             this.label4.Text = "MEUBLE N°";
             // 
-<<<<<<< HEAD
-=======
             // CornerColor
             // 
             this.CornerColor.FormattingEnabled = true;
@@ -1370,7 +1364,6 @@
             this.label8.TabIndex = 57;
             this.label8.Text = "Couleur des cornières: ";
             // 
->>>>>>> origin/master
             // Form1
             // 
             this.AcceptButton = this.OK;
