@@ -62,12 +62,33 @@ namespace ProjetKitBox
         
 		public List<StructOrderSupplier> CommandStock()
 		{
-            List<StructStock> listStru = managerStock.GetStateStock();
+            
+            List<StructStock> listStock = managerStock.GetStateStock();
             List<StructOrder> listOrd = managerOrder.GetSaleStatistic();
             List<StructOrderSupplier> listOrdSupp = managerStock.GetBestSupplier();
 
-            List<StructOrder> needTo = new List<StructOrder>() { };
 
+            List<StructOrderSupplier> needTo = new List<StructOrderSupplier>() { };
+
+            foreach(StructOrder elemOrdered in listOrd)
+            {
+                StructStock elemStockInfo
+                    = listStock.Find(x => elemOrdered.element.Code == x.element.Code);
+                int stockCalcule = elemStockInfo.numberInStock - elemStockInfo.stockMin + 
+                    elemStockInfo.numberOrdered - elemStockInfo.numberReserved;
+
+                if (stockCalcule < elemOrdered.numberOrdered)
+                {
+                    StructOrderSupplier supInfo = listOrdSupp.Find(x => elemOrdered.element.Code == x.element.Code);
+                    int numToCommand = elemOrdered.numberOrdered - stockCalcule;
+                    StructOrderSupplier elemToCommand = new StructOrderSupplier(supInfo.price, supInfo.delay,
+                        supInfo.IDSupplier, elemOrdered.element, numToCommand);
+                    needTo.Add(elemToCommand);
+                }
+            }
+
+            return needTo;
+            /*
             if(listStru.Count() == listOrd.Count())
             {
                 foreach(StructStock struS in listStru)
@@ -108,6 +129,9 @@ namespace ProjetKitBox
             }
 
             return needToWithSupp; 
+            */
         }
+
+        
     }
 }
