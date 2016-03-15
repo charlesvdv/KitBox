@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 15 Mars 2016 à 10:42
+-- Généré le :  Mar 15 Mars 2016 à 10:56
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -34,14 +34,6 @@ CREATE TABLE IF NOT EXISTS `client` (
   PRIMARY KEY (`PK_client`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
---
--- Contenu de la table `client`
---
-
-INSERT INTO `client` (`PK_client`, `telephone`, `adresse`, `nom`) VALUES
-(1, '010 25 68 9', 'rue du potier 3, 1000 Bruxelles', 'John Doe'),
-(2, '02 47 98 45', 'Avenue des barakis 69, 6000 Charleroi', 'Donovan Bonucci');
-
 -- --------------------------------------------------------
 
 --
@@ -56,19 +48,6 @@ CREATE TABLE IF NOT EXISTS `commande` (
   PRIMARY KEY (`PK_refCommande`),
   KEY `FK_client_idx` (`FK_client`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
-
---
--- Contenu de la table `commande`
---
-
-INSERT INTO `commande` (`PK_refCommande`, `prix total`, `FK_client`, `date`) VALUES
-(0, '4536.000', 2, '2014-10-13'),
-(1, '150.000', 1, '2016-02-25'),
-(2, '540.000', 2, '2016-01-13'),
-(3, '782.000', 1, '2016-02-10'),
-(4, '654.000', 1, '2015-11-10'),
-(5, '856.000', 2, '2016-02-08'),
-(6, '876.000', 1, '2016-02-29');
 
 -- --------------------------------------------------------
 
