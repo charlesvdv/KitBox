@@ -88,7 +88,7 @@ namespace ProjetKitBox
             Console.ReadKey();
             */
 
-            
+            /*
             Element e = comp.ManagerStock.SearchElementByCode("COR100BLDEC");
             Element e1 = comp.ManagerStock.SearchElementByCode("COR100BRDEC");
 
@@ -100,7 +100,7 @@ namespace ProjetKitBox
 
             comp.ManagerStock.SaveCommand(list);
             Console.ReadKey();
-
+            */
             /* WORKING
             Client e = comp.ManagerClient.Search("John", "010 25");
             Console.WriteLine(e.Name);
@@ -121,11 +121,13 @@ namespace ProjetKitBox
             /* WORKING
             comp.ManagerStock.RemoveFromStock(1);
             */
+
             List<StructOrderSupplier> list = comp.CommandStock();
-            foreach(StructOrderSupplier s in list)
+            foreach(StructOrderSupplier tes in list)
             {
-                Console.WriteLine(s.element.Code + " " + s.element.RequiredNumber);
+                Console.WriteLine(tes.element.Code + " " + tes.numberToCommand + " " + tes.IDSupplier );
             }
+            comp.ManagerStock.SaveCommand(list);
             Console.ReadKey();
         }
     }
