@@ -74,11 +74,11 @@ namespace ProjetKitBox
                 text += "\n \n";
                 for(int i = 0; i < order.Shelfs.Count(); i++)
                 {
-                    text += "\t Armoire N. " + i + 1 + " \n \n";
+                    text += "\t Armoire N. " + (i + 1) + " \n \n";
                     Shelf s = order.Shelfs[i];
                     for(int j = 0; j < s.Boxes.Count(); j++)
                     {
-                        text += "\t \t Box N. " + j + 1 + " \n";
+                        text += "\t \t Box N. " + (j + 1) + " \n";
                         Box b = s.Boxes[j];
                         text += "\t \t \t | Code référence\t | Quantité \t | Prix / Unité \n";
                         for (int q = 0; q < b.Elements.Count(); q++)
