@@ -13,8 +13,8 @@ namespace ProjetKitBox
         {
             Company comp = new Company();
 
-            // WORKING => Add managerStock linkCommandeElement (DB) !!!!!
-            
+            // WORKING => Add managerStock linkCommandeElement (DB) !!!!!q
+            /*
             Client c = new Client("TEST", "test", "000",comp.ManagerClient);
 
 
@@ -34,7 +34,7 @@ namespace ProjetKitBox
 
             comp.ManagerOrder.Add(o);
             
-
+            */
 
 
             /* WORKING 
@@ -86,15 +86,18 @@ namespace ProjetKitBox
             Console.ReadKey();
             */
 
-            /* WORKING
+            
             Element e = comp.ManagerStock.SearchElementByCode("COR100BLDEC");
+            Element e1 = comp.ManagerStock.SearchElementByCode("COR100BRDEC");
 
-            StructOrderSupplier s = new StructOrderSupplier(22.00, 13, 0342, e, 30);
+            StructOrderSupplier s = new StructOrderSupplier(22.00, 13, 1, e, 30);
+            StructOrderSupplier s1 = new StructOrderSupplier(22.00, 45, 2, e1, 40);
             List<StructOrderSupplier> list = new List<StructOrderSupplier>() { };
             list.Add(s);
+            list.Add(s1);
 
             comp.ManagerStock.SaveCommand(list);
-            */
+            Console.ReadKey();
 
             /* WORKING
             Client e = comp.ManagerClient.Search("John", "010 25");
