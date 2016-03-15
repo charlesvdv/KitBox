@@ -52,7 +52,7 @@ namespace Interface_commande
                     }  
                 }
             }
-            commandToSupplier.Add(new StructOrderSupplier(0, 0, 0, );
+            commandToSupplier.Add(new StructOrderSupplier(0, 0, 0, null));
         }
 
         private void Cancel2_Click(object sender, EventArgs e)
