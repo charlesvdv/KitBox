@@ -82,9 +82,7 @@ namespace Interface_Client
                             (c as ComboBox).DropDownStyle = ComboBoxStyle.DropDownList;
 
                             if ((c as ComboBox).Name.Contains("HeightCh"))
-                            {
                                 (c as ComboBox).Items.AddRange(eights);
-                            }
 
                             else if ((c as ComboBox).Name.Contains("ColorCh"))
                                 (c as ComboBox).Items.AddRange(colors);

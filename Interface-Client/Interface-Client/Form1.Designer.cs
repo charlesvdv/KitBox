@@ -137,6 +137,11 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+<<<<<<< HEAD
+=======
+            this.CornerColor = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+>>>>>>> origin/master
             this.step3.SuspendLayout();
             this.step2.SuspendLayout();
             this.panel9.SuspendLayout();
@@ -236,7 +241,8 @@
             // 
             // step2
             // 
-            this.step2.Controls.Add(this.panel9);
+            this.step2.Controls.Add(this.CornerColor);
+            this.step2.Controls.Add(this.label8);
             this.step2.Controls.Add(this.CancelItem);
             this.step2.Controls.Add(this.panel7);
             this.step2.Controls.Add(this.panel5);
@@ -938,8 +944,13 @@
             this.step1.Location = new System.Drawing.Point(8, 39);
             this.step1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.step1.Name = "step1";
+<<<<<<< HEAD
             this.step1.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.step1.Size = new System.Drawing.Size(1226, 753);
+=======
+            this.step1.Padding = new System.Windows.Forms.Padding(3);
+            this.step1.Size = new System.Drawing.Size(613, 390);
+>>>>>>> origin/master
             this.step1.TabIndex = 1;
             this.step1.Text = "Intro";
             this.step1.UseVisualStyleBackColor = true;
@@ -1068,8 +1079,13 @@
             this.welcom.Location = new System.Drawing.Point(8, 39);
             this.welcom.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.welcom.Name = "welcom";
+<<<<<<< HEAD
             this.welcom.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.welcom.Size = new System.Drawing.Size(1226, 753);
+=======
+            this.welcom.Padding = new System.Windows.Forms.Padding(3);
+            this.welcom.Size = new System.Drawing.Size(613, 390);
+>>>>>>> origin/master
             this.welcom.TabIndex = 0;
             this.welcom.Text = "Bienvenue";
             this.welcom.UseVisualStyleBackColor = true;
@@ -1079,7 +1095,11 @@
             this.PhoneNumber.Location = new System.Drawing.Point(242, 396);
             this.PhoneNumber.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.PhoneNumber.Name = "PhoneNumber";
+<<<<<<< HEAD
             this.PhoneNumber.Size = new System.Drawing.Size(196, 31);
+=======
+            this.PhoneNumber.Size = new System.Drawing.Size(100, 20);
+>>>>>>> origin/master
             this.PhoneNumber.TabIndex = 10;
             // 
             // textBox
@@ -1333,6 +1353,26 @@
             this.label4.TabIndex = 19;
             this.label4.Text = "MEUBLE N°";
             // 
+<<<<<<< HEAD
+=======
+            // CornerColor
+            // 
+            this.CornerColor.FormattingEnabled = true;
+            this.CornerColor.Location = new System.Drawing.Point(142, 53);
+            this.CornerColor.Name = "CornerColor";
+            this.CornerColor.Size = new System.Drawing.Size(121, 21);
+            this.CornerColor.TabIndex = 58;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(28, 56);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(115, 13);
+            this.label8.TabIndex = 57;
+            this.label8.Text = "Couleur des cornières: ";
+            // 
+>>>>>>> origin/master
             // Form1
             // 
             this.AcceptButton = this.OK;
@@ -1482,7 +1522,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox PhoneNumber;
         private System.Windows.Forms.Label textBox;
-        private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.ComboBox CornerColor;
         private System.Windows.Forms.Label label8;
     }
