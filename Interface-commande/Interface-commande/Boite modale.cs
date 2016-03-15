@@ -13,35 +13,35 @@ namespace Interface_commande
     public partial class Boite_modale : Form
     {
         private Form parent;
-        private DataGridView dgv;
-        public Boite_modale(Form parent, DataGridView dgv)
+        private string code;
+        private int quantite;
+
+
+        public Boite_modale()
         {
             InitializeComponent();
-            this.parent = parent;
-            this.dgv = dgv;
-            string[] suppliers = { "A", "B", "BEST"};
-            foreach (Control c in this.Controls)
-            {
-                if (c is ComboBox)
-                {
-                    (c as ComboBox).Items.AddRange(suppliers);
-                }
-            }
+            this.code = "";
+            this.quantite = 0;            
         }
 
         private void OK_Click(object sender, EventArgs e)
         {
-            if (SupplierChoice.SelectedItem != null && Reference.Text != null)
+            if (Reference.Text != "" && Quantite.Text != "")
             {
-                dgv.Rows.Add(' ', Reference.Text, ' ', SupplierChoice.Text, ' ');
-                parent.Show();
-                this.Dispose();
+                this.code = Reference.Text;
+                this.quantite = Convert.ToInt32(Quantite.Text);
+                this.DialogResult = DialogResult.OK;
             }
-            else
-            {
-                MessageBox.Show("Veuillez remplir tous les champs");
-            }
-            
+        }
+
+        public string Code
+        {
+            get { return code; }
+        }
+
+        public int NumberToCommand
+        {
+            get { return quantite; }
         }
     }
 }

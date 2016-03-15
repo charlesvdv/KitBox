@@ -14,6 +14,7 @@ namespace Interface_commande
     public partial class Form1 : Form
     {
         Company comp;
+        List<StructOrderSupplier> commandToSupplier;
         public Form1()
         {
             InitializeComponent();
@@ -23,18 +24,35 @@ namespace Interface_commande
 
         private void ClickHere_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
-            List<StructOrderSupplier> list = comp.CommandStock();
-            foreach(StructOrderSupplier s in list)
+            commandToSupplier = comp.CommandStock();
+            foreach (StructOrderSupplier order in commandToSupplier)
             {
+                dataGridView1.Rows.Add(order.element.Type, order.element.Code, order.numberToCommand,
+                    order.IDSupplier, order.price);
             }
-            
+            panel1.Visible = true;
         }
+
         private void AddElement_Click(object sender, EventArgs e)
         {
-            Boite_modale Boite_modale = new Boite_modale(this, dataGridView1);
-            Boite_modale.Show();
-            this.Hide();
+            Element elem = null;
+            int quantity = 0;
+            using (var modalform = new Boite_modale())
+            {
+                var result = modalform.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    try
+                    {
+                        elem = comp.ManagerStock.SearchElementByCode(modalform.Code);
+                        quantity = modalform.NumberToCommand;
+                    } catch (Exception exp)
+                    {
+                        MessageBox.Show("An error occured : " + exp.Message);
+                    }  
+                }
+            }
+            commandToSupplier.Add(new StructOrderSupplier(0, 0, 0, );
         }
 
         private void Cancel2_Click(object sender, EventArgs e)
