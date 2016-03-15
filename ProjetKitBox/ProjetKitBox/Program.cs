@@ -14,7 +14,10 @@ namespace ProjetKitBox
             Company comp = new Company();
 
             // WORKING => Add managerStock linkCommandeElement (DB) !!!!!
+
             Client c = new Client("TEST", "test", "000",comp.ManagerClient);
+
+
             comp.ManagerClient.AddClient(c);
 
             Order o = new Order(c);
