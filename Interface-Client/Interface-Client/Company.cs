@@ -7,7 +7,6 @@ using MySql;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 
-
 namespace ProjetKitBox
 {
     class Company

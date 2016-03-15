@@ -96,7 +96,6 @@ namespace Interface_Client
         //Adapter la hauteur du meuble en temps réel
         private void HC1_TextChanged(object sender, EventArgs e)
         {
-
             int b = 0;
             foreach (Control p in this.step2.Controls)
             {
@@ -115,7 +114,8 @@ namespace Interface_Client
                     }
             }
             string c = Convert.ToString(b);
-            label9.Text = c;           
+            label9.Text = c;
+                       
         }      
         //Lorsqu'on clic sur OK
         private void OK_Click(object sender, EventArgs e)
@@ -132,7 +132,7 @@ namespace Interface_Client
                 string c = Convert.ToString(numerocommande);
                 NumMeuble.Text = m;
                 NumCommande.Text = c;
-                Client cli = new Client(LastName.Text + " " + FirstName.Text , " ", PhoneNumber.Text);
+                Client cli = new Client(LastName.Text, FirstName.Text, PhoneNumber.Text, comp.ManagerClient);
                 comp.ManagerClient.AddClient(cli);
                 o = new Order(cli);
 
@@ -321,23 +321,27 @@ namespace Interface_Client
                                 b = cb.Text;
                             }
                         }                                           
-                    }
-                    o.AddShelf(s1, CornerColor.Text);
+                    }                  
                     s1.AddBox(a, b);
                 }
             }
-            
-            
+
+            o.AddShelf(s1, CornerColor.Text);
+
+
+            if (control)
+            {
+                foreach( Shelf s in o.Shelfs)
+                {
+                    checkedListBox1.Items.Add("Meuble" + NumMeuble.Text + " " + "( " + s.Price + " " +"€" + " )");
+                }
                 
-                if (control)
-                {
-                    checkedListBox1.Items.Add("Meuble" + NumMeuble.Text);
-                    tabControl1.SelectedIndex = 3;
-                }
-                else
-                {
-                    MessageBox.Show("Veuillez remplir tous les champs");
-                }
+                tabControl1.SelectedIndex = 3;
+            }
+            else
+            {
+                MessageBox.Show("Veuillez remplir tous les champs");
+            }
         }
 
 

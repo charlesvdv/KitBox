@@ -18,3 +18,4 @@ C:\Users\alons\Desktop\KitBox\Interface-commande\Interface-commande\obj\Debug\In
 C:\Users\alons\Desktop\KitBox\Interface-commande\Interface-commande\obj\Debug\Interface_commande.Form1.resources
 C:\Users\alons\Desktop\KitBox\Interface-commande\Interface-commande\obj\Debug\Interface_commande.Properties.Resources.resources
 C:\Users\alons\Desktop\KitBox\Interface-commande\Interface-commande\obj\Debug\Interface-commande.csproj.GenerateResource.Cache
+C:\Users\alons\Desktop\KitBox\Interface-commande\Interface-commande\bin\Debug\ProjetKitBox.vshost.exe

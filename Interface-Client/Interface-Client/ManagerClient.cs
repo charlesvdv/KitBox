@@ -43,7 +43,9 @@ namespace ProjetKitBox
 
             dataReader.Close();
             DBCon.Close();
+
         }
+
 
         /* USELESS => if delete on cascade, we're loosing all information about the client, even his element commanded
         //Delete a client from the database
@@ -84,7 +86,7 @@ namespace ProjetKitBox
             while (dataReader.Read())
             {
                 c = new Client((string)dataReader["nom"],
-                        (string)dataReader["adresse"], (string)dataReader["telephone"]);
+                        (string)dataReader["adresse"], (string)dataReader["telephone"], this);
             }
 
             dataReader.Close();
