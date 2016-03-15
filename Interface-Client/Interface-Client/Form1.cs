@@ -326,18 +326,20 @@ namespace Interface_Client
                     }
                     o.AddShelf(s1, CornerColor.Text);
                     s1.AddBox(a, b);
-
                 }
             }
-            if (control)
-            {
-                checkedListBox1.Items.Add("Meuble" + NumMeuble.Text);
-                tabControl1.SelectedIndex = 3;
-            }
-            else
-            {
-                MessageBox.Show("Veuillez remplir tous les champs");
-            }
+            
+            
+                
+                if (control)
+                {
+                    checkedListBox1.Items.Add("Meuble" + NumMeuble.Text);
+                    tabControl1.SelectedIndex = 3;
+                }
+                else
+                {
+                    MessageBox.Show("Veuillez remplir tous les champs");
+                }
         }
 
 
