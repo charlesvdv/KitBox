@@ -14,7 +14,7 @@ namespace ProjetKitBox
             Company comp = new Company();
 
             // WORKING => Add managerStock linkCommandeElement (DB) !!!!!
-
+            
             Client c = new Client("TEST", "test", "000",comp.ManagerClient);
 
 
@@ -26,7 +26,7 @@ namespace ProjetKitBox
             Shelf s1 = new Shelf(s, comp.ManagerStock);
 
             s1.AddBox(36, "Blanc");
-            s1.AddBox(36, "Brun");
+
 
             o.AddShelf(s1, "Brun");
             Console.WriteLine(s1.Size.heigth);
@@ -34,6 +34,7 @@ namespace ProjetKitBox
 
             comp.ManagerOrder.Add(o);
             
+
 
 
             /* WORKING 
@@ -115,6 +116,7 @@ namespace ProjetKitBox
             /* WORKING
             comp.ManagerStock.RemoveFromStock(1);
             */
+ 
         }
     }
 }
