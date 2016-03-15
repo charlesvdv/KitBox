@@ -273,11 +273,14 @@ namespace ProjetKitBox
                 if(idSupplier != stru.IDSupplier)
                 {
                     text += "\t Fournisseur " + stru.IDSupplier + "\n";
+                    text += "\t\tCode Element | Delai | Prix \n";
                     idSupplier = stru.IDSupplier;
                 }
-
+                text += "\t\t" + stru.element.Code + "\t\t" + stru.delay +
+                    "\t\t" + stru.price + "€ \n";
             }
-            using (StreamWriter sw = new StreamWriter("C:\\Users\\charles\\Desktop\\commmandefournisseur.txt"))
+            string user = Environment.UserName;
+            using (StreamWriter sw = new StreamWriter("C:\\Users\\"+user+"\\Desktop\\commmandefournisseur.txt"))
             {
                 sw.WriteLine(text);
             }
