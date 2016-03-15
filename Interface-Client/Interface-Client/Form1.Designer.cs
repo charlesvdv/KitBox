@@ -134,7 +134,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.panel9 = new System.Windows.Forms.Panel();
             this.CornerColor = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.step3.SuspendLayout();
@@ -150,7 +149,6 @@
             this.welcom.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.panel8.SuspendLayout();
-            this.panel9.SuspendLayout();
             this.SuspendLayout();
             // 
             // step3
@@ -229,7 +227,8 @@
             // 
             // step2
             // 
-            this.step2.Controls.Add(this.panel9);
+            this.step2.Controls.Add(this.CornerColor);
+            this.step2.Controls.Add(this.label8);
             this.step2.Controls.Add(this.CancelItem);
             this.step2.Controls.Add(this.panel7);
             this.step2.Controls.Add(this.panel5);
@@ -840,7 +839,7 @@
             this.step1.Location = new System.Drawing.Point(4, 22);
             this.step1.Name = "step1";
             this.step1.Padding = new System.Windows.Forms.Padding(3);
-            this.step1.Size = new System.Drawing.Size(613, 360);
+            this.step1.Size = new System.Drawing.Size(613, 390);
             this.step1.TabIndex = 1;
             this.step1.Text = "Intro";
             this.step1.UseVisualStyleBackColor = true;
@@ -958,7 +957,7 @@
             this.welcom.Location = new System.Drawing.Point(4, 22);
             this.welcom.Name = "welcom";
             this.welcom.Padding = new System.Windows.Forms.Padding(3);
-            this.welcom.Size = new System.Drawing.Size(613, 360);
+            this.welcom.Size = new System.Drawing.Size(613, 390);
             this.welcom.TabIndex = 0;
             this.welcom.Text = "Bienvenue";
             this.welcom.UseVisualStyleBackColor = true;
@@ -968,7 +967,7 @@
             this.PhoneNumber.Location = new System.Drawing.Point(121, 206);
             this.PhoneNumber.Name = "PhoneNumber";
             this.PhoneNumber.Size = new System.Drawing.Size(100, 20);
-            this.PhoneNumber.TabIndex = 16;
+            this.PhoneNumber.TabIndex = 10;
             // 
             // textBox
             // 
@@ -1198,30 +1197,21 @@
             this.label4.TabIndex = 19;
             this.label4.Text = "MEUBLE N°";
             // 
-            // panel9
-            // 
-            this.panel9.Controls.Add(this.CornerColor);
-            this.panel9.Controls.Add(this.label8);
-            this.panel9.Location = new System.Drawing.Point(25, 46);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(401, 33);
-            this.panel9.TabIndex = 53;
-            // 
             // CornerColor
             // 
             this.CornerColor.FormattingEnabled = true;
-            this.CornerColor.Location = new System.Drawing.Point(117, 7);
+            this.CornerColor.Location = new System.Drawing.Point(142, 53);
             this.CornerColor.Name = "CornerColor";
             this.CornerColor.Size = new System.Drawing.Size(121, 21);
-            this.CornerColor.TabIndex = 56;
+            this.CornerColor.TabIndex = 58;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(3, 10);
+            this.label8.Location = new System.Drawing.Point(28, 56);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(115, 13);
-            this.label8.TabIndex = 55;
+            this.label8.TabIndex = 57;
             this.label8.Text = "Couleur des cornières: ";
             // 
             // Form1
@@ -1259,8 +1249,6 @@
             this.tabControl1.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
-            this.panel9.ResumeLayout(false);
-            this.panel9.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1372,7 +1360,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox PhoneNumber;
         private System.Windows.Forms.Label textBox;
-        private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.ComboBox CornerColor;
         private System.Windows.Forms.Label label8;
     }
