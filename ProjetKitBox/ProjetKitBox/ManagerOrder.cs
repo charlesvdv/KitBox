@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using MySql;
 using MySql.Data;
 using MySql.Data.MySqlClient;
@@ -21,6 +22,7 @@ namespace ProjetKitBox
         //Add an order in the database's order list
         public void Add(Order order)
 		{
+            //save the order in the database
 
             //calcute the number of supplement cut of the corner required 
             int supCutNumber = 0;
@@ -63,6 +65,34 @@ namespace ProjetKitBox
             cmd = new MySqlCommand(queryRes, DBCon);
             cmd.ExecuteNonQuery();
             DBCon.Close();
+
+            //save the data in a file that could be printed
+            using (StreamWriter sw = new StreamWriter("C:\\Users\\charles\\Desktop\\commandeclient" + PKCommand+".txt"))
+            {
+                string text = "Commande N. " + PKCommand +"\n";
+                text += "Client : " + order.Client.Name + ", numéro de téléphone : " + order.Client.Telephone + "\n";
+                text += "\n \n";
+                for(int i = 0; i < order.Shelfs.Count(); i++)
+                {
+                    text += "\t Armoire N. " + i + 1 + " \n \n";
+                    Shelf s = order.Shelfs[i];
+                    for(int j = 0; j < s.Boxes.Count(); j++)
+                    {
+                        text += "\t \t Box N. " + j + 1 + " \n";
+                        Box b = s.Boxes[j];
+                        text += "\t \t \t | Code référence\t | Quantité \t | Prix / Unité \n";
+                        for (int q = 0; q < b.Elements.Count(); q++)
+                        {
+                            text += "\t \t \t " + b.Elements[q].Code + " \t\t\t\t\t " + b.Elements[q].RequiredNumber +
+                                " \t\t\t\t\t " + b.Elements[q].Price + "\n";
+                        }
+                    }
+                }
+
+                text += "\n \n Prix Total : "+ order.GetPrice() + "€";
+                sw.WriteLine(text);
+            }
+
         }
 
         private struct ElemCount
