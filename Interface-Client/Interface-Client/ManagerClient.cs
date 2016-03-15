@@ -30,6 +30,7 @@ namespace ProjetKitBox
 
             MySqlCommand cmd = new MySqlCommand(query, DBCon);
             cmd.ExecuteNonQuery();
+            
 
             query = "select PK_client from client where nom = '" + client.Name + "' and telephone='" + client.Telephone +"';";
             cmd = new MySqlCommand(query, DBCon);
@@ -43,7 +44,6 @@ namespace ProjetKitBox
 
             dataReader.Close();
             DBCon.Close();
-
         }
 
         /* USELESS => if delete on cascade, we're loosing all information about the client, even his element commanded
