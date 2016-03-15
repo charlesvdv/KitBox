@@ -14,7 +14,8 @@ namespace ProjetKitBox
             Company comp = new Company();
 
             // WORKING => Add managerStock linkCommandeElement (DB) !!!!!
-            
+
+            /*
             Client c = new Client("TEST", "test", "000",comp.ManagerClient);
 
 
@@ -33,7 +34,7 @@ namespace ProjetKitBox
             Console.WriteLine(s1.Corner.Size.heigth);
 
             comp.ManagerOrder.Add(o);
-            
+            */
 
 
 
@@ -116,7 +117,12 @@ namespace ProjetKitBox
             /* WORKING
             comp.ManagerStock.RemoveFromStock(1);
             */
- 
+            List<StructOrderSupplier> list = comp.CommandStock();
+            foreach(StructOrderSupplier s in list)
+            {
+                Console.WriteLine(s.element.Code + " " + s.element.RequiredNumber);
+            }
+            Console.ReadKey();
         }
     }
 }

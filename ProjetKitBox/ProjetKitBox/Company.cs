@@ -67,7 +67,8 @@ namespace ProjetKitBox
             List<StructOrderSupplier> listOrdSupp = managerStock.GetBestSupplier();
 
             List<StructOrder> needTo = new List<StructOrder>() { };
-            if(listStru.Count == listOrd.Count)
+
+            if(listStru.Count() == listOrd.Count())
             {
                 foreach(StructStock struS in listStru)
                 {
@@ -89,7 +90,7 @@ namespace ProjetKitBox
 
             else
             {
-                throw new Exception("Les lists ne correspondent pas(il n'y à pas le même nombre d'element)");
+                 throw new Exception("Les lists ne correspondent pas(il n'y à pas le même nombre d'element)");
             }
 
             List<StructOrderSupplier> needToWithSupp = new List<StructOrderSupplier>() { };
