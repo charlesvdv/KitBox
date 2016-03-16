@@ -19,17 +19,22 @@ namespace Interface_commande
         {
             InitializeComponent();
             comp = new Company();
-
+            commandToSupplier = new List<StructOrderSupplier>() { };
         }
 
-        private void ClickHere_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        public void RefreshDataGridViewCommandSupplier()
         {
-            commandToSupplier = comp.CommandStock();
             foreach (StructOrderSupplier order in commandToSupplier)
             {
                 dataGridView1.Rows.Add(order.element.Type, order.element.Code, order.numberToCommand,
                     order.IDSupplier, order.price);
             }
+        }
+
+        private void ClickHere_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            commandToSupplier = comp.CommandStock();
+            RefreshDataGridViewCommandSupplier();
             panel1.Visible = true;
         }
 
@@ -52,10 +57,11 @@ namespace Interface_commande
                     }  
                 }
             }
-            if(orderElem.element == null)
+            if(orderElem.element != null)
             {
                 commandToSupplier.Add(orderElem);
             }
+            RefreshDataGridViewCommandSupplier();
         }
 
         private void Cancel2_Click(object sender, EventArgs e)

@@ -12,7 +12,6 @@ namespace Interface_commande
 {
     public partial class Boite_modale : Form
     {
-        private Form parent;
         private string code;
         private int quantite;
 
@@ -29,7 +28,7 @@ namespace Interface_commande
             if (Reference.Text != "" && Quantite.Text != "")
             {
                 this.code = Reference.Text;
-                this.quantite = Convert.ToInt32(Quantite.Text);
+                this.quantite = int.Parse(Quantite.Text);
                 this.DialogResult = DialogResult.OK;
             }
         }
