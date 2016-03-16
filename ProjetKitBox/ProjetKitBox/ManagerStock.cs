@@ -61,7 +61,7 @@ namespace ProjetKitBox
         //Give us the best supplier, but only for one element(Used in the front when we want to add an element on the commande. 
         public StructOrderSupplier GetTheBestSupplier(Element e)
         {
-            string query = "select min(prix), delai FK_element, FK_fournisseur from linkelementfournisseur where FK_element='"+e.Code+"';";
+            string query = "select min(prix), delai, FK_element, FK_fournisseur from linkelementfournisseur where FK_element='"+e.Code+"';";
             
             try
             {
@@ -80,10 +80,12 @@ namespace ProjetKitBox
             StructOrderSupplier stu = new StructOrderSupplier(0, 0, 0, null);
 
             while (reader.Read())
-            { 
+            {
                 Element ee = new Element((string)reader["FK_element"], this);
 
-                stu = new StructOrderSupplier(Convert.ToDouble(reader["prix"]), (int)reader["delai"], (int)reader["FK_fournisseur"], ee);
+                stu = new StructOrderSupplier(Convert.ToDouble(reader["min(prix)"]), (int)reader["delai"], (int)reader["FK_fournisseur"], ee);
+
+                break;
             }
 
             reader.Close();
