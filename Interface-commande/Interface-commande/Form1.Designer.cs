@@ -31,10 +31,10 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Order = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Cancel2 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.AddElement = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.ClickHere = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
@@ -84,6 +84,7 @@
             this.tabControl1.SuspendLayout();
             this.Order.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.Delivery.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.Stock.SuspendLayout();
@@ -93,7 +94,6 @@
             this.CustomerOrder.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -121,7 +121,7 @@
             this.Order.Controls.Add(this.label1);
             this.Order.Location = new System.Drawing.Point(4, 25);
             this.Order.Name = "Order";
-            this.Order.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Order.Padding = new System.Windows.Forms.Padding(3);
             this.Order.Size = new System.Drawing.Size(703, 304);
             this.Order.TabIndex = 0;
             this.Order.Text = "Commande";
@@ -132,7 +132,6 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.dataGridView1);
             this.panel1.Controls.Add(this.Cancel2);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.AddElement);
@@ -142,6 +141,25 @@
             this.panel1.Size = new System.Drawing.Size(663, 251);
             this.panel1.TabIndex = 3;
             this.panel1.Visible = false;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Element,
+            this.Reference,
+            this.Quantity,
+            this.Supplier,
+            this.Price});
+            this.dataGridView1.Location = new System.Drawing.Point(38, 22);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(585, 161);
+            this.dataGridView1.TabIndex = 4;
+            this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
             // 
             // Cancel2
             // 
@@ -163,6 +181,7 @@
             this.button2.TabIndex = 6;
             this.button2.Text = "VALIDER LA COMMANDE";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // AddElement
             // 
@@ -174,24 +193,6 @@
             this.AddElement.Text = "AJOUTER UN ELEMENT";
             this.AddElement.UseVisualStyleBackColor = true;
             this.AddElement.Click += new System.EventHandler(this.AddElement_Click);
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Element,
-            this.Reference,
-            this.Quantity,
-            this.Supplier,
-            this.Price});
-            this.dataGridView1.Location = new System.Drawing.Point(38, 22);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(585, 161);
-            this.dataGridView1.TabIndex = 4;
             // 
             // label2
             // 
@@ -564,6 +565,7 @@
             this.Element.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Element.HeaderText = "Elément";
             this.Element.Name = "Element";
+            this.Element.ReadOnly = true;
             this.Element.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // Reference
@@ -571,6 +573,7 @@
             this.Reference.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Reference.HeaderText = "Référence";
             this.Reference.Name = "Reference";
+            this.Reference.ReadOnly = true;
             // 
             // Quantity
             // 
@@ -583,12 +586,14 @@
             this.Supplier.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Supplier.HeaderText = "Fournisseur";
             this.Supplier.Name = "Supplier";
+            this.Supplier.ReadOnly = true;
             // 
             // Price
             // 
             this.Price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Price.HeaderText = "Prix";
             this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
             // 
             // Form1
             // 
@@ -603,6 +608,7 @@
             this.Order.ResumeLayout(false);
             this.Order.PerformLayout();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.Delivery.ResumeLayout(false);
             this.Delivery.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
@@ -617,7 +623,6 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }

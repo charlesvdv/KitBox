@@ -24,6 +24,12 @@ namespace Interface_commande
 
         public void RefreshDataGridViewCommandSupplier()
         {
+            //empty the datagridviews
+            for(int i = dataGridView1.Rows.Count -1; i > -1 ; i--)
+            {
+                dataGridView1.Rows.RemoveAt(i);
+            }
+            //populate the datagridview with newer data
             foreach (StructOrderSupplier order in commandToSupplier)
             {
                 dataGridView1.Rows.Add(order.element.Type, order.element.Code, order.numberToCommand,
@@ -76,5 +82,34 @@ namespace Interface_commande
         {
             panel2.Visible = true;
         }
+
+        //get the change from the datagridview
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 2)
+            {
+                int quantity = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
+                if (quantity == 0)
+                {
+                    commandToSupplier.RemoveAt(e.RowIndex);
+                } else
+                {
+                    var elemToCommand = commandToSupplier[e.RowIndex];
+                    elemToCommand.numberToCommand = quantity;
+                    commandToSupplier[e.RowIndex] = elemToCommand;
+                }
+            } else
+            {
+                MessageBox.Show("You cannot edit this columns");
+            }
+            RefreshDataGridViewCommandSupplier();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            comp.ManagerStock.SaveCommand(commandToSupplier);
+            panel1.Visible = false;
+        }
+
     }
 }
