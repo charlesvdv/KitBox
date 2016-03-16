@@ -51,8 +51,21 @@ where delai=
     	(select min(prix) from linkelementfournisseur where FK_Element = 'COR100BLDEC'))        
 and FK_Element='COR100BLDEC'
 
+-- count the command in the 6 months GOOD SQL !!!!
+	select prix, delai, l1.FK_fournisseur, l1.FK_Element from linkelementfournisseur l1
+	where prix = (
+		select min(l2.prix) from linkelementfournisseur l2 
+		where l1.FK_Element = l2.FK_Element)
+	and delai = (
+			select min(l3.delai) from linkelementfournisseur l3
+			where l1.FK_Element=l3.FK_Element and prix = (
+				select min(l4.prix) from linkelementfournisseur l4
+				where l1.FK_Element = l4.FK_Element
+			)
+	) group by FK_Element;
 
--- count the command in the 6 months 
+
+-- count the command in the 6 months BAD !!
  select e.PK_code, sum(l.quantiteTotale) as tot from element e 
 	inner join linkcommandeelement l on e.PK_code = l.FK_element 
 	inner join commande on l.FK_commande = commande.PK_refCommande
