@@ -147,9 +147,17 @@ namespace ProjetKitBox
                 Console.WriteLine(s.element.Code);
             }
             */
+            /*
             Element e = comp.ManagerStock.SearchElementByCode("COR100BRDEC");
             var test = comp.ManagerStock.GetTheBestSupplier(e);
             Console.WriteLine(test.IDSupplier);
+            Console.ReadKey();
+            */
+            List<StructOrderSupplier> list = comp.ManagerStock.GetBestSupplier();
+            foreach (StructOrderSupplier s in list)
+            {
+                Console.WriteLine(s.price.ToString() + " " + s.delay);
+            }
             Console.ReadKey();
         }
     }

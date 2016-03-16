@@ -98,11 +98,15 @@ namespace ProjetKitBox
         //The returned list tell us which is the best suppplier, then give us price and delay for each element
         public List<StructOrderSupplier> GetBestSupplier()
 		{
-            string query = "select prix, delai, FK_element, FK_fournisseur from linkelementfournisseur l1 " +
-                "where( " +
-                "prix = (select min(prix) from linkelementfournisseur l2 " +
-                "where l2.FK_element = l1.FK_element order by delai)) " +
-                "group by FK_element; ";
+            string query = "select prix, delai, l1.FK_fournisseur, l1.FK_Element from linkelementfournisseur l1 " +
+                "where prix = (select min(l2.prix) from linkelementfournisseur l2 " +
+                "where l1.FK_Element = l2.FK_Element) " +
+                "and delai = ( " +
+                "select min(l3.delai) from linkelementfournisseur l3 " +
+                "where l1.FK_Element = l3.FK_Element and prix " +
+                "= (select min(l4.prix) from linkelementfournisseur l4 " +
+                "where l1.FK_Element = l4.FK_Element)) " +
+                "group by FK_Element; ";
             try
             {
                 DBCon.Open();
