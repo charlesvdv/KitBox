@@ -398,5 +398,79 @@ namespace ProjetKitBox
             DBCon.Close();
         }
 
+        public List<StructOrderSupplier> GetInfoSupplier()
+        {
+            try
+            {
+                DBCon.Open();
+            } catch (Exception e)
+            {
+                throw e;
+            }
+
+            string query = "select * from linkelementfournisseur order by FK_element";
+
+            MySqlCommand cmd = new MySqlCommand(query, DBCon);
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            List<StructOrderSupplier> list = new List<StructOrderSupplier>() { };
+            while (reader.Read())
+            {
+                Element elem = SearchElementByCode((string)reader["FK_element"]);
+                list.Add(new StructOrderSupplier(Convert.ToDouble(reader["prix"]), (int)reader["delai"], 
+                    (int)reader["FK_fournisseur"], elem));
+            }
+
+            reader.Close();
+            DBCon.Close();
+            return list;
+        }
+
+        public void UpdateStock(List<StructStock> listElem)
+        {
+            try
+            {
+                DBCon.Open();
+            } catch (Exception e)
+            {
+                throw e;
+            }
+
+            string query = "START TRANSACTION; "
+            foreach (StructStock stock in listElem)
+            {
+                query += "update element set stock=" + stock.numberInStock + ", commande=" + stock.numberOrdered +
+                    ", reserve=" + stock.numberReserved + "where PK_code=" + stock.element.Code+"; ";
+            }
+            query += "COMMIT; ";
+
+            MySqlCommand cmd = new MySqlCommand(query, DBCon);
+            cmd.ExecuteNonQuery();
+
+            DBCon.Close();
+        }
+
+        public void UpdateSuppliers(List<StructOrderSupplier> infoSup)
+        {
+            string query = "START TRANSACTION; ";
+            foreach (StructOrderSupplier sup in infoSup)
+            {
+                query += "update linkelementfournisseur set prix="+sup.price+", delai="+sup.delay+
+                    "where FK_element="+sup.element.Code + "and FK_fournisseur="+sup.IDSupplier+"; ";
+            }
+            query += "COMMIT; ";
+
+            try
+            {
+                DBCon.Open();
+            } catch(Exception e)
+            {
+                throw e;
+            }
+            MySqlCommand cmd = new MySqlCommand(query, DBCon);
+            cmd.ExecuteNonQuery();
+
+            DBCon.Close();
+        }
     }
 }
