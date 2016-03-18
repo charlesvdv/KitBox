@@ -436,7 +436,7 @@ namespace ProjetKitBox
                 throw e;
             }
 
-            string query = "START TRANSACTION; "
+            string query = "START TRANSACTION; ";
             foreach (StructStock stock in listElem)
             {
                 query += "update element set stock=" + stock.numberInStock + ", commande=" + stock.numberOrdered +
