@@ -15,25 +15,69 @@ namespace Interface_commande
     {
         Company comp;
         List<StructOrderSupplier> commandToSupplier;
+        List<StructStock> stockInfo;
+        List<StructOrderSupplier> infoSupplier;
         public Form1()
         {
             InitializeComponent();
             comp = new Company();
             commandToSupplier = new List<StructOrderSupplier>() { };
+            stockInfo = comp.ManagerStock.GetStateStock();
+            infoSupplier = comp.ManagerStock.GetInfoSupplier();
+        }
+
+        public void EmptyDataGridView(DataGridView datagridview)
+        {
+            for(int i = datagridview.Rows.Count - 1; i > -1; i--)
+            {
+                datagridview.Rows.RemoveAt(i);
+            }
+        }
+
+        public void RefreshDataGridViewStock()
+        {
+            EmptyDataGridView(dataGridView3);
+            foreach(StructStock stock in stockInfo)
+            {
+                dataGridView3.Rows.Add(stock.element.Type, stock.element.Code, stock.numberInStock, 
+                    stock.numberOrdered, stock.numberReserved);
+            }
+        }
+
+        public void RefreshDataGridViewSupplier()
+        {
+            EmptyDataGridView(dataGridView4);
+            foreach(StructOrderSupplier sup in infoSupplier)
+            {
+                dataGridView4.Rows.Add(sup.element.Type, sup.element.Code, sup.IDSupplier,
+                    sup.price, sup.delay);
+            }
+            
         }
 
         public void RefreshDataGridViewCommandSupplier()
         {
             //empty the datagridviews
-            for(int i = dataGridView1.Rows.Count -1; i > -1 ; i--)
-            {
-                dataGridView1.Rows.RemoveAt(i);
-            }
+            EmptyDataGridView(dataGridView1);
             //populate the datagridview with newer data
             foreach (StructOrderSupplier order in commandToSupplier)
             {
                 dataGridView1.Rows.Add(order.element.Type, order.element.Code, order.numberToCommand,
                     order.IDSupplier, order.price);
+            }
+        }
+
+        public void RefreshDataGridViewLivraison()
+        {
+            //empty the datagridview
+            EmptyDataGridView(dataGridView2);
+            //populate data grid view
+            foreach(StructStock stock in stockInfo)
+            {
+                if (stock.numberOrdered != 0)
+                {
+                    dataGridView2.Rows.Add(stock.element.Type, stock.element.Color, stock.numberOrdered, 0);
+                }
             }
         }
 
@@ -74,6 +118,7 @@ namespace Interface_commande
         {
             if (MessageBox.Show("Voulez-vous vraiment annuler la commande?", "Annulation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
+                RefreshDataGridViewCommandSupplier();
                 panel1.Visible = false;
             }
         }
@@ -105,11 +150,99 @@ namespace Interface_commande
             RefreshDataGridViewCommandSupplier();
         }
 
+        private void dataGridView2_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow row = dataGridView2.Rows[e.ColumnIndex];
+            if (e.ColumnIndex == 2)
+            {
+                int numberBalance = Convert.ToInt32(row.Cells[2]);
+                if (numberBalance > 0)
+                {
+                    StructStock stock = stockInfo[e.ColumnIndex];
+                    stock.numberInStock = stock.numberInStock + (stock.numberOrdered - numberBalance);
+                    stock.numberOrdered = numberBalance;
+                    stockInfo[e.ColumnIndex] = stock;
+                } else
+                {
+                    MessageBox.Show("Vous ne pouvez pas mettre un nombre négatif!");
+                    
+                }
+            } 
+            RefreshDataGridViewLivraison();
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
             comp.ManagerStock.SaveCommand(commandToSupplier);
             panel1.Visible = false;
         }
 
+        private void tabControl1_Click(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedTab.Text == "Livraisons")
+            {
+                RefreshDataGridViewLivraison();   
+            } else if (tabControl1.SelectedTab.Text == "Stock")
+            {
+                RefreshDataGridViewStock();
+            } else if (tabControl1.SelectedTab.Text == "Fournisseurs")
+            {
+                RefreshDataGridViewSupplier();
+            } 
+        }
+
+        private void StockUpdating_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                comp.ManagerStock.UpdateStock(stockInfo);
+            } catch (Exception ex)
+            {
+                MessageBox.Show("Une erreur est arrivée... Veuillez vérifier votre encodage ! \n" + ex.Message);
+            }
+            
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                comp.ManagerStock.UpdateSuppliers(infoSupplier);
+            } catch(Exception ex)
+            {
+                MessageBox.Show("Une erreur est arrivée... Veuillez vérifier votre encodage ! \n" + ex.Message);
+            }
+            
+        }
+
+        private void dataGridView4_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow row = dataGridView4.Rows[e.RowIndex];
+            StructOrderSupplier sup = infoSupplier[e.RowIndex];
+
+            if (e.ColumnIndex == 3)
+            {
+                double price = Convert.ToDouble(row.Cells[3]);
+                if(price > 0)
+                {
+                    sup.price = price;
+                }else
+                {
+                    MessageBox.Show("Vous ne pouvez pas mettre un nombre négatif");
+                }
+            } else if (e.ColumnIndex == 4)
+            {
+                int delai = Convert.ToInt32(row.Cells[4]);
+                if (delai > 0)
+                {
+                    sup.delay = delai;
+                } else
+                {
+                    MessageBox.Show("Vous ne pouvez pas entrer un nombre négatif !");
+                }
+            }
+            infoSupplier[e.RowIndex] = sup;
+            RefreshDataGridViewSupplier();
+        }
     }
 }
