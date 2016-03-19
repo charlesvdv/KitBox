@@ -329,30 +329,33 @@ namespace ProjetKitBox
 
         }
 
-        private struct StructElemCommand
+        public struct StructElemCommand
         {
             public string codeElement;
             public int numOrdered;
             public int stock;
+            public double price;
 
-            public StructElemCommand(string c, int n, int s)
+            public StructElemCommand(string c, int n, int s, double p)
             {
                 this.codeElement = c;
                 this.numOrdered = n;
                 this.stock = s;
+                this.price = p;
             }
         }
 
 
-        public void RemoveFromStock(int refCommand)
+        public List<StructElemCommand> GetElemFromCommand(int refCommand)
         {
-            string queryCommand = "select e.PK_code, e.stock, l.quantiteTotale from linkcommandeelement l inner join "+
-                "element e on e.PK_code = l.FK_element where FK_commande = "+ refCommand +";";
+            string queryCommand = "select e.PK_code, e.stock, l.quantiteTotale, l.prix from linkcommandeelement l inner join " +
+                "element e on e.PK_code = l.FK_element where FK_commande = " + refCommand + ";";
 
             try
             {
                 DBCon.Open();
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 throw e;
             }
@@ -363,10 +366,29 @@ namespace ProjetKitBox
 
             while (reader.Read())
             {
-                codeElem.Add(new StructElemCommand(reader["PK_code"].ToString(), (int)reader["quantiteTotale"], (int)reader["stock"]));
+                codeElem.Add(new StructElemCommand(reader["PK_code"].ToString(), (int)reader["quantiteTotale"], (int)reader["stock"], Convert.ToDouble(reader["prix"])));
             }
 
             reader.Close();
+            DBCon.Close();
+
+            return codeElem;
+        }
+
+
+        public void RemoveFromStock(int refCommand)
+        {
+            List<StructElemCommand> codeElem = GetElemFromCommand(refCommand);
+
+            try
+            {
+                DBCon.Open();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
 
             //check if the stock is enough for the command
             foreach (StructElemCommand stru in codeElem)
@@ -385,7 +407,7 @@ namespace ProjetKitBox
             }
             queryUpdate += "COMMIT; ";
 
-            cmd = new MySqlCommand(queryUpdate, DBCon);
+            MySqlCommand cmd = new MySqlCommand(queryUpdate, DBCon);
 
             cmd.ExecuteNonQuery();
 
