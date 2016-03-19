@@ -33,9 +33,10 @@ namespace ProjetKitBox
                     supCutNumber += 1;
                 } 
             }
-
+            string price = order.GetPrice().ToString();
+            price = price.Replace(',', '.');
             string query = "INSERT INTO `kitbox`.`commande` (`prix total`, `FK_client`, `date`, `coupeSup`) " +
-                "VALUES ('" + order.GetPrice() + "' , '" + order.Client.NClient + "', now(), "+ supCutNumber +");";
+                "VALUES ('" + price + "' , '" + order.Client.NClient + "', now(), "+ supCutNumber +");";
 
             try
             {
@@ -67,7 +68,8 @@ namespace ProjetKitBox
             DBCon.Close();
 
             //save the data in a file that could be printed
-            using (StreamWriter sw = new StreamWriter("C:\\Users\\charles\\Desktop\\commandeclient" + PKCommand+".txt"))
+            string WinUser = Environment.UserName;
+            using (StreamWriter sw = new StreamWriter("C:\\Users\\"+WinUser+"\\Desktop\\commandeclient" + PKCommand+".txt"))
             {
                 string text = "Commande N. " + PKCommand +"\n";
                 text += "Client : " + order.Client.Name + ", numéro de téléphone : " + order.Client.Telephone + "\n";
@@ -134,10 +136,11 @@ namespace ProjetKitBox
             string query = "START TRANSACTION; ";
             foreach (ElemCount ec in SortedElem)
             {
-                query += "insert into linkcommandeelement(FK_Element, FK_commande, quantiteTotale, prix, quantiteRetiree)" +
-                    " values('" + ec.elem.Code +"', "+ PKCommand+", "+ ec.num+", "+ec.elem.Price+", 0); ";
+                string price = ec.elem.Price.ToString().Replace(',', '.');
+                query += "\ninsert into linkcommandeelement (FK_element, FK_commande, quantiteTotale, prix, quantiteRetiree)" +
+                    " values ('" + ec.elem.Code +"' , "+ PKCommand+" , "+ ec.num+" , "+price+" , 0); ";
             }
-            query += "COMMIT; ";
+            query += "\nCOMMIT; ";
 
             MySqlCommand cmd = new MySqlCommand(query, DBCon);
             cmd.ExecuteNonQuery();
@@ -180,5 +183,31 @@ namespace ProjetKitBox
             return data; 
 		}
 
+
+
+        public StructInfoOrder GetInfoOrder(int refOrder)
+        {
+            string query = "select * from commande where PK_refCommande=" + refOrder + "; ";
+            try
+            {
+                DBCon.Open();
+            } catch(Exception e)
+            {
+                throw e;
+            }
+            StructInfoOrder s = new StructInfoOrder(0, 0, 0, false);
+
+            MySqlCommand cmd = new MySqlCommand(query, DBCon);
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            while(reader.Read())
+            {
+                s = new StructInfoOrder((int)reader["FK_client"], Convert.ToDouble(reader["prix total"]), (int)reader["coupeSup"], (bool)reader["retire"]);
+                break;
+            }
+            reader.Close();
+            DBCon.Close();
+            return s;
+        }
     }
 }

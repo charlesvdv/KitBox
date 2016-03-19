@@ -85,18 +85,17 @@ namespace ProjetKitBox
 		public void SetCorner(string color)
 		{
 			Element corner = managerStock.FindCorner(this.size.heigth, color);
-
-            if (corner.Type != "Corni") //Don't we need to rename it corni ? 
+            if (corner.Type!="cornière") //Don't we need to rename it corni ? 
             {
                 throw new Exception("Can't had a element that's not a corner");
             }
 
-            else if(corner.Size.heigth > size.heigth)
+            else if(corner.Size.heigth > this.size.heigth)
             {
                 supplementCut = true;
             }
 
-            else if (corner.Size.heigth < size.heigth)
+            else if (corner.Size.heigth < this.size.heigth)
             {
                 throw new Exception("The corner is smaller than the shelf.");
             }

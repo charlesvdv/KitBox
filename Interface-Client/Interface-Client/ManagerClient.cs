@@ -20,7 +20,12 @@ namespace ProjetKitBox
 
         //Add client in the dabase
 		public void AddClient(Client client)
-		{
+        { 
+            //the client is already existing in the database so no need to continue
+            if(client.NClient != 0)
+            {
+                return;
+            }
             string query = "INSERT INTO `kitbox`.`client` (`PK_client`, `telephone`, `adresse`, `nom`) VALUES (NULL, '" + client.Telephone + "', '" + client.Adress + "', '" +  client.Name+"');";
 
             try
@@ -73,6 +78,7 @@ namespace ProjetKitBox
         //Search a client from the database, and give us all the information about him
         public Client Search(string name, string tel)
 		{
+            DBCon.Close();
             string query = "SELECT * FROM `client` WHERE `nom` LIKE '%" + name + "%' AND  `telephone` like '%" + tel+"%';";
             try
             {

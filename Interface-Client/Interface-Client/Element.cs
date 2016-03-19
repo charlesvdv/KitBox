@@ -58,14 +58,14 @@ namespace ProjetKitBox
 			try 
 			{
                 elem =managerStock.SearchElement(type, color, size);
+                this.price = elem.Price;
+                this.code = elem.Code;
+                this.requiredNumber = elem.RequiredNumber;
             }
 			catch (Exception e)
 			{
 				throw e;
 			}
-			this.price = elem.price;
-			this.code = elem.code;
-			this.requiredNumber = elem.requiredNumber;
 		}
 
         public string Color

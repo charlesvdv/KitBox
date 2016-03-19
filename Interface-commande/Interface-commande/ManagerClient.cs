@@ -78,6 +78,7 @@ namespace ProjetKitBox
         //Search a client from the database, and give us all the information about him
         public Client Search(string name, string tel)
 		{
+            DBCon.Close();
             string query = "SELECT * FROM `client` WHERE `nom` LIKE '%" + name + "%' AND  `telephone` like '%" + tel+"%';";
             try
             {

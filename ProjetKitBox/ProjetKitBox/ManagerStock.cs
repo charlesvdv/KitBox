@@ -175,8 +175,6 @@ namespace ProjetKitBox
 
                 i++;
             }
-
-            Console.WriteLine(e.Type);
             dataReader.Close();
             DBCon.Close();
 
@@ -186,8 +184,8 @@ namespace ProjetKitBox
         //Search a element in the database, only using is own code, adn give us all information about it
         public Element SearchElementByCode(string code)
         {
-            string query = "SELECT PK_code,couleur,hauteur,largeur,profondeur,prix,typeElement,nbrpieces  FROM " +
-                "element WHERE PK_code =" + code +";";
+            string query = "SELECT * FROM element WHERE PK_code ='" + code +"';";
+
             string server = "localhost";
             string database = "kitbox";
             string uid = "root";

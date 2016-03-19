@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using MySql;
 using MySql.Data;
 using MySql.Data.MySqlClient;
@@ -57,14 +58,55 @@ namespace ProjetKitBox
             return stu; 
         }
 
+        //Give us the best supplier, but only for one element(Used in the front when we want to add an element on the commande. 
+        public StructOrderSupplier GetTheBestSupplier(Element e)
+        {
+            string query = "select min(prix), delai, FK_element, FK_fournisseur from linkelementfournisseur where FK_element='"+e.Code+"';";
+            
+            try
+            {
+                DBCon.Open();
+            }
+            catch (Exception ex)
+            {
+                throw ex; 
+            }
+
+            MySqlCommand cmd = new MySqlCommand(query, DBCon);
+
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+
+            StructOrderSupplier stu = new StructOrderSupplier(0, 0, 0, null);
+
+            while (reader.Read())
+            {
+                Element ee = new Element((string)reader["FK_element"], this);
+
+                stu = new StructOrderSupplier(Convert.ToDouble(reader["min(prix)"]), (int)reader["delai"], (int)reader["FK_fournisseur"], ee);
+
+                break;
+            }
+
+            reader.Close();
+
+            DBCon.Close();
+
+            return stu;
+        }
+
         //The returned list tell us which is the best suppplier, then give us price and delay for each element
-		public List<StructOrderSupplier> GetBestSupplier()
+        public List<StructOrderSupplier> GetBestSupplier()
 		{
-            string query = "select prix, delai, FK_element, FK_fournisseur from linkelementfournisseur l1 " +
-                "where( " +
-                "prix = (select min(prix) from linkelementfournisseur l2 " +
-                "where l2.FK_element = l1.FK_element order by delai)) " +
-                "group by FK_element; ";
+            string query = "select prix, delai, l1.FK_fournisseur, l1.FK_Element from linkelementfournisseur l1 " +
+                "where prix = (select min(l2.prix) from linkelementfournisseur l2 " +
+                "where l1.FK_Element = l2.FK_Element) " +
+                "and delai = ( " +
+                "select min(l3.delai) from linkelementfournisseur l3 " +
+                "where l1.FK_Element = l3.FK_Element and prix " +
+                "= (select min(l4.prix) from linkelementfournisseur l4 " +
+                "where l1.FK_Element = l4.FK_Element)) " +
+                "group by FK_Element; ";
             try
             {
                 DBCon.Open();
@@ -100,8 +142,8 @@ namespace ProjetKitBox
 		public Element SearchElement(string type, string color, StructSize size)
 		{
             string query = "SELECT * FROM " +
-                "`element` WHERE `typeElement` LIKE '" + type + "' AND `couleur` LIKE '" + color + "' AND `hauteur` "+
-                "LIKE "+ size.heigth +" AND `largeur` LIKE "+size.length+" AND `profondeur` LIKE "+size.depth;
+                "element WHERE typeElement='" + type + "' AND couleur='" + color + "' AND hauteur="+
+                size.heigth +" AND largeur="+size.length+" AND profondeur ="+size.depth+";";
 
             try
             {
@@ -133,7 +175,6 @@ namespace ProjetKitBox
 
                 i++;
             }
-
             dataReader.Close();
             DBCon.Close();
 
@@ -143,8 +184,8 @@ namespace ProjetKitBox
         //Search a element in the database, only using is own code, adn give us all information about it
         public Element SearchElementByCode(string code)
         {
-            string query = "SELECT PK_code,couleur,hauteur,largeur,profondeur,prix,typeElement,nbrpieces  FROM " +
-                "`element` WHERE `PK_code` LIKE '" + code +"';";
+            string query = "SELECT * FROM element WHERE PK_code ='" + code +"';";
+
             string server = "localhost";
             string database = "kitbox";
             string uid = "root";
@@ -186,8 +227,8 @@ namespace ProjetKitBox
         //Find the corner in the database 
         public Element FindCorner(double heigth, string color)
 		{
-            string query = "SELECT * FROM `element` "+
-                "WHERE `typeElement` LIKE 'corni' AND `couleur` LIKE '"+color+"' AND `hauteur` >= "+ heigth +"  order by hauteur LIMIT 1";
+            string query = "SELECT * FROM element "+
+                "WHERE typeElement='cornière' AND couleur='"+color+"' AND hauteur >= "+ heigth +"  order by hauteur LIMIT 1";
 
             try
             {
@@ -242,6 +283,7 @@ namespace ProjetKitBox
         // Permit to save the number of commanded element for each element. 
         public void SaveCommand(List<StructOrderSupplier> structCommand)
         {
+            //save in database
             string query = "START TRANSACTION; ";
 
             foreach (StructOrderSupplier orderSup in structCommand)
@@ -260,35 +302,42 @@ namespace ProjetKitBox
             MySqlCommand cmd = new MySqlCommand(query, DBCon);
 
             cmd.ExecuteNonQuery();
-
             DBCon.Close();
-
-        }
-
-        private struct StructElemCommand
-        {
-            public string codeElement;
-            public int numOrdered;
-            public int stock;
-
-            public StructElemCommand(string c, int n, int s)
+            //sort the list by supplier
+            List<StructOrderSupplier> sortedList = structCommand.OrderBy(x => x.IDSupplier).ToList();
+            //create string that will be written in the file
+            string text = "Commande Fournisseur \n\n";
+            int idSupplier = -1;
+            foreach (StructOrderSupplier stru in sortedList)
             {
-                this.codeElement = c;
-                this.numOrdered = n;
-                this.stock = s;
+                if(idSupplier != stru.IDSupplier)
+                {
+                    text += "\t Fournisseur " + stru.IDSupplier + "\n";
+                    text += "\t\tCode Element | Delai | Prix \n";
+                    idSupplier = stru.IDSupplier;
+                }
+                text += "\t\t" + stru.element.Code + "\t\t" + stru.delay +
+                    "\t\t" + stru.price + "€ \n";
             }
+            //write the string text in the file
+            string user = Environment.UserName;
+            using (StreamWriter sw = new StreamWriter("C:\\Users\\"+user+"\\Desktop\\commmandefournisseur.txt"))
+            {
+                sw.WriteLine(text);
+            }
+
         }
 
-
-        public void RemoveFromStock(int refCommand)
+        public List<StructElemCommand> GetElemFromCommand(int refCommand)
         {
-            string queryCommand = "select e.PK_code, e.stock, l.quantiteTotale from linkcommandeelement l inner join "+
-                "element e on e.PK_code = l.FK_element where FK_commande = "+ refCommand +";";
+            string queryCommand = "select e.PK_code, e.stock, l.quantiteTotale, l.prix from linkcommandeelement l inner join " +
+                "element e on e.PK_code = l.FK_element where FK_commande = " + refCommand + ";";
 
             try
             {
                 DBCon.Open();
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 throw e;
             }
@@ -299,10 +348,29 @@ namespace ProjetKitBox
 
             while (reader.Read())
             {
-                codeElem.Add(new StructElemCommand(reader["PK_code"].ToString(), (int)reader["quantiteTotale"], (int)reader["stock"]));
+                codeElem.Add(new StructElemCommand(reader["PK_code"].ToString(), (int)reader["quantiteTotale"], (int)reader["stock"], Convert.ToDouble(reader["prix"])));
             }
 
             reader.Close();
+            DBCon.Close();
+
+            return codeElem;
+        }
+
+
+        public void RemoveFromStock(int refCommand)
+        {
+            List<StructElemCommand> codeElem = GetElemFromCommand(refCommand);
+
+            try
+            {
+                DBCon.Open();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
 
             //check if the stock is enough for the command
             foreach (StructElemCommand stru in codeElem)
@@ -321,7 +389,7 @@ namespace ProjetKitBox
             }
             queryUpdate += "COMMIT; ";
 
-            cmd = new MySqlCommand(queryUpdate, DBCon);
+            MySqlCommand cmd = new MySqlCommand(queryUpdate, DBCon);
 
             cmd.ExecuteNonQuery();
 
@@ -334,5 +402,79 @@ namespace ProjetKitBox
             DBCon.Close();
         }
 
+        public List<StructOrderSupplier> GetInfoSupplier()
+        {
+            try
+            {
+                DBCon.Open();
+            } catch (Exception e)
+            {
+                throw e;
+            }
+
+            string query = "select * from linkelementfournisseur order by FK_element";
+
+            MySqlCommand cmd = new MySqlCommand(query, DBCon);
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            List<StructOrderSupplier> list = new List<StructOrderSupplier>() { };
+            while (reader.Read())
+            {
+                Element elem = SearchElementByCode((string)reader["FK_element"]);
+                list.Add(new StructOrderSupplier(Convert.ToDouble(reader["prix"]), (int)reader["delai"], 
+                    (int)reader["FK_fournisseur"], elem));
+            }
+
+            reader.Close();
+            DBCon.Close();
+            return list;
+        }
+
+        public void UpdateStock(List<StructStock> listElem)
+        {
+            try
+            {
+                DBCon.Open();
+            } catch (Exception e)
+            {
+                throw e;
+            }
+
+            string query = "START TRANSACTION; ";
+            foreach (StructStock stock in listElem)
+            {
+                query += "update element set stock=" + stock.numberInStock + ", commande=" + stock.numberOrdered +
+                    ", reserve=" + stock.numberReserved + "where PK_code=" + stock.element.Code+"; ";
+            }
+            query += "COMMIT; ";
+
+            MySqlCommand cmd = new MySqlCommand(query, DBCon);
+            cmd.ExecuteNonQuery();
+
+            DBCon.Close();
+        }
+
+        public void UpdateSuppliers(List<StructOrderSupplier> infoSup)
+        {
+            string query = "START TRANSACTION; ";
+            foreach (StructOrderSupplier sup in infoSup)
+            {
+                query += "update linkelementfournisseur set prix="+sup.price+", delai="+sup.delay+
+                    "where FK_element="+sup.element.Code + "and FK_fournisseur="+sup.IDSupplier+"; ";
+            }
+            query += "COMMIT; ";
+
+            try
+            {
+                DBCon.Open();
+            } catch(Exception e)
+            {
+                throw e;
+            }
+            MySqlCommand cmd = new MySqlCommand(query, DBCon);
+            cmd.ExecuteNonQuery();
+
+            DBCon.Close();
+        }
     }
 }

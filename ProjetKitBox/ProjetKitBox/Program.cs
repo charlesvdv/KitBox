@@ -13,7 +13,7 @@ namespace ProjetKitBox
         {
             Company comp = new Company();
 
-
+            /*
             // WORKING => Add managerStock linkCommandeElement (DB) !!!!!
             
             Client c = new Client("TEST", "test", "000",comp.ManagerClient);
@@ -37,7 +37,7 @@ namespace ProjetKitBox
 
             Console.ReadKey();
 
-
+            */
 
             /* WORKING 
             List<StructStock> listStru = comp.ManagerStock.GetStateStock();
@@ -68,11 +68,11 @@ namespace ProjetKitBox
             Console.WriteLine(e.Code);
             */
 
-
-            /* WORKING
+            /*
+            
             StructSize s = new StructSize(0, 0, 100);
 
-            Element e = comp.ManagerStock.SearchElement("Corni", "Brun", s);
+            Element e = comp.ManagerStock.SearchElement("cornière", "Brun", s);
 
             Element e1 = comp.ManagerStock.SearchElementByCode(e.Code);
 
