@@ -17,7 +17,7 @@ namespace Interface_Client
         int numeroMeuble = 1;
         int numeroCommande = 1;
         Order commande = null;
-        Shelf s1 = null;       
+        Shelf shelf = null;       
         double prix = 0;
         double prixTotal = 0;
         
@@ -33,7 +33,7 @@ namespace Interface_Client
             //Introduction des variables à ajouter dans les ComboBox
             string[] eights = {"36", "46", "56" };
             string[] colors = { "Blanc", "Brun" };
-            string[] options = { "Porte (blanc)", "Porte (brun)", "Porte (verre)", "Tiroir" };
+            string[] options = {"Pas d'options", "Porte (Blanc)", "Porte (Brun)", "Porte (Verre)"};
             string[] number = { "1", "2", "3", "4", "5", "6", "7" };
             string[] depths = { "32", "42", "52", "62" };
             string[] width = { "32", "42", "52", "62", "80", "100", "120" };
@@ -86,7 +86,12 @@ namespace Interface_Client
                                 cb.Items.AddRange(colors);
 
                             else if (cb.Name.Contains("OptionCh"))
+                            {
                                 cb.Items.AddRange(options);
+                                //set default value (not option)
+                                cb.SelectedIndex = 0;
+                            }
+                                
                         }
                     }
             }
@@ -278,7 +283,7 @@ namespace Interface_Client
                 int profondeur = int.Parse(DepthCh.Text);
                 //Configuration de l'armoire
                 StructSize s = new StructSize(largeur,profondeur,0);
-                s1 = new Shelf(s, comp.ManagerStock);
+                shelf = new Shelf(s, comp.ManagerStock);
             }
             else
             {
@@ -313,13 +318,114 @@ namespace Interface_Client
         //Lorsqu'on clic sur ajouter au panier
         private void AddToCaddy_Click(object sender, EventArgs e)
         {
+            //control if all the combobox are filled
+            bool filled = true;
+            foreach(Control ctrl in this.step2.Controls)
+            {
+                if(ctrl.Visible == true)
+                {
+                    //just for the combobox for the corner color
+                    if(ctrl is ComboBox)
+                    {
+                        ComboBox cb = (ComboBox)ctrl;
+                        if (cb.SelectedItem == null){ filled = false; break; }
+                    }
+                    //check the combobox inside the label
+                    else if (ctrl is Panel)
+                    {
+                        Panel pan = (Panel)ctrl;
+                        foreach (Control ctrlLabel in pan.Controls)
+                        {
+                            
+                            if (ctrlLabel is ComboBox)
+                            {
+                                ComboBox cb = (ComboBox)ctrlLabel;
+                                if (cb.SelectedItem == null) { filled = false; break; }
+                            }
+                        }
+                    }
+                }
+                //we have two foreach loop so we break if the second foreach loop set filled to false
+                //increase perf
+                if(filled == false) { break; }
+            }
+            if (filled == false)
+            {
+                MessageBox.Show("Veuillez remplir toutes les informations !");
+                return;
+            }
+            //create the box and populate them
+            int boxNumber = -1;
+            foreach(Control ctrl in step2.Controls)
+            {
+                if(ctrl is Panel && ctrl.Visible == true)
+                {
+                    Panel panel = (Panel)ctrl;
+                    double height = 0;
+                    string color = "";
+                    string optionStr = "";
+                    foreach (Control ctrlLabel in panel.Controls)
+                    {
+                        if(ctrlLabel is ComboBox)
+                        {
+                            ComboBox cb = (ComboBox)ctrlLabel;
+                            if(cb.Name.Contains("HeightCh"))
+                            {
+                                height = Convert.ToDouble(cb.SelectedItem);
+                            } else if (cb.Name.Contains("ColorCh"))
+                            {
+                                color = (string)cb.SelectedItem;
+                            } else if (cb.Name.Contains("OptionCh"))
+                            {
+                                optionStr = (string)cb.SelectedItem;
+                            }
+                        }
+                    }
+                    shelf.AddBox(height, color);
+                    boxNumber++;
+                    //parse the option to have the type and the color
+                    if (optionStr != "Pas d'options")
+                    {
+                        int beginBrackets = optionStr.LastIndexOf('(');
+                        int endBrackets = optionStr.LastIndexOf(')');
+                        int lenghtColor = endBrackets - beginBrackets - 1;
+                        string colorOption = optionStr.Substring(beginBrackets + 1, lenghtColor).Trim();
+                        string optionType = optionStr.Substring(0, beginBrackets).Trim();
+                        try
+                        {
+                            shelf.Boxes[boxNumber].AddOption(optionType, colorOption);
+                        } catch(Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                            return;
+                        }
+                        
+                    }
+                }
+            }
+
+            if(shelf.SupplementCut == true)
+            {
+                MessageBox.Show("Attention un supplément de 30€ vous sera demandé parce que la hauteur de votre meuble n'est pas standard");
+            }
+
+            commande.AddShelf(shelf, (string)CornerColor.SelectedItem);
+
+            prixTotal = commande.GetPrice();
+            label10.Text = prixTotal.ToString() + " " + "€";
+            step3.Enabled = true;
+            step2.Enabled = false;
+            tabControl1.SelectedIndex = 3;
+            /*
             bool control = true;
             foreach (Control p in this.step2.Controls)
             {
+                MessageBox.Show(p.Name);
+                //test if we have empty combobox
                 if (p is ComboBox)
                 {
                     ComboBox cb = (ComboBox)p;
-                    if(cb.SelectedItem ==null)
+                    if (cb.SelectedItem ==null)
                     {
                         control = false;
                         break;
@@ -359,7 +465,7 @@ namespace Interface_Client
                                 int nm = int.Parse(NumMeuble.Text);
 
                             }
-                            */                            
+                                                     
                         }                                           
                     }                                    
                     s1.AddBox(hauteur, couleur);
@@ -405,7 +511,8 @@ namespace Interface_Client
             else
             {
                 MessageBox.Show("Veuillez remplir tous les champs");
-            }           
+            }         
+            */
         }
 
 
