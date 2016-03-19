@@ -200,7 +200,7 @@ namespace ProjetKitBox
 
             while(reader.Read())
             {
-                s = new StructInfoOrder((int)reader["FK_client"], Convert.ToDouble(reader["prix"]), (int)reader["coupeSup"], (bool)reader["retire"]);
+                s = new StructInfoOrder((int)reader["FK_client"], Convert.ToDouble(reader["prix total"]), (int)reader["coupeSup"], (bool)reader["retire"]);
                 break;
             }
             reader.Close();
