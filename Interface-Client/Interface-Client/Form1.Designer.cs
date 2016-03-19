@@ -29,12 +29,14 @@
         private void InitializeComponent()
         {
             this.step3 = new System.Windows.Forms.TabPage();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.label52 = new System.Windows.Forms.Label();
             this.label50 = new System.Windows.Forms.Label();
             this.ValidateCaddy = new System.Windows.Forms.Button();
             this.CancelOrder3 = new System.Windows.Forms.Button();
             this.NewItem = new System.Windows.Forms.Button();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.step2 = new System.Windows.Forms.TabPage();
             this.CornerColor = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -130,10 +132,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label49 = new System.Windows.Forms.Label();
             this.NumCommande = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.NumMeuble = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
@@ -156,34 +156,44 @@
             // 
             // step3
             // 
+            this.step3.Controls.Add(this.listBox1);
             this.step3.Controls.Add(this.label52);
             this.step3.Controls.Add(this.label50);
             this.step3.Controls.Add(this.ValidateCaddy);
             this.step3.Controls.Add(this.CancelOrder3);
             this.step3.Controls.Add(this.NewItem);
-            this.step3.Controls.Add(this.checkedListBox1);
+            this.step3.Controls.Add(this.label10);
+            this.step3.Controls.Add(this.label6);
             this.step3.Location = new System.Drawing.Point(4, 22);
             this.step3.Name = "step3";
             this.step3.Padding = new System.Windows.Forms.Padding(3);
-            this.step3.Size = new System.Drawing.Size(613, 515);
+            this.step3.Size = new System.Drawing.Size(614, 385);
             this.step3.TabIndex = 3;
             this.step3.Text = "Panier";
             this.step3.UseVisualStyleBackColor = true;
+            // 
+            // listBox1
+            // 
+            this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(22, 71);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(163, 91);
+            this.listBox1.TabIndex = 6;
             // 
             // label52
             // 
             this.label52.AutoSize = true;
             this.label52.Location = new System.Drawing.Point(15, 218);
             this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(396, 13);
+            this.label52.Size = new System.Drawing.Size(207, 13);
             this.label52.TabIndex = 5;
-            this.label52.Text = "Veuillez créer un nouveau meuble ou sélectionner vos meubles et valider le panier" +
-    " ";
+            this.label52.Text = "*Meubles sujets à un supplément découpe";
             // 
             // label50
             // 
             this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(15, 32);
+            this.label50.Location = new System.Drawing.Point(19, 41);
             this.label50.Name = "label50";
             this.label50.Size = new System.Drawing.Size(203, 13);
             this.label50.TabIndex = 4;
@@ -219,14 +229,23 @@
             this.NewItem.UseVisualStyleBackColor = true;
             this.NewItem.Click += new System.EventHandler(this.NewItem_Click);
             // 
-            // checkedListBox1
+            // label10
             // 
-            this.checkedListBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(18, 83);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(337, 90);
-            this.checkedListBox1.TabIndex = 0;
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(101, 175);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(22, 13);
+            this.label10.TabIndex = 24;
+            this.label10.Text = "0 €";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(19, 175);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(76, 13);
+            this.label6.TabIndex = 21;
+            this.label6.Text = "PRIX TOTAL :";
             // 
             // step2
             // 
@@ -860,14 +879,14 @@
             this.step1.Location = new System.Drawing.Point(4, 22);
             this.step1.Name = "step1";
             this.step1.Padding = new System.Windows.Forms.Padding(3);
-            this.step1.Size = new System.Drawing.Size(613, 515);
+            this.step1.Size = new System.Drawing.Size(614, 385);
             this.step1.TabIndex = 1;
             this.step1.Text = "Intro";
             this.step1.UseVisualStyleBackColor = true;
             // 
             // Next
             // 
-            this.Next.Location = new System.Drawing.Point(18, 135);
+            this.Next.Location = new System.Drawing.Point(31, 183);
             this.Next.Name = "Next";
             this.Next.Size = new System.Drawing.Size(75, 23);
             this.Next.TabIndex = 10;
@@ -877,7 +896,7 @@
             // 
             // CancelOrder
             // 
-            this.CancelOrder.Location = new System.Drawing.Point(99, 135);
+            this.CancelOrder.Location = new System.Drawing.Point(112, 183);
             this.CancelOrder.Name = "CancelOrder";
             this.CancelOrder.Size = new System.Drawing.Size(149, 23);
             this.CancelOrder.TabIndex = 9;
@@ -888,7 +907,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(254, 48);
+            this.label19.Location = new System.Drawing.Point(276, 66);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(21, 13);
             this.label19.TabIndex = 8;
@@ -897,7 +916,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(254, 21);
+            this.label18.Location = new System.Drawing.Point(276, 39);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(21, 13);
             this.label18.TabIndex = 7;
@@ -906,7 +925,7 @@
             // NumberLockersCh
             // 
             this.NumberLockersCh.FormattingEnabled = true;
-            this.NumberLockersCh.Location = new System.Drawing.Point(214, 76);
+            this.NumberLockersCh.Location = new System.Drawing.Point(236, 94);
             this.NumberLockersCh.Name = "NumberLockersCh";
             this.NumberLockersCh.Size = new System.Drawing.Size(51, 21);
             this.NumberLockersCh.TabIndex = 6;
@@ -914,7 +933,7 @@
             // DepthCh
             // 
             this.DepthCh.FormattingEnabled = true;
-            this.DepthCh.Location = new System.Drawing.Point(179, 45);
+            this.DepthCh.Location = new System.Drawing.Point(201, 63);
             this.DepthCh.Name = "DepthCh";
             this.DepthCh.Size = new System.Drawing.Size(69, 21);
             this.DepthCh.TabIndex = 5;
@@ -922,7 +941,7 @@
             // WidthCh
             // 
             this.WidthCh.FormattingEnabled = true;
-            this.WidthCh.Location = new System.Drawing.Point(179, 18);
+            this.WidthCh.Location = new System.Drawing.Point(201, 36);
             this.WidthCh.Name = "WidthCh";
             this.WidthCh.Size = new System.Drawing.Size(69, 21);
             this.WidthCh.TabIndex = 4;
@@ -930,7 +949,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(94, 79);
+            this.label17.Location = new System.Drawing.Point(116, 97);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(114, 13);
             this.label17.TabIndex = 3;
@@ -939,7 +958,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(94, 50);
+            this.label16.Location = new System.Drawing.Point(116, 68);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(79, 13);
             this.label16.TabIndex = 2;
@@ -948,7 +967,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(94, 21);
+            this.label15.Location = new System.Drawing.Point(116, 39);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(60, 13);
             this.label15.TabIndex = 1;
@@ -957,7 +976,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(11, 21);
+            this.label14.Location = new System.Drawing.Point(21, 39);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(89, 13);
             this.label14.TabIndex = 0;
@@ -1091,13 +1110,11 @@
             this.panel8.Controls.Add(this.label9);
             this.panel8.Controls.Add(this.label49);
             this.panel8.Controls.Add(this.NumCommande);
-            this.panel8.Controls.Add(this.label10);
             this.panel8.Controls.Add(this.NumMeuble);
             this.panel8.Controls.Add(this.label7);
-            this.panel8.Controls.Add(this.label6);
             this.panel8.Controls.Add(this.label5);
             this.panel8.Controls.Add(this.label4);
-            this.panel8.Location = new System.Drawing.Point(36, 6);
+            this.panel8.Location = new System.Drawing.Point(41, 6);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(622, 88);
             this.panel8.TabIndex = 1;
@@ -1112,6 +1129,7 @@
             this.GoToCaddy.TabIndex = 30;
             this.GoToCaddy.Text = "Panier";
             this.GoToCaddy.UseVisualStyleBackColor = true;
+            this.GoToCaddy.Click += new System.EventHandler(this.GoToCaddy_Click);
             // 
             // label12
             // 
@@ -1126,7 +1144,7 @@
             // label51
             // 
             this.label51.AutoSize = true;
-            this.label51.Location = new System.Drawing.Point(140, 48);
+            this.label51.Location = new System.Drawing.Point(131, 58);
             this.label51.Name = "label51";
             this.label51.Size = new System.Drawing.Size(21, 13);
             this.label51.TabIndex = 28;
@@ -1135,7 +1153,8 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(109, 48);
+            this.label9.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label9.Location = new System.Drawing.Point(107, 58);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(13, 13);
             this.label9.TabIndex = 27;
@@ -1161,15 +1180,6 @@
             this.NumCommande.TabIndex = 25;
             this.NumCommande.Text = "0";
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(153, 72);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(22, 13);
-            this.label10.TabIndex = 24;
-            this.label10.Text = "0 €";
-            // 
             // NumMeuble
             // 
             this.NumMeuble.AutoSize = true;
@@ -1188,19 +1198,10 @@
             this.label7.TabIndex = 22;
             this.label7.Text = "COMMANDE N°";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(2, 72);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(148, 13);
-            this.label6.TabIndex = 21;
-            this.label6.Text = "PRIX TOTAL (COMMANDE) :";
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(2, 48);
+            this.label5.Location = new System.Drawing.Point(3, 58);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(108, 13);
             this.label5.TabIndex = 20;
@@ -1218,7 +1219,7 @@
             // panel9
             // 
             this.panel9.Controls.Add(this.label11);
-            this.panel9.Location = new System.Drawing.Point(35, 6);
+            this.panel9.Location = new System.Drawing.Point(41, 6);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(622, 88);
             this.panel9.TabIndex = 31;
@@ -1239,10 +1240,10 @@
             this.AcceptButton = this.OK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(696, 523);
-            this.Controls.Add(this.panel9);
+            this.ClientSize = new System.Drawing.Size(696, 535);
             this.Controls.Add(this.panel8);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.panel9);
             this.Name = "Form1";
             this.Text = "KITBOX";
             this.step3.ResumeLayout(false);
@@ -1281,7 +1282,6 @@
         private System.Windows.Forms.Button ValidateCaddy;
         private System.Windows.Forms.Button CancelOrder3;
         private System.Windows.Forms.Button NewItem;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.TabPage step2;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.ComboBox OptionCh7;
@@ -1387,6 +1387,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }
 
