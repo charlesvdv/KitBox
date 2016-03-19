@@ -410,7 +410,7 @@ namespace Interface_Client
             }
 
             commande.AddShelf(shelf, (string)CornerColor.SelectedItem);
-
+            listBox1.Items.Add("-> " + "Meuble" + NumMeuble.Text + " " + "( " + commande.GetPrice() + " " + "€" + " )");
             prixTotal = commande.GetPrice();
             label10.Text = prixTotal.ToString() + " " + "€";
             step3.Enabled = true;

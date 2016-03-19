@@ -136,7 +136,7 @@ namespace Interface_commande
         private void GO_Click(object sender, EventArgs e)
         {
             int refOrder = Convert.ToInt32(textBoxRefCommand.Text);
-            StructInfoOrder infoOrder;
+            StructInfoOrder infoOrder = new StructInfoOrder();
             List<StructElemCommand> elemOrdered = new List<StructElemCommand>() { };
             try
             {
@@ -147,8 +147,8 @@ namespace Interface_commande
             {
                 MessageBox.Show("Une erreur est survenue... Avez-vous bien entrée la bonne commande ?\n"+ ex.Message);
             }
-
-            RefreshDataGridViewRemoveOrderClient(elemOrdered);
+            if (infoOrder.retire == false)
+                RefreshDataGridViewRemoveOrderClient(elemOrdered);
 
             panel2.Visible = true;
         }
@@ -278,7 +278,9 @@ namespace Interface_commande
             } catch(Exception ex)
             {
                 MessageBox.Show("Une erreur est survenue... Avez vous bien rentrer tout ce qu'il fallait ? \n" + ex.Message);
+                return;
             }
+            RefreshDataGridViewRemoveOrderClient(new List<StructElemCommand>() { });
         }
     }
 }
