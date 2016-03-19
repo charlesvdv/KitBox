@@ -15,7 +15,7 @@ namespace ProjetKitBox
 
 
             // WORKING => Add managerStock linkCommandeElement (DB) !!!!!
-            /*
+            
             Client c = new Client("TEST", "test", "000",comp.ManagerClient);
 
 
@@ -23,19 +23,19 @@ namespace ProjetKitBox
 
             Order o = new Order(c);
 
-            StructSize s = new StructSize(32, 32, 0);
+            StructSize s = new StructSize(62, 32, 0);
             Shelf s1 = new Shelf(s, comp.ManagerStock);
 
             s1.AddBox(36, "Blanc");
-
+            s1.Boxes[0].AddOption("Porte", "Blanc");
 
             o.AddShelf(s1, "Brun");
             Console.WriteLine(s1.Size.heigth);
             Console.WriteLine(s1.Corner.Size.heigth);
 
             comp.ManagerOrder.Add(o);
-            
-            */
+
+            Console.ReadKey();
 
 
 
@@ -153,12 +153,14 @@ namespace ProjetKitBox
             Console.WriteLine(test.IDSupplier);
             Console.ReadKey();
             */
+            /*
             List<StructOrderSupplier> list = comp.ManagerStock.GetBestSupplier();
             foreach (StructOrderSupplier s in list)
             {
                 Console.WriteLine(s.price.ToString() + " " + s.delay);
             }
             Console.ReadKey();
+            */
         }
     }
 }

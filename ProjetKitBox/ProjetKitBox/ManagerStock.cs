@@ -142,8 +142,8 @@ namespace ProjetKitBox
 		public Element SearchElement(string type, string color, StructSize size)
 		{
             string query = "SELECT * FROM " +
-                "`element` WHERE `typeElement` LIKE '" + type + "' AND `couleur` LIKE '" + color + "' AND `hauteur` "+
-                "LIKE "+ size.heigth +" AND `largeur` LIKE "+size.length+" AND `profondeur` LIKE "+size.depth;
+                "element WHERE typeElement='" + type + "' AND couleur='" + color + "' AND hauteur="+
+                size.heigth +" AND largeur="+size.length+" AND profondeur ="+size.depth+";";
 
             try
             {
@@ -176,6 +176,7 @@ namespace ProjetKitBox
                 i++;
             }
 
+            Console.WriteLine(e.Type);
             dataReader.Close();
             DBCon.Close();
 
@@ -186,7 +187,7 @@ namespace ProjetKitBox
         public Element SearchElementByCode(string code)
         {
             string query = "SELECT PK_code,couleur,hauteur,largeur,profondeur,prix,typeElement,nbrpieces  FROM " +
-                "`element` WHERE `PK_code` LIKE '" + code +"';";
+                "element WHERE PK_code =" + code +";";
             string server = "localhost";
             string database = "kitbox";
             string uid = "root";
@@ -228,8 +229,8 @@ namespace ProjetKitBox
         //Find the corner in the database 
         public Element FindCorner(double heigth, string color)
 		{
-            string query = "SELECT * FROM `element` "+
-                "WHERE `typeElement` LIKE 'corni' AND `couleur` LIKE '"+color+"' AND `hauteur` >= "+ heigth +"  order by hauteur LIMIT 1";
+            string query = "SELECT * FROM element "+
+                "WHERE typeElement='cornière' AND couleur='"+color+"' AND hauteur >= "+ heigth +"  order by hauteur LIMIT 1";
 
             try
             {

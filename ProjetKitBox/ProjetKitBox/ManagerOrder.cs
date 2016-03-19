@@ -33,9 +33,10 @@ namespace ProjetKitBox
                     supCutNumber += 1;
                 } 
             }
-
+            string price = order.GetPrice().ToString();
+            price = price.Replace(',', '.');
             string query = "INSERT INTO `kitbox`.`commande` (`prix total`, `FK_client`, `date`, `coupeSup`) " +
-                "VALUES ('" + order.GetPrice() + "' , '" + order.Client.NClient + "', now(), "+ supCutNumber +");";
+                "VALUES ('" + price + "' , '" + order.Client.NClient + "', now(), "+ supCutNumber +");";
 
             try
             {
@@ -135,10 +136,11 @@ namespace ProjetKitBox
             string query = "START TRANSACTION; ";
             foreach (ElemCount ec in SortedElem)
             {
-                query += "insert into linkcommandeelement(FK_Element, FK_commande, quantiteTotale, prix, quantiteRetiree)" +
-                    " values('" + ec.elem.Code +"', "+ PKCommand+", "+ ec.num+", "+ec.elem.Price+", 0); ";
+                string price = ec.elem.Price.ToString().Replace(',', '.');
+                query += "\ninsert into linkcommandeelement (FK_element, FK_commande, quantiteTotale, prix, quantiteRetiree)" +
+                    " values ('" + ec.elem.Code +"' , "+ PKCommand+" , "+ ec.num+" , "+price+" , 0); ";
             }
-            query += "COMMIT; ";
+            query += "\nCOMMIT; ";
 
             MySqlCommand cmd = new MySqlCommand(query, DBCon);
             cmd.ExecuteNonQuery();

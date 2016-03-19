@@ -18,7 +18,9 @@ namespace ProjetKitBox
         public Client(String name, string adress, string telephone,ManagerClient managerClient)
         {
             //check if the client already exist or not !
-            Client c = managerClient.Search(name, telephone);
+            Client c = null;
+            
+            //Client c = managerClient.Search(name, telephone);
             if (c == null)
             {
                 this.name = name;
