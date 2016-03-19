@@ -13,12 +13,16 @@ namespace Interface_Client
 {
     public partial class Form1 : Form
     {
-        Company comp = new Company();
-        Shelf s1 = null;
-        Order o = null;
-        double p = 0;
-        int numeromeuble = 1;
-        int numerocommande = 1;
+        Company comp = new Company();      
+        int numeroMeuble = 1;
+        int numeroCommande = 1;
+        Order commande = null;
+        Shelf s1 = null;       
+        double prix = 0;
+        double prixTotal = 0;
+        
+       
+
         public Form1()
         {
             InitializeComponent();
@@ -33,118 +37,126 @@ namespace Interface_Client
             string[] number = { "1", "2", "3", "4", "5", "6", "7" };
             string[] depths = { "32", "42", "52", "62" };
             string[] width = { "32", "42", "52", "62", "80", "100", "120" };
-            //Désactiver la possibilité d'écrire dans les ComboBox
+            
+            //Parcourir les éléments de step1
             foreach (Control c in this.step1.Controls)
             {
+                //Rentrer les données dans les ComboBox + on ne peut pas écrire dedans
                 if (c is ComboBox)
                 {
-                    (c as ComboBox).DropDownStyle = ComboBoxStyle.DropDownList;
+                    ComboBox cb = (ComboBox)c;
+                    cb.DropDownStyle = ComboBoxStyle.DropDownList;
+
+                    if (cb.Name.Contains("NumberLockersCh"))
+                        cb.Items.AddRange(number);
+
+                    else if (cb.Name.Contains("WidthCh"))
+                        cb.Items.AddRange(width);
+
+                    else if (cb.Name.Contains("DepthCh"))
+                        cb.Items.AddRange(depths);
                 }
             }
-            //Remplir les ComboBox de step1
-            foreach (Control c in this.step1.Controls)
-            {
-                if (c is ComboBox)
-                {
-                    if ((c as ComboBox).Name.Contains("NumberLockersCh"))
-                        (c as ComboBox).Items.AddRange(number);
-                }
-                if (c is ComboBox)
-                {
-                    if ((c as ComboBox).Name.Contains("WidthCh"))
-                        (c as ComboBox).Items.AddRange(width);
-                }
-                if (c is ComboBox)
-                {
-                    if ((c as ComboBox).Name.Contains("DepthCh"))
-                        (c as ComboBox).Items.AddRange(depths);
-                }
-
-            }
-
-            //Remplir les ComboBox de step2
             foreach (Control c in this.step2.Controls)
             {
                 if (c is ComboBox)
                 {
-                    (c as ComboBox).DropDownStyle = ComboBoxStyle.DropDownList;
-                    if ((c as ComboBox).Name.Contains("CornerColor"))
-                        (c as ComboBox).Items.AddRange(colors);
+                    ComboBox cb = (ComboBox)c;
+                    cb.DropDownStyle = ComboBoxStyle.DropDownList;
+                    if (cb.Name.Contains("CornerColor"))
+                        cb.Items.AddRange(colors);
                 }
             }
+
+            foreach (Control p in this.step2.Controls)
+            {
+                if (p is Panel)
+                    //Parcourir les éléments compris dans les panels 
+                    foreach (Control c in p.Controls)
+                    {
+                        if (c is ComboBox)
+                        {
+                            ComboBox cb = (ComboBox)c;
+                            cb.DropDownStyle = ComboBoxStyle.DropDownList;
+
+                            if (cb.Name.Contains("HeightCh"))
+                                cb.Items.AddRange(eights);
+
+                            else if (cb.Name.Contains("ColorCh"))
+                                cb.Items.AddRange(colors);
+
+                            else if (cb.Name.Contains("OptionCh"))
+                                cb.Items.AddRange(options);
+                        }
+                    }
+            }
+        }
+
+        //Lorsqu'on change la valeur d'un ComboBox
+        private void HC1_TextChanged(object sender, EventArgs e)
+        {
+            //Adapter la hauteur du meuble en temps réel
+            int hauteurTotale = 0;
             foreach (Control p in this.step2.Controls)
             {
                 if (p is Panel)
                     foreach (Control c in p.Controls)
                     {
-
-                        if (c is ComboBox)
-                        {
-                            (c as ComboBox).DropDownStyle = ComboBoxStyle.DropDownList;
-
-                            if ((c as ComboBox).Name.Contains("HeightCh"))
-                                (c as ComboBox).Items.AddRange(eights);
-
-                            else if ((c as ComboBox).Name.Contains("ColorCh"))
-                                (c as ComboBox).Items.AddRange(colors);
-
-                            else if ((c as ComboBox).Name.Contains("OptionCh"))
-                                (c as ComboBox).Items.AddRange(options);
-                        }
-                    }
-            }
-        }
-        //Adapter la hauteur du meuble en temps réel
-        private void HC1_TextChanged(object sender, EventArgs e)
-        {
-            int b = 0;
-            foreach (Control p in this.step2.Controls)
-            {
-                if (p is Panel)
-                    foreach (Control co in p.Controls)
-                    {
                         try
                         {
-                            if (co is ComboBox)
+                            if (c is ComboBox)
                             {
-                                int a = int.Parse(co.Text);
-                                b = b + a;
-                            }
+                                int hauteurCasier = int.Parse(c.Text);
+                                hauteurTotale = hauteurTotale + hauteurCasier;
+                            }                       
                         }
                         catch { };                      
                     }
             }
-            string c = Convert.ToString(b);
-            label9.Text = c;
-                       
-        }      
+            string ht = Convert.ToString(hauteurTotale);
+            label9.Text = ht;
+
+            //Code couleur pour la hauteur totale (standard - non standard)
+            if (new[] { 36, 46, 72, 92, 108, 112, 138, 144, 168, 180, 184, 216, 224, 230, 252, 276, 280 }.Contains(hauteurTotale))
+            {
+                label9.ForeColor = System.Drawing.Color.Green;
+            }
+            else
+            {
+                label9.ForeColor = System.Drawing.Color.Red;
+            }
+        }
+              
         //Lorsqu'on clic sur OK
         private void OK_Click(object sender, EventArgs e)
         {
+            //Tester si l'utilisateur à tout completé
             if (LastName.TextLength != 0 && FirstName.TextLength != 0 && PhoneNumber.TextLength !=0 )
             {
+                //Changer la visibilité/laccessibilité des panels et tabpages
                 panel8.Visible = true;
                 panel9.Visible = false;
                 step1.Enabled = true;
                 welcom.Enabled = false;
+                //Changement d'onglet
                 tabControl1.SelectedIndex = 1;
+                //Coordonnées du client dans l'en-tête
                 label49.Text = LastName.Text;
                 label12.Text = FirstName.Text;
-                string m = Convert.ToString(numeromeuble);
-                string c = Convert.ToString(numerocommande);
+                //Check numéro meuble/commande
+                string m = Convert.ToString(numeroMeuble);
+                string c = Convert.ToString(numeroCommande);
                 NumMeuble.Text = m;
                 NumCommande.Text = c;
+                //Création du client et de la commande
                 Client cli = new Client(LastName.Text, FirstName.Text, PhoneNumber.Text, comp.ManagerClient);
                 comp.ManagerClient.AddClient(cli);
-                o = new Order(cli);
-
-
+                commande = new Order(cli);
             }
             else
             {
                 MessageBox.Show("Veuillez compléter vos coordonnées");
             }
-
         }
         //Lorsqu'on clic sur annuler la commande
         private void CancelOrder_Click(object sender, EventArgs e)
@@ -204,17 +216,16 @@ namespace Interface_Client
         {
             if (MessageBox.Show("Voulez-vous vraiment annuler le meuble?", "Annulation du meuble", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                tabControl1.SelectedIndex = 1;
+                //Retour à step1 en remettant tout à 0 (conditions de départ)               
                 step1.Enabled = true;
                 step2.Enabled = false;
+                tabControl1.SelectedIndex = 1;
                 foreach (Control c in this.step1.Controls)
-                {
                     if (c is ComboBox)
                     {
                         ComboBox cb = (ComboBox)c;
                         cb.SelectedIndex = -1;
                     }
-                }
                 foreach (Control p in this.step2.Controls)
                 {
                     if (p is ComboBox)
@@ -223,7 +234,6 @@ namespace Interface_Client
                         cb.SelectedIndex = -1;
                     }
                     if (p is Panel)
-                    {
                         foreach (Control c in p.Controls)
                         {
                             if (c is ComboBox)
@@ -232,8 +242,6 @@ namespace Interface_Client
                                 cb.SelectedIndex = -1;
                             }
                         }
-
-                    }
                 }
             }
         }
@@ -241,11 +249,13 @@ namespace Interface_Client
         //Lorsqu'on clic sur suivant
         private void Next_Click(object sender, EventArgs e)
         {
+            //Véifier si l'utilisateur a bien tout completé 
             if (WidthCh.SelectedItem != null && DepthCh.SelectedItem != null && NumberLockersCh.SelectedItem != null)
             {
                 step2.Enabled = true;
                 step1.Enabled = false;
                 tabControl1.SelectedIndex = 2;
+                //Création d'une liste de panels
                 List<Panel> listPanel = new List<Panel>();
                 listPanel.Add(panel1);
                 listPanel.Add(panel2);
@@ -254,23 +264,21 @@ namespace Interface_Client
                 listPanel.Add(panel5);
                 listPanel.Add(panel6);
                 listPanel.Add(panel7);
-
-                int a = int.Parse(NumberLockersCh.Text);
-                for (int i = a; i <= 6; i++)
+                //Afficher un nombre de boxes correspondant au nombre rentré par l'utilisateur
+                int nombreCasiers = int.Parse(NumberLockersCh.Text);
+                for (int i = nombreCasiers; i <= 6; i++)
                 {
                     listPanel[i].Visible = false;
                 }
-
-                for (int j = 0; j < a; j++)
+                for (int j = 0; j < nombreCasiers; j++)
                 {
                     listPanel[j].Visible = true;
                 }
-
-                int b = int.Parse(WidthCh.Text);
-                int c = int.Parse(DepthCh.Text);
-                StructSize s = new StructSize(b,c,0);
+                int largeur = int.Parse(WidthCh.Text);
+                int profondeur = int.Parse(DepthCh.Text);
+                //Configuration de l'armoire
+                StructSize s = new StructSize(largeur,profondeur,0);
                 s1 = new Shelf(s, comp.ManagerStock);
-
             }
             else
             {
@@ -281,23 +289,19 @@ namespace Interface_Client
         //Lorsqu'on clic sur précédent
         private void Previous_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectedIndex = 1;
             step1.Enabled = true;
             step2.Enabled = false;
+            tabControl1.SelectedIndex = 1;            
             foreach (Control p in this.step2.Controls)
             {
                 if (p is Panel)
-                {
                     foreach (Control c in p.Controls)
-                    {
+
                         if (c is ComboBox)
                         {
                             ComboBox cb = (ComboBox)c;
                             cb.SelectedIndex = -1;
                         }
-                    }
-
-                }
                 if (p is ComboBox)
                 {
                     ComboBox cb = (ComboBox)p;
@@ -309,17 +313,24 @@ namespace Interface_Client
         //Lorsqu'on clic sur ajouter au panier
         private void AddToCaddy_Click(object sender, EventArgs e)
         {
-            step3.Enabled = true;
-            step2.Enabled = false;
             bool control = true;
             foreach (Control p in this.step2.Controls)
             {
-                if (p is Panel && p.Visible)
+                if (p is ComboBox)
                 {
-                    
-                    int a = 0;
-                    string b = "";
-                   
+                    ComboBox cb = (ComboBox)p;
+                    if(cb.SelectedItem ==null)
+                    {
+                        control = false;
+                        break;
+                    }
+                }
+                
+
+                if (p is Panel && p.Visible)
+                {                  
+                    int hauteur = 0;
+                    string couleur = "";                  
                     foreach (Control c in p.Controls)
                     {
                         if (c is ComboBox)
@@ -330,36 +341,71 @@ namespace Interface_Client
                                 control = false;
                                 break;
                             }
+                            
                             if (cb.Name.Contains("HeightCh"))
                             {
-                                a = int.Parse(cb.Text);
+                                hauteur = int.Parse(cb.Text);
                             }
                             if (cb.Name.Contains("ColorCh"))
                             {
-                                b = cb.Text;
+                                couleur = cb.Text;
                             }
+                            
+                            /*if (cb.Name.Contains("OptionCh"))
+                            {
+                                char idBoxC = cb.Name[cb.Name.Length - 1];
+                                int idBox = Convert.ToInt32(idBoxC) - 1 - 48;
+                                id[idBox] = idBox;
+                                int nm = int.Parse(NumMeuble.Text);
+
+                            }
+                            */                            
                         }                                           
-                    }                  
-                    s1.AddBox(a, b);
+                    }                                    
+                    s1.AddBox(hauteur, couleur);
                 }
             }
+            //Si control = false -> l'utilisateur n'a pas rempli tous les champs 
+            if (control == false)
+            {
+                MessageBox.Show("Veuillez remplir tous les champs" );
+                return;
+            }
+            //Ajoter la l'armoire à la commande
+            commande.AddShelf(s1, CornerColor.Text);
 
-            o.AddShelf(s1, CornerColor.Text);
-
-
+            //Checker si la hauteur totale du meuble est standard ou non 
+            bool sup = false;
+            sup = commande.Shelfs[commande.Shelfs.Count - 1].SupplementCut;           
             if (control)
             {
-                foreach( Shelf s in o.Shelfs)
+                if (sup)
+                    if (MessageBox.Show("La hauteur de votre meuble n'est pas standard. Un supplément de 30€ vous sera demandé pour la découpe.", "Supplément découpe", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                    {
+                        listBox1.Items.Add("-> " + "Meuble" + NumMeuble.Text + "* " + "( " + prix + " " + "€" + " )");
+                        sup = false;
+                    }
+                    else { }
+                else
                 {
-                     p = s.Price;
+                    listBox1.Items.Add("-> " + "Meuble" + NumMeuble.Text + " " + "( " + prix + " " + "€" + " )");
                 }
-                checkedListBox1.Items.Add("Meuble" + NumMeuble.Text + " " + "( " + p + " " + "€" + " )");
+                //Calcul du prix
+                foreach (Shelf s in commande.Shelfs)
+                {
+                    prix = s.Price;
+                    bool supplement = s.SupplementCut;
+                }                                          
+                prixTotal = prixTotal + prix;
+                label10.Text = prixTotal.ToString() + " " + "€";
+                step3.Enabled = true;
+                step2.Enabled = false;
                 tabControl1.SelectedIndex = 3;
             }
             else
             {
                 MessageBox.Show("Veuillez remplir tous les champs");
-            }
+            }           
         }
 
 
@@ -369,23 +415,24 @@ namespace Interface_Client
             step1.Enabled = true;
             step3.Enabled = false;
             GoToCaddy.Enabled = true;
-            tabControl1.SelectedIndex = 1;
-            numeromeuble = numeromeuble + 1;
-            string n = Convert.ToString(numeromeuble);
+            tabControl1.SelectedIndex = 1;                      
+            numeroMeuble = numeroMeuble + 1;
+            string n = Convert.ToString(numeroMeuble);
             NumMeuble.Text = n;
-
             foreach (Control c in this.step1.Controls)
-            {
                 if (c is ComboBox)
                 {
                     ComboBox cb = (ComboBox)c;
                     cb.SelectedIndex = -1;
                 }
-            }
             foreach (Control p in this.step2.Controls)
             {
-                if (p is Panel)
+                if (p is ComboBox)
                 {
+                    ComboBox cb = (ComboBox)p;
+                    cb.SelectedIndex = -1;
+                }
+                if (p is Panel)
                     foreach (Control c in p.Controls)
                     {
                         if (c is ComboBox)
@@ -394,26 +441,27 @@ namespace Interface_Client
                             cb.SelectedIndex = -1;
                         }
                     }
-
-                }
             }
         }
 
         //Lorsqu'on clic sur valider le panier
         private void ValidateCaddy_Click(object sender, EventArgs e)
         {
-            comp.ManagerOrder.Add(o);
+            if (MessageBox.Show("Valider la commande de " + NumMeuble.Text +" meuble(s) pour un prix total de " + label10.Text, "Validation du panier", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                comp.ManagerOrder.Add(commande);
+            }
+            else { }   
         }
        
         //Lorsqu'on clic sur panier
         private void GoToCaddy_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectedIndex = 3;
             step3.Enabled = true;
             step2.Enabled = false;
             step1.Enabled = false;
             welcom.Enabled = false;
-        
+            tabControl1.SelectedIndex = 3;        
         }
         //Checker bouton entre et escape
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
