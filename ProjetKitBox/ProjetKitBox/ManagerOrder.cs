@@ -181,21 +181,7 @@ namespace ProjetKitBox
             return data; 
 		}
 
-        public struct StructInfoOrder
-        {
-            public double price;
-            public int IDClient;
-            public int coupeSup;
-            public bool retire;
 
-            public StructInfoOrder(int IDC, double price, int coupeSup, bool retire)
-            {
-                IDClient = IDC;
-                this.price = price;
-                this.coupeSup = coupeSup;
-                this.retire = retire;
-            }
-        }
 
         public StructInfoOrder GetInfoOrder(int refOrder)
         {

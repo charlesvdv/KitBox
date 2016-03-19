@@ -329,23 +329,6 @@ namespace ProjetKitBox
 
         }
 
-        public struct StructElemCommand
-        {
-            public string codeElement;
-            public int numOrdered;
-            public int stock;
-            public double price;
-
-            public StructElemCommand(string c, int n, int s, double p)
-            {
-                this.codeElement = c;
-                this.numOrdered = n;
-                this.stock = s;
-                this.price = p;
-            }
-        }
-
-
         public List<StructElemCommand> GetElemFromCommand(int refCommand)
         {
             string queryCommand = "select e.PK_code, e.stock, l.quantiteTotale, l.prix from linkcommandeelement l inner join " +
