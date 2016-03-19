@@ -81,6 +81,16 @@ namespace Interface_commande
             }
         }
 
+        public void RefreshDataGridViewRemoveOrderClient(List<StructElemCommand> elemOrd)
+        {
+            EmptyDataGridView(dataGridView5);
+
+            foreach(StructElemCommand elem in elemOrd)
+            {
+                dataGridView5.Rows.Add(elem.codeElement, elem.numOrdered, elem.price);
+            }
+        }
+
         private void ClickHere_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             commandToSupplier = comp.CommandStock();
@@ -125,6 +135,21 @@ namespace Interface_commande
 
         private void GO_Click(object sender, EventArgs e)
         {
+            int refOrder = Convert.ToInt32(textBoxRefCommand.Text);
+            StructInfoOrder infoOrder;
+            List<StructElemCommand> elemOrdered = new List<StructElemCommand>() { };
+            try
+            {
+                infoOrder = comp.ManagerOrder.GetInfoOrder(refOrder);
+                elemOrdered = comp.ManagerStock.GetElemFromCommand(refOrder);
+
+            } catch(Exception ex)
+            {
+                MessageBox.Show("Une erreur est survenue... Avez-vous bien entrée la bonne commande ?\n"+ ex.Message);
+            }
+
+            RefreshDataGridViewRemoveOrderClient(elemOrdered);
+
             panel2.Visible = true;
         }
 
@@ -243,6 +268,17 @@ namespace Interface_commande
             }
             infoSupplier[e.RowIndex] = sup;
             RefreshDataGridViewSupplier();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                comp.ManagerStock.RemoveFromStock(Convert.ToInt32(textBoxRefCommand.Text));
+            } catch(Exception ex)
+            {
+                MessageBox.Show("Une erreur est survenue... Avez vous bien rentrer tout ce qu'il fallait ? \n" + ex.Message);
+            }
         }
     }
 }

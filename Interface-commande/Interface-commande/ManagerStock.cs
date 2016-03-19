@@ -98,11 +98,15 @@ namespace ProjetKitBox
         //The returned list tell us which is the best suppplier, then give us price and delay for each element
         public List<StructOrderSupplier> GetBestSupplier()
 		{
-            string query = "select prix, delai, FK_element, FK_fournisseur from linkelementfournisseur l1 " +
-                "where( " +
-                "prix = (select min(prix) from linkelementfournisseur l2 " +
-                "where l2.FK_element = l1.FK_element order by delai)) " +
-                "group by FK_element; ";
+            string query = "select prix, delai, l1.FK_fournisseur, l1.FK_Element from linkelementfournisseur l1 " +
+                "where prix = (select min(l2.prix) from linkelementfournisseur l2 " +
+                "where l1.FK_Element = l2.FK_Element) " +
+                "and delai = ( " +
+                "select min(l3.delai) from linkelementfournisseur l3 " +
+                "where l1.FK_Element = l3.FK_Element and prix " +
+                "= (select min(l4.prix) from linkelementfournisseur l4 " +
+                "where l1.FK_Element = l4.FK_Element)) " +
+                "group by FK_Element; ";
             try
             {
                 DBCon.Open();
@@ -325,30 +329,16 @@ namespace ProjetKitBox
 
         }
 
-        private struct StructElemCommand
+        public List<StructElemCommand> GetElemFromCommand(int refCommand)
         {
-            public string codeElement;
-            public int numOrdered;
-            public int stock;
-
-            public StructElemCommand(string c, int n, int s)
-            {
-                this.codeElement = c;
-                this.numOrdered = n;
-                this.stock = s;
-            }
-        }
-
-
-        public void RemoveFromStock(int refCommand)
-        {
-            string queryCommand = "select e.PK_code, e.stock, l.quantiteTotale from linkcommandeelement l inner join "+
-                "element e on e.PK_code = l.FK_element where FK_commande = "+ refCommand +";";
+            string queryCommand = "select e.PK_code, e.stock, l.quantiteTotale, l.prix from linkcommandeelement l inner join " +
+                "element e on e.PK_code = l.FK_element where FK_commande = " + refCommand + ";";
 
             try
             {
                 DBCon.Open();
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 throw e;
             }
@@ -359,10 +349,29 @@ namespace ProjetKitBox
 
             while (reader.Read())
             {
-                codeElem.Add(new StructElemCommand(reader["PK_code"].ToString(), (int)reader["quantiteTotale"], (int)reader["stock"]));
+                codeElem.Add(new StructElemCommand(reader["PK_code"].ToString(), (int)reader["quantiteTotale"], (int)reader["stock"], Convert.ToDouble(reader["prix"])));
             }
 
             reader.Close();
+            DBCon.Close();
+
+            return codeElem;
+        }
+
+
+        public void RemoveFromStock(int refCommand)
+        {
+            List<StructElemCommand> codeElem = GetElemFromCommand(refCommand);
+
+            try
+            {
+                DBCon.Open();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
 
             //check if the stock is enough for the command
             foreach (StructElemCommand stru in codeElem)
@@ -381,7 +390,7 @@ namespace ProjetKitBox
             }
             queryUpdate += "COMMIT; ";
 
-            cmd = new MySqlCommand(queryUpdate, DBCon);
+            MySqlCommand cmd = new MySqlCommand(queryUpdate, DBCon);
 
             cmd.ExecuteNonQuery();
 
